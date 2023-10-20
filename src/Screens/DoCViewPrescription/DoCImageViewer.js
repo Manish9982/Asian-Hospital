@@ -8,7 +8,7 @@ import HeaderTwo from '../../assets/Schemes/HeaderTwo';
 const DoCImageViewer = ({ navigation, route }) => {
 
     return (
-        <SafeAreaView style={{
+        <View style={{
             height: H,
             width: W,
         }}>
@@ -16,7 +16,7 @@ const DoCImageViewer = ({ navigation, route }) => {
             <WebView
                 source={{ uri: route.params.link }}
             />
-        </SafeAreaView>
+        </View>
     );
 }
 

@@ -51,6 +51,7 @@ const DoCIpdBilling = () => {
         setData(result)
         setLoader(false)
     }
+    
     const getIpdPatientsListFirstTime = async () => {
         setLoader(true)
         const temp = await getLocalStorageData('doctorCode')
@@ -206,7 +207,7 @@ const DoCIpdBilling = () => {
                         textAlign: "center"
                     }}>{"No Patients Found..\nPlease Select/Change The Hospital"}</Text>}
                 <View style={{
-                    paddingBottom: H * 0.3
+                    paddingBottom: H * 0.4
                 }}>
                     {
                         data?.ipdPatients?.length !== 0 &&

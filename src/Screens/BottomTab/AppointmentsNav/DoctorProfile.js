@@ -147,7 +147,6 @@ const DoctorProfile = ({ navigation, route }) => {
             setMyDoctorDesignation(`${result?.doctor?.designation}`)
             setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
             setMyDoctorEducation(`${result?.doctor?.education}`)
-
         }
         else {
             Alert.alert('Error', `${result.message}`)

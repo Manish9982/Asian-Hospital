@@ -64,22 +64,6 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
 
     }
 
-    const startVideoCallWithPatient = async (id) => {
-        setLoader(true)
-
-        var formdata = new FormData();
-        formdata.append("appo_id", id);
-        // console.log("formdata of startCall ", formdata)
-        const result = await PostApiData('startCall', formdata)
-        if (result?.status == "200") {
-            // console.log("result of startCall ", result)
-            await savelocalStorageData('accessToken', `${result?.call_video?.doctor_token}`)
-            await savelocalStorageData('ID', `${id}`)
-            await navigation.navigate("VideoCalling")
-        }
-        setLoader(false)
-    }
-
 
     const renderItemHospitals = ({ item, index }) => {
         return (

@@ -40,7 +40,7 @@ const DoCViewImage = (props) => {
 
                 </TouchableOpacity>
                 <Text style={{
-                    fontSize:fontSizes.XXXXSM,
+                    fontSize: fontSizes.XXXXSM,
                     width: W * 0.35,
                     textAlign: "center",
                     alignSelf: "center"
@@ -56,6 +56,9 @@ const DoCViewImage = (props) => {
     return (
         <View>
             <FlatList
+                columnWrapperStyle={{
+                    justifyContent: "space-evenly"
+                }}
                 numColumns={2}
                 data={props?.ImageData}
                 renderItem={renderItem}

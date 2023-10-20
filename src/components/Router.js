@@ -144,8 +144,9 @@ const Router = (props) => {
                     <Stack.Screen name="NotificationsDisplaying" component={NotificationsDisplaying} options={{ headerShown: false }} />
                     <Stack.Screen name="ContactUs" component={ContactUs} options={{ headerShown: false }} />
                     <Stack.Screen name="ChangePatient" component={ChangePatient} options={{ headerShown: false }} />
-
-
+                    <Stack.Screen name="DoCViewPrescription" component={DoCViewPrescription} options={{ headerShown: false }} />
+                    <Stack.Screen name="DoCImageViewer" component={DoCImageViewer} options={{ headerShown: false }} />
+                    
                 </Stack.Navigator>
             </NavigationContainer>
         )

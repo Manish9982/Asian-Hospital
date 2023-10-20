@@ -40,7 +40,7 @@ const DoCBookAppointmnetForMe = ({navigation}) => {
             setFilteredDoctorName([])
             setData(result)
         } else {
-            Alert.alert('Api Error', `${result.message}`)
+            Alert.alert('Error', `${result.message}`)
         }
         setLoader(false)
     }

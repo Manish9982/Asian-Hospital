@@ -31,7 +31,7 @@ const HeaderTwo = (props) => {
                     <TouchableOpacity onPress={() => {
                         navigation.navigate("AllLogos")
                     }}>
-                         <Text style={{position:"absolute", zIndex:25}}>`{Constants.VERSION_TEXT}`</Text>
+                         <Text style={{position:"absolute", zIndex:25}}>{Constants.VERSION_TEXT}</Text>
                         <Image source={require('../Images/asianlogo.png')}
                             style={{
                                 height: H * 0.08,
