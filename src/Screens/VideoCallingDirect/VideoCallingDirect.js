@@ -135,8 +135,6 @@ const VideoCallingDirect = ({ navigation, route }) => {
 
         }
         else {
-
-
             check(PERMISSIONS.IOS.CAMERA)
                 .then((result) => {
                     switch (result) {

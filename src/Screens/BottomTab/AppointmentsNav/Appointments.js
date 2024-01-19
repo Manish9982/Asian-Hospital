@@ -1,5 +1,5 @@
 import {
-    ScrollView, View, FlatList, Modal, Dimensions, Image, TouchableOpacity, SafeAreaView, Alert, KeyboardAvoidingView, Platform
+    StyleSheet, ScrollView, View, FlatList, Modal, Dimensions, Image, TouchableOpacity, SafeAreaView, Alert, KeyboardAvoidingView, Platform
 } from 'react-native'
 
 import React, { useEffect, useState, useContext } from 'react'
@@ -422,7 +422,7 @@ const Appointments = ({ navigation }) => {
                         }
                         {filteredDoctorName.length == 0
                             ?
-                            null
+                            <Text style={styles.errorMessage}>{data?.message}</Text>
                             :
                             <Text style={{
                                 textAlign: "center",
@@ -440,5 +440,13 @@ const Appointments = ({ navigation }) => {
             </View >
     )
 }
+
+const styles = StyleSheet.create({
+    errorMessage:
+    {
+        alignSelf: 'center',
+        marginTop: '50%'
+    }
+})
 
 export default Appointments

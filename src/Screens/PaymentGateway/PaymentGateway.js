@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, BackHandler } from 'react-native'
+import { View, Text, SafeAreaView, BackHandler, Linking } from 'react-native'
 import React, { useContext, useEffect } from 'react'
 import { WebView } from 'react-native-webview';
 import DataContext from '../../assets/Context/DataContext';
@@ -27,22 +27,39 @@ const PaymentGateway = ({ navigation, route }) => {
   }, []);
 
   const navigationOnWebView = (info) => {
-    if (info?.url == "payu-money-payment") {
+    if (info?.url == Constants.PAYMENT_SUCCESS) {
       navigation.navigate("PatientDashboard")
     }
-    else if (info?.url == `${Constants.BASE}payu-money-payment-cancel`) {
+    else if (info?.url == Constants.PAYMENT_FAIL) {
       navigation.navigate("DoctorProfile")
     }
   }
 
-
+  console.log("ID==========>", `${Constants.PAYMENT_GATEWAY}${myAppointmentId}`)
   return (
     <SafeAreaView style={{
       height: H,
       width: W,
     }}>
       <WebView
-        source={{ uri: `${Constants.BASE}payu-money-payment?productinfo=${myAppointmentId}&firstname=${route.params.gender == "Self" ? mySelf : patientName}&amount=${myPrice}&email=${myEmail}&phone=${mobileNo}` }}
+        javaScriptEnabled={true}
+        onShouldStartLoadWithRequest={(event) => {
+          const { url } = event;
+          console.log("url===============>", url)
+          if (url.startsWith('upi://')) {
+            // Handle the custom scheme here, e.g., open it in a browser
+            Linking.openURL(url); // Open the URL in the device's browser
+            return false; // Prevent the WebView from navigating
+          }
+          return true; // Allow other URLs to load
+        }}
+        javaScriptCanOpenWindowsAutomatically={true}
+        domStorageEnabled={true}
+        startInLoadingState={false}
+        scalesPageToFit={true}
+        originWhitelist={['upi://', 'https://']}
+        //source={{ uri: `${Constants.PAYMENT_GATEWAY}${myAppointmentId}&firstname=${route.params.gender == "Self" ? mySelf : patientName}&amount=${myPrice}&email=${myEmail}&phone=${mobileNo}` }}
+        source={{ uri: `${Constants.PAYMENT_GATEWAY}${myAppointmentId}` }}
         style={{ marginTop: 20 }}
         onNavigationStateChange={(info) => navigationOnWebView(info)}
       />

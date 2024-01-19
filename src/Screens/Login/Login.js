@@ -135,12 +135,12 @@ const Login = ({ navigation }) => {
 
       // console.log("resultForDoctorLoginApi", result)
       setMyData(result)
-      if (result.status == '200') {
+      if (result?.status == '200') {
         await savelocalStorageData('doctorCode', userName)
         await savelocalStorageData('doctorMobile', result?.mobile)
         await savelocalStorageData('userType', "doctor")
         await savelocalStorageData('token', result?.token) //storing token in local database
-        setSignedState('doctor')
+        await setSignedState('doctor')
       }
       else {
         Alert.alert('Error', `${result?.message}`)

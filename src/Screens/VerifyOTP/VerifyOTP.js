@@ -43,7 +43,7 @@ const VerifyOTP = ({ navigation }) => {
     var formdata = new FormData();
     formdata.append("mobile", mobileNo);
     formdata.append("device_type", Platform.OS);
-    formdata.append("app_version", "1.2");
+    formdata.append("app_version", Constants.APP_VERSION);
     formdata.append("user_type", "1");
 
     //console.log('params1==', formdata)

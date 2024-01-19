@@ -31,6 +31,8 @@ const DoctorCard = (props) => {
         return t?.substring(t?.indexOf('/') + 1)
     }
 
+    console.log("Image Url=============>>>>", `${props.profile_url}${props.image}`)
+
     return (
         <View>
             <View style={{

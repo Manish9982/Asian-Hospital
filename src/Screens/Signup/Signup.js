@@ -434,7 +434,10 @@ const Signup = ({ navigation, route }) => {
               padding: 5
             }}>
 
-            <Text style={{ fontSize: fontSizes.default, fontFamily: fontFamily.medium }}>
+            <Text style={{
+              fontSize: fontSizes.default,
+              fontFamily: fontFamily.medium
+            }}>
               {item.AttributeName}
             </Text>
 

@@ -85,7 +85,6 @@ const SlotBlockingScreen = ({ navigation, route }) => {
       }}>
         <HeaderTwo Title="" />
         <View >
-
           <DoctorCardWithoutPrice
             profile_url={myDoctorImage}
             image={""}

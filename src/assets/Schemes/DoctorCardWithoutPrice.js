@@ -29,7 +29,7 @@ const DoctorCardWithoutPrice = (props) => {
         return t?.substring(t.indexOf('/') + 1)
     }
 
-
+    console.log("Image URL =====>", `${props.profile_url}${props.image}`)
     return (
         <View style={{
             borderColor: colors.toobarcolor,
@@ -86,10 +86,10 @@ const DoctorCardWithoutPrice = (props) => {
                         color: colors.black,
                         width: W * 0.5
                     }}>
-                    {breakString(props?.first_name?.replace('\\','/'))}
-                    {props?.first_name?.replace('\\','/')?.includes("/") ? <Text style={{
+                    {breakString(props?.first_name?.replace('\\', '/'))}
+                    {props?.first_name?.replace('\\', '/')?.includes("/") ? <Text style={{
                         color: "gray"
-                    }}>{breakStringSecond(props?.first_name?.replace('\\','/'))}</Text> : null}
+                    }}>{breakStringSecond(props?.first_name?.replace('\\', '/'))}</Text> : null}
                 </Text>
                 <Text style={{
                     marginLeft: W * 0.04,

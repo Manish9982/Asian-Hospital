@@ -528,7 +528,7 @@ const AfterSlotBlockingConfirmation = ({ navigation, route }) => {
                                 strokeWidth={6}
                                 size={W * 0.17}
                                 isPlaying
-                                duration={300}
+                                duration={data2?.duration}
                                 colors={colors.toobarcolor}
                                 trailColor="orange"
                             //colors={['green', 'yellow', 'orange', 'red']}

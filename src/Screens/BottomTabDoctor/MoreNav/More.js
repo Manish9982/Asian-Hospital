@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import Loader from '../../../assets/Loader/Loader'
 import DataContext from '../../../assets/Context/DataContext'
 import { spacing } from '../../../components/Spacing'
+import { Constants, LocalStore } from '../../../assets/Schemes/Constants'
 
 
 //doctors
@@ -27,7 +28,7 @@ const More = ({ navigation }) => {
     formdata.append("his_id", temp1)
     //formdata.append("user_type", "2")
     formdata.append("device_type", Platform.OS)
-    formdata.append("app_version", "1.2")
+    formdata.append("app_version", Constants.APP_VERSION)
     formdata.append("fcm_token", temp3)
     const result = await PostApiData('his_register', formdata)
     if (result?.status == '200') {

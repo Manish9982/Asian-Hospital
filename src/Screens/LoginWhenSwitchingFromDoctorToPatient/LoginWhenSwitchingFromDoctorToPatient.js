@@ -65,7 +65,7 @@ const LoginWhenSwitchingFromDoctorToPatient = ({ navigation }) => {
         var formdata = new FormData();
         formdata.append("mobile", mobileNo);
         formdata.append("device_type", Platform.OS);
-        formdata.append("app_version", "1.2");
+        formdata.append("app_version", Constants.APP_VERSION);
         formdata.append("user_type", "1");
         formdata.append("fcm_token", fcm_token)
 
@@ -116,7 +116,7 @@ const LoginWhenSwitchingFromDoctorToPatient = ({ navigation }) => {
         formdata.append("username", userName);
         formdata.append("password", password);
         formdata.append("device_type", Platform.OS);
-        formdata.append("app_version", "1.2");
+        formdata.append("app_version", Constants.APP_VERSION);
         formdata.append("user_type", "2");
         formdata.append("fcm_token", fcm_token)
 

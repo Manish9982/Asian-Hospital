@@ -90,7 +90,7 @@ const DoctorDashboard = ({ navigation }) => {
     // console.log("Doctor Token At Dashboard", token)
     if (result?.status == '200') {
       setData(result)
-      // console.log("== ", result)
+      console.log("==>>>>>>> ", result)
       if (result?.appointment_card == 0) {
         setShouldDoctorSeeAppointments(false)
       }

@@ -135,14 +135,14 @@ export const PostApiData = async (ApiName, formdata) => {
          //console.log('url======>>>>>', `${URL}${ApiName}`)
          const response = await fetch(`${URL}${ApiName}`, requestOptions)
          const result = await response.json()
-         //console.log('result=======>', result)
+         //console.log(`#########RESULT of ${ApiName}====>`, result)
          if (result?.status == 502) {
 
             try {
 
                await AsyncStorage.clear()
-               RNRestart.Restart()
                Alert.alert('Info', `Your Session Has Expired. Please Login Again.`)
+               RNRestart.Restart()
                // clearTimeout(timeout)
             } catch (e) {
                //Alert.alert('No Response From Server', `Please Try Again.`)

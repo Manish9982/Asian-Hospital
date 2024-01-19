@@ -1,8 +1,12 @@
 import { View, Text, StatusBar, Image, Touchable, TouchableOpacity } from 'react-native'
 import React, { useEffect } from 'react'
 import { colors, H } from '../../assets/Schemes/Schemes'
+import { useNavigation } from '@react-navigation/native'
 
-const AllLogos = ({ navigation }) => {
+const AllLogos = () => {
+
+    const navigation = useNavigation()
+
     useEffect(() => {
         setTimeout(() => {
             navigation.goBack()

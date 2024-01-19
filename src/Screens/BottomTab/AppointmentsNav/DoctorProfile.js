@@ -10,8 +10,7 @@ import DataContext from '../../../assets/Context/DataContext'
 import WebView from 'react-native-webview'
 import DoctorCardWithoutPrice from '../../../assets/Schemes/DoctorCardWithoutPrice'
 import { useIsFocused } from '@react-navigation/native'
-
-
+import AntDesign from 'react-native-vector-icons/dist/AntDesign'
 
 const DoctorProfile = ({ navigation, route }) => {
 
@@ -44,29 +43,29 @@ const DoctorProfile = ({ navigation, route }) => {
 
 
     useEffect(() => {
-        getDoctorProfileForToday()
         effectFunctions()
     }, [])
+    useEffect(() => {
+        getDoctorProfileForToday(tempTime)
+    }, [myAppointmentType])
 
 
 
     const effectFunctions = async () => {
 
         await savelocalStorageData('doctor_id', myDoctorID)
+        await setApiDate(Date.now())
+        getDoctorProfileForToday(Date.now())
         // console.log("my appointment type at effect == >", myAppointmentType)
     }
-    useEffect(() => {
-        const interval = setInterval(() => {
-            getDoctorProfileByDate()
-        }, 10000);
+    // useEffect(() => {
+    //     {
+    //         isFocused
+    //             &&
+    //             getDoctorProfileForToday()
 
-        {
-            !isFocused
-                && clearInterval(interval)
-        }
-
-        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-    }, [apiDate, myAppointmentType, isFocused])
+    //     }
+    // }, [apiDate, myAppointmentType, isFocused])
 
 
 
@@ -101,13 +100,14 @@ const DoctorProfile = ({ navigation, route }) => {
 
 
 
-    const getDoctorProfileForToday = async () => {
-
+    const getDoctorProfileForToday = async (date) => {
+        setLoader(true)
+        console.log("Today Schedule")
         const temp = await getLocalStorageData('hospital_id')
         var formdata = new FormData();
         formdata.append("hospital_id", temp);
         formdata.append("doctor_id", myDoctorID);
-        formdata.append("date", timeStampToDateFormaty_m_d(Date.now()));
+        formdata.append("date", timeStampToDateFormaty_m_d(date));
         formdata.append("type", myAppointmentType)
         // console.log("Formdata Of Doctor Schedule/getDoctorProfileForToday=====>", formdata)
         const result = await PostApiData('doctor_schedule', formdata)
@@ -119,98 +119,94 @@ const DoctorProfile = ({ navigation, route }) => {
             setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
             setMyDoctorDesignation(`${result?.doctor?.designation}`)
             setMyDoctorEducation(`${result?.doctor?.education}`)
-            setApiDate(Date.now())
-
         } else {
             Alert.alert('Error', `${result.message}`)
         }
         // console.log("result Of Doctor Schedule=====>/getDoctorProfileForToday", result)
         setLoader(false)
     }
-    //get doctor profile and slots from the same api i.e. doctor_schedule
-    const getDoctorProfileByAppointmentType = async (appo_type) => {
-        setLoader(true)
-        setMyAppointmentType(appo_type)
-        const temp = await getLocalStorageData('hospital_id')
-        var formdata = new FormData();
-        formdata.append("hospital_id", temp);
-        formdata.append("doctor_id", myDoctorID);
-        formdata.append("date", timeStampToDateFormaty_m_d(apiDate));
-        formdata.append("type", appo_type);
-        // console.log("Formdata Of Doctor Schedule=====>/getDoctorProfileByAppointmentType", formdata)
-        const result = await PostApiData('doctor_schedule', formdata)
-        if (result.status == '200') {
-            setData(result)
-            setMyPrice(result?.price)
-            setMyDoctorCategory(result?.doctor?.category)
-            setMyDoctor(result?.doctor?.first_name)
-            setMyDoctorDesignation(`${result?.doctor?.designation}`)
-            setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
-            setMyDoctorEducation(`${result?.doctor?.education}`)
-        }
-        else {
-            Alert.alert('Error', `${result.message}`)
-        }
-        // console.log("result Of Doctor Schedule=====>/getDoctorProfileByAppointmentType", result)
-        setLoader(false)
-    }
-    const getDoctorProfileByDate = async () => {
+    // const getDoctorProfileByAppointmentType = async (appo_type) => {
+    //     setLoader(true)
+    //     setMyAppointmentType(appo_type)
+    //     const temp = await getLocalStorageData('hospital_id')
+    //     var formdata = new FormData();
+    //     formdata.append("hospital_id", temp);
+    //     formdata.append("doctor_id", myDoctorID);
+    //     formdata.append("date", timeStampToDateFormaty_m_d(apiDate));
+    //     formdata.append("type", appo_type);
+    //     // console.log("Formdata Of Doctor Schedule=====>/getDoctorProfileByAppointmentType", formdata)
+    //     const result = await PostApiData('doctor_schedule', formdata)
+    //     if (result.status == '200') {
+    //         setData(result)
+    //         setMyPrice(result?.price)
+    //         setMyDoctorCategory(result?.doctor?.category)
+    //         setMyDoctor(result?.doctor?.first_name)
+    //         setMyDoctorDesignation(`${result?.doctor?.designation}`)
+    //         setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
+    //         setMyDoctorEducation(`${result?.doctor?.education}`)
+    //     }
+    //     else {
+    //         Alert.alert('Error', `${result.message}`)
+    //     }
+    //     setLoader(false)
+    // }
+    // const getDoctorProfileByDate = async () => {
 
 
-        // console.log("my appointment type at getDoctorProfileByDate  == >", myAppointmentType)
+    //     console.log("Date Schedule")
+    //     setLoader(true)
+    //     setMyAppointmentDate(apiDate)
+    //     const temp = await getLocalStorageData('hospital_id')
+    //     var formdata = new FormData();
+    //     formdata.append("hospital_id", temp);
+    //     formdata.append("doctor_id", myDoctorID);
+    //     formdata.append("date", timeStampToDateFormaty_m_d(apiDate));
+    //     formdata.append("type", myAppointmentType)
+    //     // console.log("Formdata Of getDoctorProfileByDate", formdata)
+    //     const result = await PostApiData('doctor_schedule', formdata)
+    //     if (result.status == '200') {
+    //         setData(result)
+    //         setMyDoctorCategory(result?.doctor?.category)
+    //         setMyPrice(result?.price)
+    //         setMyDoctor(result?.doctor?.first_name)
+    //         setMyDoctorDesignation(`${result?.doctor?.designation}`)
+    //         setMyDoctorEducation(`${result?.doctor?.education}`)
+    //         setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
+    //     } else {
+    //         Alert.alert('Error', `${result.message}`)
+    //     }
+    //     // console.log("result Of getDoctorProfileByDate", result)
+    //     // console.log("apiDate at getDoctorProfileByDate", timeStampToDateFormaty_m_d(apiDate))
+    //     setLoader(false)
+    // }
+    // const getDoctorProfileByPickerDate = async (date) => {
+    //     setLoader(true)
+    //     // console.log("my appointment type at getDoctorProfileByPickerDate  == >", myAppointmentType)
 
-        setMyAppointmentDate(apiDate)
-        const temp = await getLocalStorageData('hospital_id')
-        var formdata = new FormData();
-        formdata.append("hospital_id", temp);
-        formdata.append("doctor_id", myDoctorID);
-        formdata.append("date", timeStampToDateFormaty_m_d(apiDate));
-        formdata.append("type", myAppointmentType)
-        // console.log("Formdata Of getDoctorProfileByDate", formdata)
-        const result = await PostApiData('doctor_schedule', formdata)
-        if (result.status == '200') {
-            setData(result)
-            setMyDoctorCategory(result?.doctor?.category)
-            setMyPrice(result?.price)
-            setMyDoctor(result?.doctor?.first_name)
-            setMyDoctorDesignation(`${result?.doctor?.designation}`)
-            setMyDoctorEducation(`${result?.doctor?.education}`)
-            setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
-        } else {
-            Alert.alert('Error', `${result.message}`)
-        }
-        // console.log("result Of getDoctorProfileByDate", result)
-        // console.log("apiDate at getDoctorProfileByDate", timeStampToDateFormaty_m_d(apiDate))
-
-    }
-    const getDoctorProfileByPickerDate = async (date) => {
-        setLoader(true)
-        // console.log("my appointment type at getDoctorProfileByPickerDate  == >", myAppointmentType)
-
-        const temp = await getLocalStorageData('hospital_id')
-        var formdata = new FormData();
-        formdata.append("hospital_id", temp);
-        formdata.append("doctor_id", myDoctorID);
-        formdata.append("date", timeStampToDateFormaty_m_d(date));
-        formdata.append("type", myAppointmentType)
-        // console.log("Formdata Of /getDoctorProfileByPickerDate", formdata)
-        const result = await PostApiData('doctor_schedule', formdata)
-        if (result.status == '200') {
-            setData(result)
-            setMyDoctorCategory(result?.doctor?.category)
-            setMyPrice(result?.price)
-            setMyDoctor(result?.doctor?.first_name)
-            setMyDoctorDesignation(`${result?.doctor?.designation}`)
-            setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
-            setMyDoctorEducation(`${result?.doctor?.education}`)
-            setApiDate(date)
-            setMyAppointmentDate(date)
-        } else {
-            Alert.alert('Error', `${result.message}`)
-        }
-        // console.log("apiDate at getDoctorProfileByPickerDate", timeStampToDateFormaty_m_d(date))
-        setLoader(false)
-    }
+    //     const temp = await getLocalStorageData('hospital_id')
+    //     var formdata = new FormData();
+    //     formdata.append("hospital_id", temp);
+    //     formdata.append("doctor_id", myDoctorID);
+    //     formdata.append("date", timeStampToDateFormaty_m_d(date));
+    //     formdata.append("type", myAppointmentType)
+    //     // console.log("Formdata Of /getDoctorProfileByPickerDate", formdata)
+    //     const result = await PostApiData('doctor_schedule', formdata)
+    //     if (result.status == '200') {
+    //         setData(result)
+    //         setMyDoctorCategory(result?.doctor?.category)
+    //         setMyPrice(result?.price)
+    //         setMyDoctor(result?.doctor?.first_name)
+    //         setMyDoctorDesignation(`${result?.doctor?.designation}`)
+    //         setMyDoctorImage(`${result?.doctor?.profile_url}${result?.doctor?.image}`)
+    //         setMyDoctorEducation(`${result?.doctor?.education}`)
+    //         setApiDate(date)
+    //         setMyAppointmentDate(date)
+    //     } else {
+    //         Alert.alert('Error', `${result.message}`)
+    //     }
+    //     // console.log("apiDate at getDoctorProfileByPickerDate", timeStampToDateFormaty_m_d(date))
+    //     setLoader(false)
+    // }
 
 
 
@@ -446,8 +442,6 @@ const DoctorProfile = ({ navigation, route }) => {
                             <TouchableOpacity
                                 onPress={() => {
                                     setMyAppointmentType("1")
-                                    getDoctorProfileByAppointmentType("1")
-
                                 }}  // 1== online
                                 style={{
                                     backgroundColor: myAppointmentType == "1" ? colors.toobarcolor : "white",
@@ -468,9 +462,7 @@ const DoctorProfile = ({ navigation, route }) => {
 
                             <TouchableOpacity
                                 onPress={() => {
-                                    getDoctorProfileByAppointmentType("0")
                                     setMyAppointmentType("0")
-
                                 }}   //0== offline
 
                                 style={{
@@ -538,8 +530,9 @@ const DoctorProfile = ({ navigation, route }) => {
                                                     }}
                                                     onChange={async (info) => {
                                                         setVisible(false)
-                                                        getDoctorProfileByPickerDate(info.nativeEvent.timestamp)
+                                                        getDoctorProfileForToday(info.nativeEvent.timestamp)
                                                         setTempTime(info.nativeEvent.timestamp)
+                                                        setApiDate(info.nativeEvent.timestamp)
                                                     }}
                                                     value={new Date(strToInt(tempTime))}
                                                 />
@@ -553,8 +546,9 @@ const DoctorProfile = ({ navigation, route }) => {
                                                             minimumDate={Date.now()}
                                                             onChange={async (info) => {
                                                                 setVisible(false)
-                                                                getDoctorProfileByPickerDate(info.nativeEvent.timestamp)
+                                                                getDoctorProfileForToday(info.nativeEvent.timestamp)
                                                                 setTempTime(info.nativeEvent.timestamp)
+                                                                setApiDate(info.nativeEvent.timestamp)
                                                             }}
                                                             value={new Date(strToInt(tempTime))}
                                                         />
@@ -586,17 +580,20 @@ const DoctorProfile = ({ navigation, route }) => {
                         </TouchableOpacity>
 
                     </View>
-                    <Text style={{
-                        color: 'black',
-                        fontSize: fontSizes.default,
-                        fontFamily: fontFamily.medium,
-                        marginTop: H * 0,
-                        marginHorizontal: W * 0.025,
-                        alignSelf: "flex-start"
-                        // opacity: item.status == '1' ? 1 : 0.4,
-                    }}>Slots:</Text>
-
-
+                    <View style={styles.horizontalContainer}>
+                        <Text style={{
+                            color: 'black',
+                            fontSize: fontSizes.default,
+                            fontFamily: fontFamily.medium,
+                            //marginTop: H * 0,
+                            //marginHorizontal: W * 0.025,
+                            //alignSelf: "flex-start"
+                            // opacity: item.status == '1' ? 1 : 0.4,
+                        }}>Slots:</Text>
+                        {/* <TouchableOpacity onPress={() => getDoctorProfileByDate()}>
+                            <AntDesign name="reload1" size={20} />
+                        </TouchableOpacity> */}
+                    </View>
                     <View style={{
                         borderWidth: 1,
                         borderColor: "silver",
@@ -657,8 +654,16 @@ const DoctorProfile = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     primaryContainer: {
-       flex:1
+        flex: 1
     },
+    horizontalContainer:
+    {
+        flexDirection: 'row',
+        width: W,
+        justifyContent: 'space-between',
+        paddingHorizontal: W * 0.03,
+        paddingVertical: H * 0.001
+    }
 
 })
 
