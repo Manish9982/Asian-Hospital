@@ -1,0 +1,146 @@
+import { View, FlatList, TouchableOpacity, Alert, Platform } from 'react-native'
+import React, { useState, useEffect, useContext } from 'react'
+import { Divider, Text, TextInput } from 'react-native-paper'
+import { colors, fontFamily, fontSizes, GetApiData, H, W } from '../../assets/Schemes/Schemes'
+import DataContext from '../../assets/Context/DataContext'
+import Loader from '../../assets/Loader/Loader'
+
+
+const SearchState = ({ navigation }) => {
+
+    const { Ncity, Nstate } = useContext(DataContext)
+    const [city, setCity] = Ncity
+    const [state, setState] = Nstate
+    const [searchvalue, setSearchValue] = useState("")
+    const [filteredCityName, setFilteredCityName] = useState()
+    const [loader, setLoader] = useState(true)
+    const [data, setData] = useState()
+    useEffect(() => {
+        getCityNames()
+    }, [])
+
+    const getCityNames = async () => {
+        const result = await GetApiData('states')
+        // console.log(result)
+        if (result.status == '200') {
+            setData(result)
+            setFilteredCityName(result?.states)
+        } else {
+            Alert.alert('Error', `${result.message}`)
+        }
+        setLoader(false)
+    }
+
+    const filterSearch = (text) => {
+        if (text !== "") {
+            const newData = data?.states.filter(
+                function (item) {
+                    const itemData = item.AttributeName
+                        ? item.AttributeName.toUpperCase()
+                        : ''.toUpperCase();
+                    const textData = text.toUpperCase();
+                    return itemData.indexOf(textData) > -1;
+                }
+            );
+            setFilteredCityName(newData);
+            setSearchValue(text);
+        } else {
+            setSearchValue(text);
+            setFilteredCityName(data?.states)
+        }
+    }
+    const renderItem2 = ({ item, index }) => {
+        return (
+
+            <View style={{}}>
+                <TouchableOpacity
+
+                    onPress={() => {
+                        // console.log(item)
+                        setState(item.AttributeName)
+                        navigation.goBack()
+                    }}
+
+                    // onPress={() => { setState(item.AttributeName) }}
+
+                    style={{
+                        marginLeft: 15,
+                        flexDirection: "row",
+                        alignItems: "center",
+                    }}>
+
+
+                    <View
+                        style={{
+                            flexDirection: 'column',
+                            padding: 5
+                        }}>
+
+                        <Text style={{ fontSize: fontSizes.default, fontFamily: fontFamily.medium }}>
+                            {item.AttributeName}
+                        </Text>
+                        {/* 
+                        <Text style={{
+                            fontSize: fontSizes.SM, color: 'gray',
+                            fontFamily: fontFamily.regular,
+                            marginVertical: H * 0.002
+                        }}>
+                            {item.AttributeCode}
+                        </Text> */}
+
+                    </View>
+                </TouchableOpacity>
+
+                <Divider
+                    style={{ width: W, borderColor: 'black', borderWidth: 0.05 }} />
+            </View>
+        )
+    }
+
+
+    return (
+        loader
+            ?
+            <Loader />
+            :
+            <View>
+                <TextInput
+                    mode={"outlined"}
+                    keyboardType='default'
+                    // maxLength={10}
+                    underlineColor='transparent'
+                    activeUnderlineColor={colors.blue}
+                    activeOutlineColor={colors.blue}
+                    outlineColor={"black"}
+                    placeholderTextColor={"gray"}
+                    placeholder='Type Your State Name'
+                    value={searchvalue}
+                    onChangeText={(t) => {
+                        filterSearch(t)
+                    }}
+
+                    style={{
+                        marginTop: Platform.OS == "ios" ? H * 0.06 : 0,
+                        height: H * 0,
+                        width: W * 0.95,
+                        alignSelf: "center",
+                        borderRadius: 8,
+                        fontSize: fontSizes.default,
+                        backgroundColor: colors.bgeditext,
+                        justifyContent: "center",
+                        margin: H * 0.02
+                    }}
+
+                    right={<TextInput.Icon icon="magnify" />} />
+                <FlatList
+                    data={filteredCityName}
+                    renderItem={renderItem2}
+                    keyExtractor={(item, index) => `${index}`}
+                />
+
+            </View>
+
+    )
+
+}
+export default SearchState

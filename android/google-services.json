@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "953261714949",
+    "project_id": "asian-a4b4a",
+    "storage_bucket": "asian-a4b4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953261714949:android:69c9d7339f21e30101366c",
+        "android_client_info": {
+          "package_name": "com.asianhospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953261714949-vvr5cd3n74h8ninvsjd9gl3sv33eigf7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfnyetPJnDKDzWKh9uGK_yYRhMGmDvsBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953261714949-vvr5cd3n74h8ninvsjd9gl3sv33eigf7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
