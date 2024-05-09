@@ -274,7 +274,7 @@ const More = ({ navigation }) => {
         <Divider style={{ width: W, borderColor: 'gray' }} />
 
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => { navigation.navigate("NotificationsDisplaying") }}
           style={{ flexDirection: 'row' }}>
           <Text style={{
@@ -295,7 +295,7 @@ const More = ({ navigation }) => {
             }}
               source={require('../../../assets/Images/arrow.png')} />
           }
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
 
         <Divider style={{ width: W, borderColor: 'gray' }} />
