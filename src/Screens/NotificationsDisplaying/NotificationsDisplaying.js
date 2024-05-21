@@ -2,7 +2,7 @@ import { FlatList, TouchableOpacity, View, Image, Alert, Modal } from 'react-nat
 import React, { useEffect, useState } from 'react'
 import { Divider, Text } from 'react-native-paper'
 import HeaderTwo from '../../assets/Schemes/HeaderTwo'
-import { colors, convertTimestampTo12hFormat, convertTimestampToDateString, fontFamily, fontSizes, GetApiData, H, W } from '../../assets/Schemes/Schemes'
+import { colors, convertTimestampTo12hFormat, convertTimestampToDateString, fontFamily, fontSizes, GetApiData, H, PostApiData, W } from '../../assets/Schemes/Schemes'
 import Loader from '../../assets/Loader/Loader'
 
 const NotificationsDisplaying = ({ navigation }) => {
@@ -10,6 +10,7 @@ const NotificationsDisplaying = ({ navigation }) => {
     const [data, setData] = useState(null)
     const [loader, setLoader] = useState(true)
     const [modalVisible, setModalVisible] = useState(false);
+    const [clickValue, setClickValue] = useState(false);
     const callStartTime = "10:00 AM";
     const callEndTime = "10:15 AM";
     const totalDuration = "15 min";
@@ -20,29 +21,50 @@ const NotificationsDisplaying = ({ navigation }) => {
 
     const getNotificationList = async () => {
         const result = await GetApiData('notifications')
-        //console.log("NotificationResult ", result)
+        console.log("NotificationResult ", result)
         setData(result)
         setLoader(false)
     }
-
-    const redirectionToScreen = () => {
-        navigation.navigate("MyAppointments")
-        //Alert.alert("GAurav")
+    const deleteNotification = async (id, notificationType) => {
+        var formdata = new FormData();
+        formdata.append("id", id)
+        formdata.append("type", notificationType)
+        console.log("delete_notification_formdata ", formdata)
+        const result = await PostApiData('delete_notification', formdata)
+        console.log("delete_notification ", result)
+        if (result.status == 200) {
+            getNotificationList()
+        } else {
+            Alert.alert(result?.message)
+        }
+        setLoader(false)
     }
 
-    const showAlert = () => {
+    const redirectionToScreen = (navigationValue, tasktype) => {
+        if (tasktype == 1) {
+            setModalVisible(true)
+        } else {
+            if (navigationValue === "") {
+            } else {
+                navigation.navigate(navigationValue)
+            }
+
+        }
+    }
+
+    const showAlert = (notificationid) => {
         Alert.alert(
             'Confirmation',
-            'Do you want to delete only this notification,or should I remove all of them?',
+            'Do you want to delete only this notification, or all of them?',
             [
                 {
                     text: 'Delete',
-                    onPress: () => Alert.alert("Delete button pressed"),
+                    onPress: () => deleteNotification(notificationid, 2), //2 == delete one noti
 
                 },
                 {
                     text: 'Delete All',
-                    onPress: () => Alert.alert('Delete All button pressed'),
+                    onPress: () => deleteNotification(notificationid, 1), //1 == delete all noti
                 },
                 {
                     text: 'Cancel',
@@ -58,49 +80,6 @@ const NotificationsDisplaying = ({ navigation }) => {
     const renderItem = ({ item, index }) => {
         return (
             <>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        setModalVisible(false);
-                    }}>
-                    <View style={{
-                        flex: 1,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                    }}>
-                        <View style={{
-                            backgroundColor: 'white',
-                            padding: 20,
-                            borderRadius: 10,
-                            alignItems: 'center',
-                        }}>
-                            <Text style={{
-                                color: 'red',
-                                fontSize: 20,
-                                marginBottom: 10,
-                            }}>Call Log</Text>
-                            <Text>Call Start Time: {callStartTime}</Text>
-                            <Text style={{
-                                marginTop: 10
-                            }}>Call End Time: {callEndTime}</Text>
-                            <Text style={{
-                                marginTop: 10
-                            }}>Total Duration: {totalDuration}</Text>
-                            <TouchableOpacity style={{
-                                marginTop: 10
-                            }}>
-                                <Text style={{
-                                    color: 'red',
-                                }} onPress={() => setModalVisible(false)} >Okay</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </Modal>
-
-
                 <View style={{
                     flexDirection: 'row',
                 }}>
@@ -116,11 +95,12 @@ const NotificationsDisplaying = ({ navigation }) => {
                         backgroundColor: 'lightblue'
                     }}>
                         <Image
-                            source={require('../../assets/Images/call.png')}
+                            //source={require('../../assets/Images/call.png')}
+                            source={{ uri: item?.icon }}
                             style={{
                                 width: '50%',
                                 height: '50%',
-                                tintColor: 'blue',
+                                // tintColor: 'blue',
                                 resizeMode: 'contain',
                             }}
                         />
@@ -128,8 +108,10 @@ const NotificationsDisplaying = ({ navigation }) => {
 
                     <TouchableOpacity
                         onPress={() => {
-                            setModalVisible(true)
-                            // redirectionToScreen()
+                            setClickValue(item)
+                            redirectionToScreen(item?.screen_redirection, 
+                                item.task_type)
+
                         }}
                         style={{
                             width: "77%",
@@ -140,8 +122,17 @@ const NotificationsDisplaying = ({ navigation }) => {
                         }}>
                         <Text style={{
                             color: "black",
+                            fontSize: fontSizes.default,
+                            fontFamily: fontFamily.medium
+
                         }}>
                             {item.title} <Text>for</Text> {item.patient_name}
+                        </Text>
+                        <Text style={{
+                            color: "black",
+                            fontSize: fontSizes.SM
+                        }}>
+                            {item.body}
                         </Text>
                         <Text style={{
                             fontSize: fontSizes.EXTRASM,
@@ -157,7 +148,7 @@ const NotificationsDisplaying = ({ navigation }) => {
 
                     <TouchableOpacity
                         onPress={() => {
-                            showAlert()
+                            showAlert(item?.id)
                         }}>
                         <Image
                             source={require('../../assets/Images/delete.png')}
@@ -179,19 +170,61 @@ const NotificationsDisplaying = ({ navigation }) => {
             </>
         )
     }
+    console.log("callsummary== ", data?.notifications[0]?.duration)
 
     return (
+
         loader
             ?
             <Loader />
-
             :
-
-            <View style={{
-
-            }}>
+            <View style={{}}>
                 <HeaderTwo Title="Activity" />
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        setModalVisible(false);
+                    }}>
+                    <View style={{
+                        flex: 1,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    }}>
+                        <View style={{
+                            backgroundColor: 'white',
+                            padding: 20,
+                            width: W * 0.8,
+                            borderRadius: 10,
+                            justifyContent: 'space-evenly',
+                            alignItems: 'center'
+                        }}>
+                            <Text style={{
+                                color: 'red',
+                                fontSize: 20,
+                                marginBottom: 10,
 
+                            }}>Call Log</Text>
+                            <Text>Call Start Time: {clickValue?.start_time}</Text>
+                            <Text style={{
+                                marginTop: 10
+                            }}>Call End Time: {clickValue?.end_time}</Text>
+                            <Text style={{
+                                marginTop: 10
+                            }}>Total Duration: {clickValue?.duration}</Text>
+                            <TouchableOpacity style={{
+                                marginTop: 10
+                            }}>
+                                <Text style={{
+                                    color: 'red',
+                                    fontSize: fontSizes.SM
+                                }} onPress={() => setModalVisible(false)} >Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
                 <View style={{
                     paddingBottom: H * 0.2
                 }}>

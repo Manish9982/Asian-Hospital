@@ -259,7 +259,6 @@ const More = ({ navigation }) => {
             fontFamily: fontFamily.medium,
             marginLeft: 10
           }}>My Profile</Text>
-
           {
             <Image style={{
               height: H * 0.02,
@@ -273,8 +272,7 @@ const More = ({ navigation }) => {
         </TouchableOpacity>
         <Divider style={{ width: W, borderColor: 'gray' }} />
 
-
-        {/* <TouchableOpacity
+        <TouchableOpacity
           onPress={() => { navigation.navigate("NotificationsDisplaying") }}
           style={{ flexDirection: 'row' }}>
           <Text style={{
@@ -295,14 +293,13 @@ const More = ({ navigation }) => {
             }}
               source={require('../../../assets/Images/arrow.png')} />
           }
-        </TouchableOpacity> */}
-
+        </TouchableOpacity>
 
         <Divider style={{ width: W, borderColor: 'gray' }} />
 
 
         <TouchableOpacity
-          // onPress={() => { navigation.navigate("NotificationsDisplaying") }}
+           onPress={() => { navigation.navigate("ScannerScreen") }}
           style={{ flexDirection: 'row' }}>
           <Text style={{
             elevation: 10,

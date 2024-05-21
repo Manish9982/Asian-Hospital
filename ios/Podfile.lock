@@ -495,6 +495,12 @@ PODS:
   - RNSVG (13.8.0):
     - React-Core
   - TwilioVideo (4.6.3)
+  - VisionCamera (4.0.3):
+    - VisionCamera/Core (= 4.0.3)
+    - VisionCamera/React (= 4.0.3)
+  - VisionCamera/Core (4.0.3)
+  - VisionCamera/React (4.0.3):
+    - React-Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -566,6 +572,7 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -712,6 +719,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-sound"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  VisionCamera:
+    :path: "../node_modules/react-native-vision-camera"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -794,6 +803,7 @@ SPEC CHECKSUMS:
   RNSound: 6c156f925295bdc83e8e422e7d8b38d33bc71852
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
   TwilioVideo: 4afaac028c5886f2f3b313a9fcc146a6b7ca34e2
+  VisionCamera: 6ec753da6360981b4d1796cd13130ff9f4350ec9
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
 
 PODFILE CHECKSUM: 6d11eb4375330db9441ce951b99047722b91ce50
