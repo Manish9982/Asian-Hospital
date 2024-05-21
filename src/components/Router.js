@@ -56,6 +56,7 @@ import ContactUs from '../Screens/ContactUs/ContactUs';
 import DoCIpdReports from '../Screens/DoCIpdReports/DoCIpdReports';
 import DoCIpdReportsDisplay from '../Screens/DoCIpdReportsDisplay/DoCIpdReportsDisplay';
 import DataContext from '../assets/Context/DataContext';
+import ScannerScreen from '../Screens/ScannerScreen';
 
 const Router = (props) => {
 
@@ -146,7 +147,8 @@ const Router = (props) => {
                     <Stack.Screen name="ChangePatient" component={ChangePatient} options={{ headerShown: false }} />
                     <Stack.Screen name="DoCViewPrescription" component={DoCViewPrescription} options={{ headerShown: false }} />
                     <Stack.Screen name="DoCImageViewer" component={DoCImageViewer} options={{ headerShown: false }} />
-                    
+                    <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ headerShown: false }} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         )
@@ -170,6 +172,7 @@ const Router = (props) => {
                     <Stack.Screen name="SearchState" component={SearchState} options={{ headerShown: false }} />
                     <Stack.Screen name="SearchCountry" component={SearchCountry} options={{ headerShown: false }} />
                     <Stack.Screen name="AllLogos" component={AllLogos} options={{ headerShown: false }} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         )

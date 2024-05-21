@@ -69,7 +69,8 @@ const Appointments = ({ navigation }) => {
         formdata.append("search", t);
         formdata.append("hospital_id", hospitalId);
         const result = await PostApiData('doctor_search', formdata)
-        //console.log("result==", formdata)
+        console.log("CategoryData==", result)
+
         if (result.status == '200') {
             setFilteredCategory(result?.categories)
             setFilteredDoctorName([])
@@ -122,6 +123,8 @@ const Appointments = ({ navigation }) => {
     }
 
     const renderItem = (item, index) => {
+        console.log("item==", item)
+
         if (item?.status == 1) {
             return (
                 <View

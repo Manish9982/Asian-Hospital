@@ -259,7 +259,6 @@ const More = ({ navigation }) => {
             fontFamily: fontFamily.medium,
             marginLeft: 10
           }}>My Profile</Text>
-
           {
             <Image style={{
               height: H * 0.02,
@@ -272,6 +271,7 @@ const More = ({ navigation }) => {
           }
         </TouchableOpacity>
         <Divider style={{ width: W, borderColor: 'gray' }} />
+
         <TouchableOpacity
           onPress={() => { navigation.navigate("NotificationsDisplaying") }}
           style={{ flexDirection: 'row' }}>
@@ -294,7 +294,34 @@ const More = ({ navigation }) => {
               source={require('../../../assets/Images/arrow.png')} />
           }
         </TouchableOpacity>
+
         <Divider style={{ width: W, borderColor: 'gray' }} />
+
+
+        <TouchableOpacity
+           onPress={() => { navigation.navigate("ScannerScreen") }}
+          style={{ flexDirection: 'row' }}>
+          <Text style={{
+            elevation: 10,
+            padding: 15,
+            color: colors.black,
+            fontFamily: fontFamily.medium,
+            marginLeft: 10
+          }}>Scan QR here to order food</Text>
+
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+
 
         <TouchableOpacity
           onPress={() => { changePatient() }}
