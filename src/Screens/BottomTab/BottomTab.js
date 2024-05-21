@@ -13,8 +13,6 @@ import { Constants } from '../../assets/Schemes/Constants';
 
 
 
-
-
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
 
@@ -97,7 +95,6 @@ const BottomTab = () => {
             // //console.log(" result of getToken at Dashboard===>", result)
             // //console.log(" formdata  of getToken at Dashboard===>", formdata)
         }
-
     }
 
     useEffect(() => {
@@ -119,9 +116,6 @@ const BottomTab = () => {
             }
         });
     }, [])
-
-
-
 
 
     return (
