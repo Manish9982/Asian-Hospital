@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { SafeAreaView, BackHandler, Alert } from 'react-native';
+import { SafeAreaView, BackHandler, Alert, View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
+import HeaderTwo from '../assets/Schemes/HeaderTwo'
+import Loader from '../assets/Loader/Loader';
 
 const ScannerScreen = () => {
   const webViewRef = useRef(null);
@@ -31,12 +33,23 @@ const ScannerScreen = () => {
     setCanGoBack(navState.canGoBack); // Update canGoBack state
   };
 
+  const renderLoading = () => {
+    return (
+      <View style={styles.containerLoader}>
+        <Loader />
+      </View>
+
+    )
+  }
+
   return (
-    <SafeAreaView style={{
+    <View style={{
       flex: 1,
       backgroundColor: 'white'
     }}>
+      <HeaderTwo Title="Order Food" />
       <WebView
+        renderLoading={renderLoading}
         ref={webViewRef}
         javaScriptEnabled={true}
         javaScriptCanOpenWindowsAutomatically={true}
@@ -50,8 +63,18 @@ const ScannerScreen = () => {
         style={{ marginTop: 20 }}
         onNavigationStateChange={navigationOnWebView}
       />
-    </SafeAreaView>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  containerLoader:
+  {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
 
 export default ScannerScreen;

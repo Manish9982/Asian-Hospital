@@ -370,6 +370,8 @@ PODS:
     - glog
   - react-native-blob-util (0.17.1):
     - React-Core
+  - react-native-change-icon (5.0.0):
+    - React-Core
   - react-native-geolocation (3.0.4):
     - React-Core
   - react-native-image-picker (4.10.3):
@@ -495,12 +497,6 @@ PODS:
   - RNSVG (13.8.0):
     - React-Core
   - TwilioVideo (4.6.3)
-  - VisionCamera (4.0.3):
-    - VisionCamera/Core (= 4.0.3)
-    - VisionCamera/React (= 4.0.3)
-  - VisionCamera/Core (4.0.3)
-  - VisionCamera/React (4.0.3):
-    - React-Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -539,6 +535,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-blob-util (from `../node_modules/react-native-blob-util`)
+  - react-native-change-icon (from `../node_modules/react-native-change-icon`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-kill-app (from `../node_modules/react-native-kill-app`)
@@ -572,7 +569,6 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -653,6 +649,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-blob-util:
     :path: "../node_modules/react-native-blob-util"
+  react-native-change-icon:
+    :path: "../node_modules/react-native-change-icon"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-image-picker:
@@ -719,8 +717,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-sound"
   RNSVG:
     :path: "../node_modules/react-native-svg"
-  VisionCamera:
-    :path: "../node_modules/react-native-vision-camera"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -769,6 +765,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 60769e5a0a6d4b32294a2456077f59d0266f9a8b
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
   react-native-blob-util: 4949dcc0dd5ee25fcb5abe0687f67fa3d5cdf05a
+  react-native-change-icon: a288b2ed9bcade6083e2ee300b645dafe2ecf09b
   react-native-geolocation: 3ed60c3d7f613c36b777b9fd0bc3453214e1b0d5
   react-native-image-picker: 60f4246eb5bb7187fc15638a8c1f13abd3820695
   react-native-kill-app: ccfc7722345b53a3c6abf8e78c800b79a387135d
@@ -803,7 +800,6 @@ SPEC CHECKSUMS:
   RNSound: 6c156f925295bdc83e8e422e7d8b38d33bc71852
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
   TwilioVideo: 4afaac028c5886f2f3b313a9fcc146a6b7ca34e2
-  VisionCamera: 6ec753da6360981b4d1796cd13130ff9f4350ec9
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
 
 PODFILE CHECKSUM: 6d11eb4375330db9441ce951b99047722b91ce50

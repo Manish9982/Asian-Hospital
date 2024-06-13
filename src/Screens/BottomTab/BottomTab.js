@@ -13,6 +13,7 @@ import { Constants } from '../../assets/Schemes/Constants';
 
 
 
+
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
 
@@ -127,26 +128,24 @@ const BottomTab = () => {
                     if (propsTab.route.name === 'HomeNav') {
 
                         return <Image source={require('../../assets/Images/home2.png')}
-                            tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'AppointmentsNav') {
 
                         return <Image source={require('../../assets/Images/appointment.png')}
-                            tintColor={color}
-                            style={{ height: 21, aspectRatio: 8 / 8 }} />
+                            style={{ height: 21, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'ReportsNav') {
 
                         return <Image source={require('../../assets/Images/reportss.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'MoreNav') {
 
                         return <Image source={require('../../assets/Images/menu2.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                 },
                 tabBarActiveTintColor: colors.toobarcolor,

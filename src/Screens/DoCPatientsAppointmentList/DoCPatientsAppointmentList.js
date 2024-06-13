@@ -591,7 +591,6 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
                         style={{
                             marginTop: 10,
                         }}
-
                         value={value}
                         onValueChange={setValue}
                         buttons={

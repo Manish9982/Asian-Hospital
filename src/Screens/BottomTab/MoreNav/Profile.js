@@ -31,19 +31,14 @@ const Profile = () => {
         if (result.status == '200') {
 
             //Alert.alert('Info', `${result.message}`)
-
-
             setData(result)
             // setLoader(false)
 
         } else {
-
             Alert.alert('Error', `${result.message}`)
         }
         setLoader(false)
     }
-
-
 
     return (
         loader ?
@@ -53,9 +48,7 @@ const Profile = () => {
             <View style={{ backgroundColor: 'white', height: H }}>
 
                 <View >
-
                     <HeaderTwo Title="My Profile" />
-
                     <View>
                         <Image
                             source={require('../../../assets/Images/pbg.png')}
@@ -64,8 +57,6 @@ const Profile = () => {
                                 width: W, position: 'absolute',
                             }} />
                     </View>
-
-
                     {/* <View
                         style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Image
@@ -81,9 +72,7 @@ const Profile = () => {
                     <View style={{
                         marginLeft: W * 0.04,
                     }}>
-
                         <Text style={{
-
                             fontFamily: fontFamily.medium,
                             fontSize: fontSizes.default,
                             color: colors.white,
@@ -92,7 +81,6 @@ const Profile = () => {
                             maxWidth: W * 0.5,
                             justifyContent: 'center',
                             color: "black",
-
                         }}>{`${data?.patient?.salutation} ${data?.patient?.first_name} ${data?.patient?.last_name == null ? "" : data?.patient?.last_name}`}</Text>
 
                         <View
@@ -100,7 +88,6 @@ const Profile = () => {
                                 flexDirection: 'row',
                                 marginTop: H * 0.005
                             }}>
-
                             <Image
                                 style={{
                                     marginLeft: W * 0.05,
@@ -108,10 +95,7 @@ const Profile = () => {
                                     width: H * 0.025,
                                 }}
                                 source={require('../../../assets/Images/call.png')} />
-
-
                             <Text style={{
-
                                 fontFamily: fontFamily.regular,
                                 fontSize: fontSizes.SM,
                                 color: colors.white,
@@ -124,7 +108,6 @@ const Profile = () => {
 
                         <View
                             style={{ flexDirection: 'row', marginTop: H * 0.005, }}>
-
                             <Image
                                 style={{
                                     marginLeft: W * 0.05,
@@ -132,10 +115,7 @@ const Profile = () => {
                                     width: H * 0.025,
                                 }}
                                 source={require('../../../assets/Images/email.png')} />
-
-
                             <Text style={{
-
                                 fontFamily: fontFamily.regular,
                                 fontSize: fontSizes.XL,
                                 color: colors.white,
@@ -144,46 +124,34 @@ const Profile = () => {
                                 fontSize: fontSizes.SM,
                                 maxWidth: W * 0.6
                             }}>{data?.patient?.email}</Text>
-
                         </View>
-
                     </View>
-
                     <View
                         style={{}}>
-
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: H * 0.12 }}>
-
                             <Image
                                 style={{
                                     marginLeft: W * 0.1,
                                     height: H * 0.024,
                                     width: H * 0.024,
-
                                 }}
                                 source={require('../../../assets/Images/files.png')} />
                             <Text style={{
-
                                 fontFamily: fontFamily.medium,
                                 fontSize: fontSizes.XL,
                                 color: colors.white,
                                 marginStart: H * 0.025,
                                 color: "white", fontSize: fontSizes.XL
                             }}>UHID</Text>
-
                         </View>
-
-
                         <Text style={{
-
                             fontFamily: fontFamily.regular,
-                            fontSize: fontSizes.default,
                             color: colors.white,
                             marginStart: H * 0.097,
-                            color: "white", fontSize: fontSizes.default
+                            color: "white", 
+                            fontSize: fontSizes.default
                         }}>{data?.patient.his_id}</Text>
                     </View>
-
                     <View
                         style={{}}>
 

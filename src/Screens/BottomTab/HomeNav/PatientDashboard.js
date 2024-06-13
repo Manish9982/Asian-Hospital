@@ -1,4 +1,4 @@
-import { Modal, ScrollView, View, Text, FlatList, Dimensions, Image, TouchableOpacity, Alert, SafeAreaView, Platform, StatusBar } from 'react-native'
+import { Modal, ScrollView, View, Text, FlatList, Dimensions, Image, TouchableOpacity, Alert, SafeAreaView, Platform, StatusBar, StyleSheet } from 'react-native'
 
 import React, { useEffect, useState, useContext } from 'react'
 import { Divider } from 'react-native-paper';
@@ -212,7 +212,7 @@ const PatientDashboard = ({ navigation }) => {
 
   ]
 
-  const renderItem = ( {item, index} ) => {
+  const renderItem = (item, index) => {
 
     const getPressed = () => {
       if (index == 0) {
@@ -227,11 +227,17 @@ const PatientDashboard = ({ navigation }) => {
       else if (index == 3) {
         navigation.navigate("AddPatients")
       }
+      else if (index == 4) {
+        navigation.navigate("ObesityPackages")
+      }
+      else if (index == 5) {
+        navigation.navigate("AddPatients")
+      }
     }
 
     const getColor = () => {
       if (index == 0) {
-        return "#27B99F";
+        return colors.greencolor;
       } else if (index == 1) {
         return colors.toobarcolor;
       }
@@ -242,10 +248,10 @@ const PatientDashboard = ({ navigation }) => {
         return colors.purplecolor;
 
       } else if (index == 4) {
-        return "#c8a464";
+        return colors.mustard;
 
       } else if (index == 5) {
-        return "#D88DBC";
+        return colors.pink;
 
 
       } else {
@@ -255,7 +261,7 @@ const PatientDashboard = ({ navigation }) => {
 
     return (
 
-      <View>
+      <View key={index}>
 
         <TouchableOpacity
 
@@ -328,241 +334,231 @@ const PatientDashboard = ({ navigation }) => {
 
       :
 
-      <ScrollView style={{
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <StatusBar backgroundColor={colors.toobarcolor} />
 
-      }}>
+        {<Image
+          source={require('../../../assets/Images/bgimage.png')}
+          style={{
+            height: H * 0.25,
+            position: 'absolute',
+
+            width: W,
+          }} />}
+
+
         <View
           style={{
-            height: H,
-            width: W,
-            marginBottom: 30,
-            backgroundColor: 'white',
+            alignItems: "center",
+            flexDirection: 'row',
+
+            marginTop: Platform.OS == "ios" ? H * 0.04 : H * 0.025,
           }}>
-
-          <StatusBar backgroundColor={colors.toobarcolor} />
-
-          {<Image
-            source={require('../../../assets/Images/bgimage.png')}
-            style={{
-              height: H * 0.25,
-              position: 'absolute',
-              
+          <Modal
+            visible={modalVisible}
+            transparent={true}>
+            <View style={{
+              backgroundColor: "rgba(0,0,0,0.3)",
+              height: H,
               width: W,
-            }} />}
-
-
-          <View
-            style={{
+              justifyContent: "center",
               alignItems: "center",
-              flexDirection: 'row',
-              
-              marginTop: Platform.OS == "ios" ? H * 0.04 : H * 0.025,
-            }}>
-            <Modal
-              visible={modalVisible}
-              transparent={true}>
-              <View style={{
-                backgroundColor: "rgba(0,0,0,0.3)",
-                height: H,
-                width: W,
-                justifyContent: "center",
-                alignItems: "center",
 
+            }}>
+
+
+              <View style={{
+                paddingVertical: H * 0.02,
+                width: W * 0.9,
+                backgroundColor: "white",
+                borderRadius: 8,
               }}>
 
+                <Text style={{
+                  alignSelf: 'center', marginBottom: 10, color: colors.black,
+                  fontFamily: fontFamily.medium, fontSize: fontSizes.default
+                }}>Choose Hospital</Text>
 
-                <View style={{
-                  paddingVertical: H * 0.02,
-                  width: W * 0.9,
-                  backgroundColor: "white",
-                  borderRadius: 8,
+
+                <Divider
+                  style={{
+                    width: W,
+                    borderColor: 'black',
+                    borderWidth: 0.02
+                  }} />
+                <FlatList
+                  persistentScrollbar
+                  showsVerticalScrollIndicator
+                  data={hospitals?.hospitals}
+                  renderItem={renderItemHospitals}
+                  keyExtractor={(item, index) => `${index}`}
+                />
+
+
+
+                <TouchableOpacity onPress={() => {
+                  setModalVisible(false)
                 }}>
-
                   <Text style={{
-                    alignSelf: 'center', marginBottom: 10, color: colors.black,
-                    fontFamily: fontFamily.medium, fontSize: fontSizes.default
-                  }}>Choose Hospital</Text>
-
-
-                  <Divider
-                    style={{
-                      width: W,
-                      borderColor: 'black',
-                      borderWidth: 0.02
-                    }} />
-                  <FlatList
-                    persistentScrollbar
-                    showsVerticalScrollIndicator
-                    data={hospitals?.hospitals}
-                    renderItem={renderItemHospitals}
-                    keyExtractor={(item, index) => `${index}`}
-                  />
-
-
-
-                  <TouchableOpacity onPress={() => {
-                    setModalVisible(false)
-                  }}>
-                    <Text style={{
-                      marginTop: H * 0.05,
-                      textDecorationLine: 'underline',
-                      marginRight: W * 0.05,
-                      color: colors.toobarcolor,
-                      fontSize: fontSizes.SM,
-                      alignSelf: "flex-end"
-                    }}>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
+                    marginTop: H * 0.05,
+                    textDecorationLine: 'underline',
+                    marginRight: W * 0.05,
+                    color: colors.toobarcolor,
+                    fontSize: fontSizes.SM,
+                    alignSelf: "flex-end"
+                  }}>Cancel</Text>
+                </TouchableOpacity>
               </View>
-            </Modal>
-            <Text
-              style={{
+            </View>
+          </Modal>
+          <Text
+            style={{
 
+              alignSelf: 'center',
+              fontFamily: fontFamily.medium,
+              color: colors.white,
+              marginLeft: H * 0.035,
+              color: "white",
+              fontSize: fontSizes.XL,
+            }}>Dashboard</Text>
+
+          <TouchableOpacity
+            style={{
+              alignSelf: "center",
+              left: W * 0.35,
+              top: - H * 0.01
+
+            }}
+            onPress={() => { navigation.navigate("AllLogos") }}>
+
+
+            <Image
+              source={require('../../../assets/Images/asianlogo.png')}
+              style={{
+                height: H * 0.05,
+                width: W * 0.3,
                 alignSelf: 'center',
-                fontFamily: fontFamily.medium,
-                color: colors.white,
-                marginLeft: H * 0.035,
-                color: "white",
-                fontSize: fontSizes.XL,
-              }}>Dashboard</Text>
-
-            <TouchableOpacity
-              style={{
-                alignSelf: "center",
-                left: W * 0.35,
-                top: - H * 0.01
-
-              }}
-              onPress={() => { navigation.navigate("AllLogos") }}>
-
-
-              <Image
-                source={require('../../../assets/Images/asianlogo.png')}
-                style={{
-                  height: H * 0.05,
-                  width: W * 0.3,
-                  alignSelf: 'center',
-                  resizeMode: "cover",
-                  alignSelf: 'center',
-                  marginTop: H * 0.025,
-                  tintColor: 'white'
-                }} />
-            </TouchableOpacity>
-
-
-          </View>
-          {
-            data?.hospital?.logo
-              ?
-              <Image source={{ uri: `${data?.hospital.logo}` }}
-
-                style={{
-                  height: H * 0.23,
-                  width: W * 0.9,
-                  alignSelf: 'center',
-                  //marginTop: H * 0.03,
-                  borderRadius: 12,
-                }} />
-              :
-
-              <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2749/2749678.png' }}
-
-                style={{
-                  height: H * 0.23,
-                  width: W * 0.9,
-                  alignSelf: 'center',
-                  marginTop: H * 0.03,
-                  borderRadius: 12,
-                }} />
-          }
-
-          <TouchableOpacity onPress={() => {
-            openHospitallist()
-          }}>
-
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={{
-                marginStart: W * 0.07,
-                marginTop: 8,
-                alignSelf: 'flex-start',
-                color: 'black',
-                fontSize: fontSizes.XL,
-                fontFamily: fontFamily.medium,
-              }}>{data?.hospital?.name}</Text>
-
-              <Image
-                style={{
-                  height: H * 0.02,
-                  width: H * 0.02,
-                  alignSelf: 'center',
-                  marginLeft: H * 0.01,
-                  marginTop: H * 0.005
-                }}
-
-                source={require('../../../assets/Images/pencil.png')}></Image>
-
-            </View>
-
-            <View style={{
-              flexDirection: 'row',
-              marginHorizontal: W * 0.07
-            }}>
-              <Image
-                style={{
-                  height: H * 0.025,
-                  width: H * 0.025,
-                  tintColor: 'red'
-                }}
-                source={require('../../../assets/Images/loc.png')} />
-
-              <Text
-                adjustsFontSizeToFit
-                style={{
-                  alignSelf: 'flex-start',
-                  color: 'gray',
-                  fontSize: fontSizes.SM,
-                  fontFamily: fontFamily.medium,
-                  marginStart: W * 0.02
-                }}>{data?.hospital?.address1}</Text>
-
-            </View>
+                resizeMode: "cover",
+                alignSelf: 'center',
+                marginTop: H * 0.025,
+                tintColor: 'white'
+              }} />
           </TouchableOpacity>
-
-          <View
-            style={{ width: W , flexDirection:'row', flexWrap:'wrap' ,justifyContent:'space-between'}}
-           // style={{ width: W , flexDirection:'row', flexWrap:'wrap' ,justifyContent:'space-between'}}
-            >
-            <FlatList
-              columnWrapperStyle={{
-                flex: 1,
-                justifyContent: "space-evenly"
-              }
-              }
-              data={sliderdata}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => `${index}`}
-              scrollEnabled={false}
-              numColumns={2} />
-              {/* {
-
-                sliderdata?.map((item, index)=>{
-                  return(
-                    renderItem(item, index) 
-                  )
-                })
-              } */}
-          </View>
-
 
 
         </View>
+        {
+          data?.hospital?.logo
+            ?
+            <Image source={{ uri: `${data?.hospital.logo}` }}
+
+              style={{
+                height: H * 0.23,
+                width: W * 0.9,
+                alignSelf: 'center',
+                //marginTop: H * 0.03,
+                borderRadius: 12,
+              }} />
+            :
+
+            <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2749/2749678.png' }}
+
+              style={{
+                height: H * 0.23,
+                width: W * 0.9,
+                alignSelf: 'center',
+                marginTop: H * 0.03,
+                borderRadius: 12,
+              }} />
+        }
+
+        <TouchableOpacity onPress={() => {
+          openHospitallist()
+        }}>
+
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{
+              marginStart: W * 0.07,
+              marginTop: 8,
+              alignSelf: 'flex-start',
+              color: 'black',
+              fontSize: fontSizes.XL,
+              fontFamily: fontFamily.medium,
+            }}>{data?.hospital?.name}</Text>
+
+            <Image
+              style={{
+                height: H * 0.02,
+                width: H * 0.02,
+                alignSelf: 'center',
+                marginLeft: H * 0.01,
+                marginTop: H * 0.005
+              }}
+
+              source={require('../../../assets/Images/pencil.png')}></Image>
+
+          </View>
+
+          <View style={{
+            flexDirection: 'row',
+            marginHorizontal: W * 0.07
+          }}>
+            <Image
+              style={{
+                height: H * 0.025,
+                width: H * 0.025,
+                tintColor: 'red'
+              }}
+              source={require('../../../assets/Images/loc.png')} />
+
+            <Text
+              adjustsFontSizeToFit
+              style={{
+                alignSelf: 'flex-start',
+                color: 'gray',
+                fontSize: fontSizes.SM,
+                fontFamily: fontFamily.medium,
+                marginStart: W * 0.02
+              }}>{data?.hospital?.address1}</Text>
+
+          </View>
+        </TouchableOpacity>
+
+        <View
+          style={{ width: W, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}
+        >
+          {/* <FlatList
+            columnWrapperStyle={{
+              flex: 1,
+              justifyContent: "space-evenly"
+            }
+            }
+            data={sliderdata}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => `${index}`}
+            scrollEnabled={false}
+            numColumns={2} /> */}
+          {
+
+            sliderdata?.map((item, index) => {
+              return (
+                renderItem(item, index)
+              )
+            })
+          }
+        </View>
+
       </ScrollView>
-
-
-
-
   )
 }
+
+const styles = StyleSheet.create({
+  contentContainerStyle:
+  {
+    paddingBottom: 20,
+    backgroundColor: '#fff'
+  }
+})
 
 export default PatientDashboard
 
