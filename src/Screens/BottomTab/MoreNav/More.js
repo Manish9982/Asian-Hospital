@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import messaging from '@react-native-firebase/messaging'
 import { useIsFocused } from '@react-navigation/native'
 import DataContext from '../../../assets/Context/DataContext'
+import { changeIcon } from 'react-native-change-icon'
 
 
 const More = ({ navigation }) => {
@@ -299,7 +300,7 @@ const More = ({ navigation }) => {
 
 
         <TouchableOpacity
-           onPress={() => { navigation.navigate("ScannerScreen") }}
+          onPress={() => { navigation.navigate("ScannerScreen") }}
           style={{ flexDirection: 'row' }}>
           <Text style={{
             elevation: 10,
@@ -308,6 +309,30 @@ const More = ({ navigation }) => {
             fontFamily: fontFamily.medium,
             marginLeft: 10
           }}>Scan QR here to order food</Text>
+
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+
+        <TouchableOpacity
+          onPress={() => { navigation.navigate("TransactionDetails") }}
+          style={{ flexDirection: 'row' }}>
+          <Text style={{
+            elevation: 10,
+            padding: 15,
+            color: colors.black,
+            fontFamily: fontFamily.medium,
+            marginLeft: 10
+          }}>Transaction Details</Text>
 
           {
             <Image style={{
@@ -426,6 +451,54 @@ const More = ({ navigation }) => {
               fontFamily: fontFamily.medium,
               marginLeft: 10
             }}>Logout</Text>
+
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+        <TouchableOpacity
+          onPress={() => { changeIcon('Free') }}
+          style={{ flexDirection: 'row' }}>
+          <Text
+            style={{
+              padding: 15,
+              color: colors.black,
+              fontFamily: fontFamily.medium,
+              marginLeft: 10
+            }}>Change to Icon 1</Text>
+
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+        <TouchableOpacity
+          onPress={() => { changeIcon('Paid') }}
+          style={{ flexDirection: 'row' }}>
+          <Text
+            style={{
+              padding: 15,
+              color: colors.black,
+              fontFamily: fontFamily.medium,
+              marginLeft: 10
+            }}>Change to Icon 2</Text>
 
           {
             <Image style={{

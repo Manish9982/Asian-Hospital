@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, Image, Linking, Platform } from 'react-native';
 import HomeNav from './HomeNav/HomeNav';
 import BookingsNav from './ReportsNav/BookingsNav';
@@ -10,6 +10,7 @@ import DoCPatientsAppointmentList from '../DoCPatientsAppointmentList/DoCPatient
 import messaging from '@react-native-firebase/messaging';
 import { displayNotification } from '../../assets/Schemes/NotificationServices';
 import { Constants } from '../../assets/Schemes/Constants';
+import PackageAppointments from './PackageAppointments';
 
 
 
@@ -17,10 +18,19 @@ import { Constants } from '../../assets/Schemes/Constants';
 const Tab = createBottomTabNavigator();
 
 const BottomTabDoctor = () => {
+
+    const [isDietician, setIsDietician] = useState(false)
+
     useEffect(() => {
         getToken()
         checkVersion()
+        checkDietician()
     }, [])
+
+    const checkDietician = async () => {
+        setIsDietician(true)
+    }
+
     const getToken = async () => {
         await messaging().registerDeviceForRemoteMessages();
         const token = await messaging().getToken();
@@ -40,7 +50,7 @@ const BottomTabDoctor = () => {
             if (remoteMessage?.data?.video_token) {
                 if (remoteMessage?.data?.video_token == "end_call") {
                     //console.log("remoteMessage for hanging up call for doc", remoteMessage)
-                   //no navigation here because doctor needs to upload the prescription
+                    //no navigation here because doctor needs to upload the prescription
                 }
                 else {
                     //console.log('A new FCM message arrived!', JSON.stringify(remoteMessage))
@@ -88,25 +98,31 @@ const BottomTabDoctor = () => {
 
                         return <Image source={require('../../assets/Images/home2.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'AppointmentsNav') {
 
                         return <Image source={require('../../assets/Images/appointment.png')}
                             tintColor={color}
-                            style={{ height: 21, aspectRatio: 8 / 8 }} />
+                            style={{ height: 21, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'ReportsNav') {
 
                         return <Image source={require('../../assets/Images/reportss.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'MoreNav') {
 
                         return <Image source={require('../../assets/Images/menu2.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
+                    }
+                    else if (propsTab.route.name === 'PackageAppointments') {
+
+                        return <Image source={require('../../assets/Images/nutrition.png')}
+                            tintColor={color}
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                 },
                 tabBarActiveTintColor: colors.toobarcolor,
@@ -124,6 +140,13 @@ const BottomTabDoctor = () => {
             })}>
             <Tab.Screen name="HomeNav" component={HomeNav} options={{ tabBarLabel: "Home" }} />
             <Tab.Screen name="AppointmentsNav" component={DoCPatientsAppointmentList} options={{ tabBarLabel: "Appointments" }} />
+            {
+                isDietician ?
+                    <Tab.Screen name="PackageAppointments" component={PackageAppointments} options={{ tabBarLabel: "Packages" }} />
+                    :
+                    null
+            }
+
             {/* <Tab.Screen name="ReportsNav" component={BookingsNav} options={{ tabBarLabel: "Reports" }} /> */}
             <Tab.Screen name="MoreNav" component={MoreNav} options={{ tabBarLabel: "More" }} />
         </Tab.Navigator >

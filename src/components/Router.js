@@ -57,6 +57,10 @@ import DoCIpdReports from '../Screens/DoCIpdReports/DoCIpdReports';
 import DoCIpdReportsDisplay from '../Screens/DoCIpdReportsDisplay/DoCIpdReportsDisplay';
 import DataContext from '../assets/Context/DataContext';
 import ScannerScreen from '../Screens/ScannerScreen';
+import ObesityPackages from '../Screens/ObesityPackages';
+import TransactionDetails from '../Screens/TransactionDetails';
+import ActivePackageDetails from '../Screens/ActivePackageDetails';
+import DieticianAppointmentDetails from '../Screens/DieticianAppointmentDetails';
 
 const Router = (props) => {
 
@@ -99,6 +103,7 @@ const Router = (props) => {
                     <Stack.Screen name="DoCIpdReports" component={DoCIpdReports} options={{ headerShown: false }} />
                     <Stack.Screen name="DoCIpdReportsDisplay" component={DoCIpdReportsDisplay} options={{ headerShown: false }} />
                     <Stack.Screen name="DisplayBill" component={DisplayBill} options={{ headerShown: false }} />
+                    <Stack.Screen name="DieticianAppointmentDetails" component={DieticianAppointmentDetails} options={{ headerShown: false }} />
 
                 </Stack.Navigator>
             </NavigationContainer>
@@ -148,7 +153,9 @@ const Router = (props) => {
                     <Stack.Screen name="DoCViewPrescription" component={DoCViewPrescription} options={{ headerShown: false }} />
                     <Stack.Screen name="DoCImageViewer" component={DoCImageViewer} options={{ headerShown: false }} />
                     <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ headerShown: false }} />
-
+                    <Stack.Screen name="ObesityPackages" component={ObesityPackages} options={{ headerShown: false }} />
+                    <Stack.Screen name="TransactionDetails" component={TransactionDetails} options={{ headerShown: false }} />
+                    <Stack.Screen name="ActivePackageDetails" component={ActivePackageDetails} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )
