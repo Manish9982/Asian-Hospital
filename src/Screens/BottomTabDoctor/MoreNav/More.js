@@ -102,8 +102,6 @@ const More = ({ navigation }) => {
             alignItems: "center",
 
           }}>
-
-
             <View style={{
               paddingVertical: H * 0.02,
               //height: H * 0.4,
@@ -133,7 +131,6 @@ const More = ({ navigation }) => {
 
               </TouchableOpacity>
 
-
               <View
                 style={{
                   flexDirection: 'row',
@@ -142,13 +139,7 @@ const More = ({ navigation }) => {
 
                 <TouchableOpacity>
                   <Text
-
                     onPress={() => { logout() }}
-
-
-
-
-
                     style={{
                       fontFamily: fontFamily.medium,
                       color: colors.toobarcolor,

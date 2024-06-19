@@ -18,7 +18,7 @@ LogBox.ignoreAllLogs();//Ignore all log notifications
 const fontConfig = {
   fontFamily: 'Poppins-Regular',
   fontSize: fontSizes.default,
-  color: "black"
+  color: "#000"
 };
 const theme = {
   ...DefaultTheme,

@@ -9,47 +9,44 @@ const DATA = {
     status: '200',
     data: [
         {
-            plan_name: "Starter Plan",
-            price: '500',
+            plan_name: "Basic Plan",
+            price: '700',
             currency: 'Rs.',
             period: '/ month',
             isActive: true,
             benefits: [
-                'Access to basic workouts',
-                'Weekly diet plan',
-                'Email support'
+                'Manage 1 Unit',
+                'Upload upto 2 documents'
             ]
         },
         {
-            plan_name: "Advanced Plan",
-            price: '1200',
+            plan_name: "Silver Plan",
+            price: '1400',
             currency: 'Rs.',
             period: '/ month',
             isActive: false,
             benefits: [
-                'Everything from Starter Plan &',
-                'Personalized workout routines',
-                'Monthly diet consultations',
-                '24/7 chat support'
+                'Everything from free plan &',
+                'Income and Expense Tracking',
+                'Upload upto 10 documents'
             ]
         },
         {
-            plan_name: "Premium Plan",
-            price: '2500',
+            plan_name: "Gold Plan",
+            price: '2000',
             currency: 'Rs.',
             period: '/ month',
             isActive: false,
             benefits: [
-                'Everything from Advanced Plan &',
-                'Daily diet consultations',
-                'Priority support',
-                'Free fitness tracker',
+                'Everything from silver plan &',
+                'Upload upto 15 documents',
+                'Free 12 visits to the dietician',
             ]
         },
     ]
 }
 
-const ObesityPackages = ({ navigation }) => {
+const ObesityPackages = () => {
     const [packagesData, setPackagesData] = useState(null)
 
     useEffect(() => {
@@ -57,9 +54,6 @@ const ObesityPackages = ({ navigation }) => {
     }, [])
 
     const renderPackages = ({ item, index }) => {
-        const onPressPurchaseButton = () => {
-            navigation.navigate("ChooseDietician")
-        }
         return (
             <TouchableOpacity style={[styles.cardForPackage, item.isActive && styles.activePackage]}>
                 <View style={styles.namePriceContainer}>
@@ -74,14 +68,14 @@ const ObesityPackages = ({ navigation }) => {
                 {item?.benefits?.map((benefit, idx) => {
                     return (
                         <View key={idx} style={styles.benefitsContainer}>
-                            <MaterialCommunityIcons name="check-circle-outline" size={20} color={colors.greencolor} />
+                            <MaterialCommunityIcons name="check-circle-outline" size={20} color={colors.purplecolor} />
                             <Text style={typography.benefitText}>  {benefit}</Text>
                         </View>
                     )
                 })}
                 <Button
                     mode="contained"
-                    onPress={onPressPurchaseButton}
+                    onPress={() => console.log('Package Purchased')}
                     style={styles.purchaseButton}
                     labelStyle={typography.buttonText}
                 >
@@ -93,7 +87,7 @@ const ObesityPackages = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <HeaderTwo Title={"Packages"} />
+            <HeaderTwo Title={"Privilege Packages"} />
             <FlatList
                 contentContainerStyle={styles.listContainer}
                 renderItem={renderPackages}
@@ -130,16 +124,15 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        borderWidth: 1,
-        borderColor: colors.lightGray,
     },
     activePackage: {
-        borderColor: colors.greencolor,
+        borderColor: colors.purplecolor,
         borderWidth: 2,
     },
     namePriceContainer: {
-        flexDirection: 'column',
-        alignItems: 'flex-start',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginBottom: 20,
     },
     benefitsContainer: {
@@ -149,22 +142,22 @@ const styles = StyleSheet.create({
     },
     purchaseButton: {
         marginTop: 20,
-        backgroundColor: colors.greencolor,
+        backgroundColor: colors.purplecolor,
     },
 })
 
 const typography = StyleSheet.create({
     planName: {
-        fontFamily: fontFamily.bold,
-        fontWeight: '700',
-        fontSize: 24,
-        color: colors.greencolor,
+        fontFamily: fontFamily.semibold,
+        fontWeight: '600',
+        fontSize: 20,
+        color: colors.purplecolor,
     },
     price2: {
         fontFamily: fontFamily.semibold,
         fontWeight: '600',
         fontSize: 18,
-        color: colors.darkgray,
+        color: colors.darkGray,
     },
     price: {
         fontFamily: fontFamily.bold,
@@ -175,7 +168,7 @@ const typography = StyleSheet.create({
     benefitText: {
         fontFamily: fontFamily.regular,
         fontSize: 16,
-        color: colors.darkgray,
+        color: colors.darkGray,
         marginLeft: 10,
     },
     buttonText: {
