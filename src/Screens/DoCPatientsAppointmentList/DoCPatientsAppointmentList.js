@@ -18,9 +18,7 @@ import DataContext from '../../assets/Context/DataContext';
 const DoCPatientsAppointmentList = ({ navigation }) => {
 
     const { NshouldDoctorSeeAppointments } = useContext(DataContext)
-
     const [shouldDoctorSeeAppointments, setShouldDoctorSeeAppointments] = NshouldDoctorSeeAppointments
-
     const isFocused = useIsFocused()
     const [hospitals, setHospitals] = useState([])
     const [modalVisible, setModalVisible] = useState(false)

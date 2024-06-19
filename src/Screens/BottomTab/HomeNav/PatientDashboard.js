@@ -10,6 +10,7 @@ import Loader from '../../../assets/Loader/Loader';
 import { useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DataContext from '../../../assets/Context/DataContext';
+import BecomePrivilegedUserButton from '../../../components/BecomePrivilegedUserButton';
 
 const PatientDashboard = ({ navigation }) => {
 
@@ -212,6 +213,11 @@ const PatientDashboard = ({ navigation }) => {
 
   ]
 
+  const onPressBecomePrivilegedButton = () =>
+    {
+      navigation.navigate('PrivilegePackages')
+    }
+
   const renderItem = (item, index) => {
 
     const getPressed = () => {
@@ -349,9 +355,10 @@ const PatientDashboard = ({ navigation }) => {
 
         <View
           style={{
+            //backgroundColor: 'red',
+            paddingBottom: 30,
             alignItems: "center",
             flexDirection: 'row',
-
             marginTop: Platform.OS == "ios" ? H * 0.04 : H * 0.025,
           }}>
           <Modal
@@ -411,17 +418,20 @@ const PatientDashboard = ({ navigation }) => {
               </View>
             </View>
           </Modal>
-          <Text
-            style={{
-
-              alignSelf: 'center',
-              fontFamily: fontFamily.medium,
-              color: colors.white,
-              marginLeft: H * 0.035,
-              color: "white",
-              fontSize: fontSizes.XL,
-            }}>Dashboard</Text>
-
+          <View>
+            <Text
+              style={{
+                alignSelf: 'center',
+                fontFamily: fontFamily.medium,
+                color: colors.white,
+                marginLeft: H * 0.035,
+                color: "white",
+                fontSize: fontSizes.XL,
+              }}>Dashboard</Text>
+          </View>
+          <BecomePrivilegedUserButton
+            onPress={onPressBecomePrivilegedButton}
+            style={styles.becomePrivilegedButton} />
           <TouchableOpacity
             style={{
               alignSelf: "center",
@@ -430,8 +440,6 @@ const PatientDashboard = ({ navigation }) => {
 
             }}
             onPress={() => { navigation.navigate("AllLogos") }}>
-
-
             <Image
               source={require('../../../assets/Images/asianlogo.png')}
               style={{
@@ -445,8 +453,8 @@ const PatientDashboard = ({ navigation }) => {
               }} />
           </TouchableOpacity>
 
-
         </View>
+
         {
           data?.hospital?.logo
             ?
@@ -557,6 +565,12 @@ const styles = StyleSheet.create({
   {
     paddingBottom: 20,
     backgroundColor: '#fff'
+  },
+  becomePrivilegedButton:
+  {
+    position: 'absolute',
+    bottom: 0,
+    left: 0
   }
 })
 

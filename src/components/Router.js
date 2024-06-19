@@ -61,6 +61,9 @@ import ObesityPackages from '../Screens/ObesityPackages';
 import TransactionDetails from '../Screens/TransactionDetails';
 import ActivePackageDetails from '../Screens/ActivePackageDetails';
 import DieticianAppointmentDetails from '../Screens/DieticianAppointmentDetails';
+import PrivilegePackages from '../Screens/PrivilegePackages';
+import BookDietician from '../Screens/BookDietician';
+import ChooseDietician from '../Screens/ChooseDietician';
 
 const Router = (props) => {
 
@@ -156,6 +159,9 @@ const Router = (props) => {
                     <Stack.Screen name="ObesityPackages" component={ObesityPackages} options={{ headerShown: false }} />
                     <Stack.Screen name="TransactionDetails" component={TransactionDetails} options={{ headerShown: false }} />
                     <Stack.Screen name="ActivePackageDetails" component={ActivePackageDetails} options={{ headerShown: false }} />
+                    <Stack.Screen name="PrivilegePackages" component={PrivilegePackages} options={{ headerShown: false }} />
+                    <Stack.Screen name="BookDietician" component={BookDietician} options={{ headerShown: false }} />
+                    <Stack.Screen name="ChooseDietician" component={ChooseDietician} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )

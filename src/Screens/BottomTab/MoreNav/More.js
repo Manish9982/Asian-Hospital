@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, StyleSheet, Image, Modal, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, StatusBar, StyleSheet, Image, Modal, TouchableOpacity, Alert, ScrollView } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
 import { Divider } from 'react-native-paper'
 import { colors, fontFamily, fontSizes, GetApiData, getLocalStorageData, H, W } from '../../../assets/Schemes/Schemes'
@@ -68,7 +68,6 @@ const More = ({ navigation }) => {
       await setVisible(false)
       //await console.log('Done.')
       setSignedState(null)
-
     } catch (e) {
       //console.log(e)
     }
@@ -169,7 +168,7 @@ const More = ({ navigation }) => {
         </View>
       </Modal>
 
-      <View >
+      <ScrollView contentContainerStyle={styles.contentContainerStyle} >
         {joinCallStatus &&
           <>
             <TouchableOpacity
@@ -249,6 +248,29 @@ const More = ({ navigation }) => {
             <Divider style={{ width: W, borderColor: 'gray' }} />
           </>
         }
+        <TouchableOpacity
+          onPress={() => { navigation.navigate("PrivilegePackages") }}
+          style={{ flexDirection: 'row' }}>
+
+          <Text style={{
+            elevation: 10,
+            padding: 15,
+            color: colors.black,
+            fontFamily: fontFamily.medium,
+            marginLeft: 10
+          }}>Become Privileged User</Text>
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+        <Divider style={{ width: W, borderColor: 'gray' }} />
         <TouchableOpacity
           onPress={() => { navigation.navigate("Profile") }}
           style={{ flexDirection: 'row' }}>
@@ -514,7 +536,7 @@ const More = ({ navigation }) => {
 
         <Divider style={{ width: W, borderColor: 'gray' }} />
 
-      </View>
+      </ScrollView>
 
     </View>
   )
@@ -526,10 +548,11 @@ const styles = StyleSheet.create({
   {
     height: H,
     resizeMode: 'cover',
+  },
+  contentContainerStyle:
+  {
+    paddingBottom:'30%',
   }
 })
-
-
-
 
 export default More
