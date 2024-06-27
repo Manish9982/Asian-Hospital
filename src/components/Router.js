@@ -47,7 +47,6 @@ import NotificationsDisplaying from '../Screens/NotificationsDisplaying/Notifica
 import DoCBookAppointmnetForMe from '../Screens/DoCBookAppointmentForMe/DoCBookAppointmnetForMe';
 import LoginWhenSwitchingFromDoctorToPatient from '../Screens/LoginWhenSwitchingFromDoctorToPatient/LoginWhenSwitchingFromDoctorToPatient';
 import DoCIpdBilling from '../Screens/DoCIpdBilling/DoCIpdBilling';
-import PermissionScreenForVideoCall from '../Screens/PermissionScreenForVideoCall/PermissionScreenForVideoCall';
 import ChangePatient from '../Screens/ChangePatient/ChangePatient';
 import CoordinatorWebview from '../Screens/CoordinatorWebview/CoordinatorWebview';
 import VirtualPHC from '../Screens/VirtualPHC/VirtualPHC';
