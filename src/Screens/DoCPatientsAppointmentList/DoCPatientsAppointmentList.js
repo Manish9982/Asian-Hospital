@@ -39,9 +39,6 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
         }
     }, [isFocused])
 
-
-
-
     const onChangeSearch = query => setSearchQuery(query);
 
     const H = Dimensions.get("window").height
@@ -52,14 +49,11 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
 
     useEffect(() => { toastHospitalID() }, [])
 
-
     const openHospitallist = async () => {
-
         const result = await GetApiData('hospitals')
         // console.log("Hospitals===", result)
         setHospitals(result)
         setModalVisible(true)
-
     }
 
 
@@ -68,21 +62,16 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
 
             <View>
                 <TouchableOpacity
-
                     onPress={() => {
                         //setModalVisible(false)
                         setValuetoText(item.name, JSON.stringify(item.id))
                     }}
-
                     style={{
                         marginLeft: 15,
                         flexDirection: "row",
                         alignItems: "center",
                     }}>
-
-
                     <View
-
                         style={{ flexDirection: 'column', padding: 10 }}>
                         <Text style={{
                             fontSize: fontSizes.default,
@@ -91,10 +80,8 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
                         }}>
                             {item.name}
                         </Text>
-
                     </View>
                 </TouchableOpacity>
-
                 <Divider
                     style={{
                         width: W,
@@ -114,7 +101,6 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
 
         if (hID) {
             getAppointmentList(currentdate, hID)
-
         }
     }
 
@@ -127,10 +113,7 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
         formdata.append("hospital_id", JSON.parse(ID));
 
         const result = await PostApiData('patient_appo', formdata)
-
-
         // console.log("result==", result)
-
         if (result?.status == '200') {
             setData(result)
         } else {
@@ -198,18 +181,14 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
                                         {item?.appo_status == "1" ? <Text style={{
                                             color: "white",
                                         }}>  (Done <AntDesign name="checkcircle" color="green" size={16} />)</Text> : null} */}
-
                                     </Text>
-
                                 </View>
-
                                 <Text
                                     style={{
                                         color: item?.text_color,
                                         fontFamily: fontFamily.regular,
                                         fontSize: fontSizes.SM,
                                     }}>Gender: {item?.gender}
-
                                     <Text
                                         style={{
                                             color: item?.text_color,
@@ -231,11 +210,6 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
                                             fontSize: fontSizes.SM,
                                         }}>      M: {item?.phone}</Text>
                                 </Text>
-
-
-
-
-
 
                                 <Text
                                     style={{

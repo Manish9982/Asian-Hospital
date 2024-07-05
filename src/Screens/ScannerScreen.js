@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 import HeaderTwo from '../assets/Schemes/HeaderTwo'
 import Loader from '../assets/Loader/Loader';
 
-const ScannerScreen = () => {
+const ScannerScreen = ({ navigation }) => {
   const webViewRef = useRef(null);
   const [canGoBack, setCanGoBack] = useState(false);
 
@@ -27,6 +27,11 @@ const ScannerScreen = () => {
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', onBackPress);
   }, [canGoBack]);
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('FoodDashboard')
+    }, 3000);
+  }, [])
 
   const navigationOnWebView = (navState) => {
     console.log("URLS ", navState.url);
