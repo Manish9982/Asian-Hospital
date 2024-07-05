@@ -47,7 +47,6 @@ import NotificationsDisplaying from '../Screens/NotificationsDisplaying/Notifica
 import DoCBookAppointmnetForMe from '../Screens/DoCBookAppointmentForMe/DoCBookAppointmnetForMe';
 import LoginWhenSwitchingFromDoctorToPatient from '../Screens/LoginWhenSwitchingFromDoctorToPatient/LoginWhenSwitchingFromDoctorToPatient';
 import DoCIpdBilling from '../Screens/DoCIpdBilling/DoCIpdBilling';
-import PermissionScreenForVideoCall from '../Screens/PermissionScreenForVideoCall/PermissionScreenForVideoCall';
 import ChangePatient from '../Screens/ChangePatient/ChangePatient';
 import CoordinatorWebview from '../Screens/CoordinatorWebview/CoordinatorWebview';
 import VirtualPHC from '../Screens/VirtualPHC/VirtualPHC';
@@ -64,6 +63,7 @@ import DieticianAppointmentDetails from '../Screens/DieticianAppointmentDetails'
 import PrivilegePackages from '../Screens/PrivilegePackages';
 import BookDietician from '../Screens/BookDietician';
 import ChooseDietician from '../Screens/ChooseDietician';
+import FoodDashboard from '../Screens/FoodDashboard';
 
 const Router = (props) => {
 
@@ -162,6 +162,7 @@ const Router = (props) => {
                     <Stack.Screen name="PrivilegePackages" component={PrivilegePackages} options={{ headerShown: false }} />
                     <Stack.Screen name="BookDietician" component={BookDietician} options={{ headerShown: false }} />
                     <Stack.Screen name="ChooseDietician" component={ChooseDietician} options={{ headerShown: false }} />
+                    <Stack.Screen name="FoodDashboard" component={FoodDashboard} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )
