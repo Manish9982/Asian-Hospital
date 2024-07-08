@@ -34,14 +34,10 @@ const Appointments = ({ navigation }) => {
     const W = Dimensions.get("window").width
 
     const { NmyAppointmentType, NmyDoctorID } = useContext(DataContext)
-    const [myAppointmentType, setMyAppointmentType] = NmyAppointmentType
     const [myDoctorID, setMyDoctorID] = NmyDoctorID
     useEffect(() => {
-        if (isFocused) {
             toastHospitalID()
-        }
-
-    }, [isFocused])
+    }, [])
 
 
     const toastHospitalID = async () => {
@@ -123,7 +119,7 @@ const Appointments = ({ navigation }) => {
     }
 
     const renderItem = (item, index) => {
-        console.log("item==", item)
+        console.log("item==A", item)
 
         if (item?.status == 1) {
             return (
