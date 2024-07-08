@@ -30,7 +30,7 @@ const Loader = () => {
             width: W,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "white"
+            backgroundColor: "white",
         }}>
             {/* <Image source={require('../Images/favicon.png')}
                 style={{

@@ -142,7 +142,6 @@ export const PostApiData = async (ApiName, formdata) => {
          if (result?.status == 502) {
 
             try {
-
                await AsyncStorage.clear()
                Alert.alert('Info', `Your Session Has Expired. Please Login Again.`)
                RNRestart.Restart()
