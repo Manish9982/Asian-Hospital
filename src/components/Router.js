@@ -64,6 +64,8 @@ import PrivilegePackages from '../Screens/PrivilegePackages';
 import BookDietician from '../Screens/BookDietician';
 import ChooseDietician from '../Screens/ChooseDietician';
 import FoodDashboard from '../Screens/FoodDashboard';
+import FoodCard from './FoodCard';
+import FoodCart from '../Screens/FoodCart';
 
 const Router = (props) => {
 
@@ -163,6 +165,7 @@ const Router = (props) => {
                     <Stack.Screen name="BookDietician" component={BookDietician} options={{ headerShown: false }} />
                     <Stack.Screen name="ChooseDietician" component={ChooseDietician} options={{ headerShown: false }} />
                     <Stack.Screen name="FoodDashboard" component={FoodDashboard} options={{ headerShown: false }} />
+                    <Stack.Screen name="FoodCart" component={FoodCart} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )
