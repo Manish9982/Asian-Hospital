@@ -29,7 +29,8 @@ const ScannerScreen = ({ navigation }) => {
   }, [canGoBack]);
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('FoodDashboard')
+      //navigation.navigate('FoodDashboard')
+      navigation.navigate('FoodCart')
     }, 3000);
   }, [])
 
