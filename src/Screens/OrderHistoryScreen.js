@@ -78,8 +78,7 @@ const OrderHistoryScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.orderFooter}>
                     {/* Conditionally render Lottie animation */}
-                    {item.order_status !== 'Delivered' && (
-                        <View style={styles.leftFooter}>
+                    <View style={styles.leftFooter}>
                             <LottieView
                                 source={require('./animation-1720678078360.json')}
                                 autoPlay
@@ -90,7 +89,6 @@ const OrderHistoryScreen = ({ navigation }) => {
                             />
                             <Text style={[styles.orderStatus, { color: item.color_code }]}>{item.order_status}</Text>
                         </View>
-                    )}
                     <Text style={styles.orderAmount}>Total: ₹{item.amount}</Text>
                 </View>
             </View>
