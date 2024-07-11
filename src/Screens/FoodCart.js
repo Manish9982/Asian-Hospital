@@ -1,41 +1,67 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, FlatList, StyleSheet, Platform, Dimensions, Animated, TouchableOpacity, Alert } from 'react-native';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { View, FlatList, StyleSheet, Platform, Dimensions, TouchableOpacity, Alert, Modal, Animated, Easing } from 'react-native';
 import { Searchbar, Text } from 'react-native-paper';
 import { GetApiData, H, PostApiData, W, colors, fontFamily, fontSizes } from '../assets/Schemes/Schemes';
 import HeaderTwo from '../assets/Schemes/HeaderTwo';
-import FoodCard2 from '../components/FoodCard2';
 import LinearGradient from 'react-native-linear-gradient'
 const { height, width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.45; // Adjust the item size as needed
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FoodCard from '../components/FoodCard';
+import DataContext from '../assets/Context/DataContext';
 
 
-const FoodCart = () => {
-    const { width, height } = Dimensions.get('window');
-
-    const [cartList, setCartList] = useState(null)
+const FoodCart = ({ navigation }) => {
     const [price, setPrice] = useState(null)
-    const [selectedItems, setSelectedItems] = useState([]);
+    const [loaderItem, setLoaderItem] = useState(false)
 
-    useEffect(() => { getCartDetails() }, [price])
+    const { Ncart } = useContext(DataContext)
+    const [cart, setCart] = Ncart
+    const goAhead = (cart?.every(item => item.product_status == "1"))
+    useEffect(() => { getCartDetails() }, [])
+    const spinValue = new Animated.Value(0);
+
+    Animated.loop(
+        Animated.timing(
+            spinValue,
+            {
+                toValue: 1,
+                duration: 3000,
+                easing: Easing.linear, // Easing is an additional import from react-native
+                useNativeDriver: true  // To make use of native driver for performance
+            }
+        )
+    ).start();
+
+    // Next, interpolate beginning and end values (in this case 0 and 1)
+    const spin = spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+    })
 
     const getCartDetails = async () => {
+        setLoaderItem(true)
         try {
             const result = await GetApiData('cart_details');
-            console.log("result", result)
             if (result?.status == 200) {
-                setCartList(result.data.orders);
-                // setCartList([]);
                 setPrice(result.data.order_total)
-                // Alert.alert("hello")
-            } else {
+                setCart(result.data.orders)
+            } else if (result?.status == '201') {
+                setPrice(null)
+                await setCart([])
+                navigation.goBack()
+                Alert.alert('Info', result?.message);
+            }
+            else {
                 Alert.alert('Error', result?.message || 'Something went wrong');
             }
         } catch (error) {
             Alert.alert('Error', 'Failed to fetch data');
         }
+        setLoaderItem(false)
     };
     const onPressPlus = async (item) => {
+        setLoaderItem(true)
         var formdata = new FormData()
         formdata.append('product_name', item?.product_name)
         formdata.append('itemno', item?.itemno)
@@ -45,15 +71,13 @@ const FoodCart = () => {
         const result = await PostApiData('add_to_cart', formdata)
         await getCartDetails()
 
-
         if (result?.status == '200') {
             //setFoodItems(result?.data)
-
-
-
         }
+        setLoaderItem(false)
     }
     const onPressMinus = async (item) => {
+        setLoaderItem(true)
         var formdata = new FormData()
         formdata.append('product_name', item?.product_name)
         formdata.append('itemno', item?.itemno)
@@ -62,62 +86,91 @@ const FoodCart = () => {
         formdata.append('pos_code', "")
         const result = await PostApiData('add_to_cart', formdata)
         await getCartDetails()
-
-
         if (result?.status == '200') {
             //setFoodItems(result?.data)
+        }
+        setLoaderItem(false)
+    }
 
-
-
+    const onPressProceedToPayment = () => {
+        if (goAhead) {
+            navigation.navigate('PaymentFoodApp')
         }
     }
 
     const renderFoodCard = ({ item }) => {
-        console.log("items ", item)
         return (
-            <FoodCard2
+            <FoodCard
                 name={item.product_name}
                 price={item.product_price}
                 image={item.product_image}
-                totalprice={item.total_price}
+                totalPriceNeeded={true}
                 quantity={item.quantity}
-                onPressAddButton={() => onPressPlus(item)}
-                onPressMinusButton={() => onPressMinus(item)}
+                onPressAddToCart={() => onPressPlus(item)}
+                onPressMinus={() => onPressMinus(item)}
+                productStatus={item.product_status}
+                availableQuantity={Number.parseInt(item?.available_quantity, 10)}
+                crossButtonPress={() => removeFromCart(item.itemno)}
+                adjustQuantity={() => adjustQuantity(item.itemno)}
             />
         )
     }
 
-
-
-
-
-
+    const removeFromCart = async (num) => {
+        setLoaderItem(true)
+        var formdata = new FormData()
+        formdata.append('itemId', num)
+        const result = await PostApiData('remove_from_cart', formdata)
+        if (result?.status == '200') {
+            getCartDetails()
+        }
+    }
+    const adjustQuantity = async (num) => {
+        setLoaderItem(true)
+        var formdata = new FormData()
+        formdata.append('itemId', num)
+        const result = await PostApiData('set_valid_quantity', formdata)
+        if (result?.status == '200') {
+            getCartDetails()
+        }
+    }
 
     return (
 
         <View style={styles.container}>
+            <Modal
+                visible={loaderItem}
+                transparent={true}
+            >
+                <View style={styles.loader}>
+                    <Animated.Image
+                        style={{
+                            height: '12%',
+                            aspectRatio: 1,
+                            transform: [{ rotate: spin }]
+                        }}
+                        source={require('../assets/Images/favicon.png')} />
+                </View>
+            </Modal>
             <HeaderTwo Title="Review Order" />
             <FlatList
-                data={cartList}
+                data={cart}
                 renderItem={renderFoodCard}
                 keyExtractor={(item, index) => `${index}`}
                 contentContainerStyle={styles.flatListContent}
                 showsVerticalScrollIndicator={false}
             />
-
-
+            {
+                !goAhead
+                &&
+                <Text style={styles.stopText}>Please remove all unavailable items from cart to proceed.</Text>
+            }
             <View style={styles.totalSection}>
-
-
-                <TouchableOpacity
-                    onPress={() => { console.log("Clicked") }}
-                    style={styles.payButtonContainer}
-                >
-                    <LinearGradient
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 1 }}
-                        colors={['#00AEEF', '#00AEEF', '#00AEEF']}
-                        style={styles.payButtonGradient}
+                {
+                    price &&
+                    <TouchableOpacity
+                        onPress={onPressProceedToPayment}
+                        style={[styles.payButtonContainer, { opacity: goAhead ? 1 : 0.5 }]}
                     >
                         <View style={styles.payButtonContent}>
                             <View style={styles.priceContainer}>
@@ -126,13 +179,9 @@ const FoodCart = () => {
                             </View>
                             <View style={styles.payButtonTextContainer}>
                                 <Text style={styles.payButtonText}>Proceed to Pay</Text>
-                                <FontAwesome name="arrow-right" size={16} color="#fff" style={styles.arrowIcon} />
                             </View>
                         </View>
-                    </LinearGradient>
-                </TouchableOpacity>
-
-
+                    </TouchableOpacity>}
             </View>
         </View>
     );
@@ -162,13 +211,13 @@ const styles = StyleSheet.create({
         paddingBottom: 10, // Adjust based on your design needs
     },
     contentContainerStyle: {
-        paddingBottom: 200,
+        //paddingBottom: 200,
         // Ensure space for the summary section
     },
 
     itemText: {
         color: '#fff',
-        fontSize: 24
+        fontSize: 16
     },
     arrowIcon: {
         marginLeft: 5,
@@ -179,13 +228,11 @@ const styles = StyleSheet.create({
     },
 
     payButtonContainer: {
-        marginBottom: height * 0.02
-    },
-    payButtonGradient: {
-        borderRadius: 8,
-        height: height * 0.07,
-        justifyContent: 'center'// Adjust the value as needed
-        // Your existing styles
+        width: '97%',
+        backgroundColor: colors.toobarcolor,
+        alignSelf: 'center',
+        borderRadius: 15,
+        padding: 8,
     },
     image:
     {
@@ -193,12 +240,10 @@ const styles = StyleSheet.create({
         height: ITEM_SIZE * 0.8,
         borderRadius: 8,
     },
-
     payButtonContent: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 16,
     },
     payButtonPriceText: {
         color: colors.white,
@@ -209,11 +254,6 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontFamily: fontFamily.medium,
         fontSize: fontSizes.default,
-    },
-    payButtonText: {
-        color: colors.white,
-        fontFamily: fontFamily.medium,
-        fontSize: fontSizes.XL,
     },
     contentContainerStyle:
     {
@@ -226,15 +266,14 @@ const styles = StyleSheet.create({
         marginVertical: 16,
     },
     totalSection: {
-        margin: 20,
-
+        marginTop: 5,
+        margin: 20
         //alignItems: 'center',
     },
     totalItem: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginVertical: 8,
     },
     totalItemText: {
         fontSize: 16,
@@ -248,16 +287,27 @@ const styles = StyleSheet.create({
     payButton: {
         backgroundColor: '#007bff',
         marginTop: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 24,
         borderRadius: 4,
     },
     payButtonText: {
         color: '#fff',
         fontSize: 16,
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontWeight: '600'
     },
+    loader:
+    {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.4)'
+    },
+    stopText:
+    {
+        color: colors.maroon,
+        marginHorizontal: 20,
+        alignSelf: 'center'
+    }
 });
 
 export default FoodCart;

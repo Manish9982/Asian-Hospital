@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { View, FlatList, StyleSheet, Dimensions, Animated, TouchableOpacity, Modal, Easing } from 'react-native';
+import { View, FlatList, StyleSheet, Dimensions, Animated, TouchableOpacity, Modal, Easing, Alert, Platform } from 'react-native';
 import { Badge, FAB, Searchbar, Text } from 'react-native-paper';
 import FoodCard from '../components/FoodCard';
-import { GetApiData, PostApiData, colors } from '../assets/Schemes/Schemes';
+import { GetApiData, PostApiData, W, colors } from '../assets/Schemes/Schemes';
 import FastImage from 'react-native-fast-image';
 import HeaderTwo from '../assets/Schemes/HeaderTwo';
 import Loader from '../assets/Loader/Loader';
@@ -12,17 +12,18 @@ const { width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.45; // Adjust the item size as needed
 const SPACER_ITEM_SIZE = (width - ITEM_SIZE) / 2; // Spacers to center the items
 
-const FoodDashboard = () => {
+const FoodDashboard = ({ navigation }) => {
     const [hubsList, setHubsList] = useState(null)
     const [foodItems, setFoodItems] = useState(null)
-    const [hubName, setHubName] = useState(null)
+    const [loader, setLoader] = useState(true)
+    const [hubName, setHubName] = useState('')
     const [filteredFoodItems, setFilteredFoodItems] = useState([]);
     const [loaderItem, setLoaderItem] = useState(false)
-    const [loader, setLoader] = useState(true)
     const [isSearchActive, setIsSearchActive] = useState(false)
+    const [posCode, setPosCode] = useState("")
     const scrollX = useRef(new Animated.Value(0)).current;
     const flatListRef = useRef(null);
-    const { addToCart, removeFromCart, getCountForItem, Ncart } = useContext(DataContext)
+    const { addToCart, removeFromCart, getCountForItem, Ncart, getFullCount } = useContext(DataContext)
     const [cart, setCart] = Ncart
     useEffect(() => { getHubsList() }, [])
 
@@ -47,33 +48,43 @@ const FoodDashboard = () => {
         outputRange: ['0deg', '360deg']
     })
 
-    const handleMomentumScrollEnd = (event) => {
+    const handleMomentumScrollEnd = async (event) => {
         const offsetX = event.nativeEvent.contentOffset.x;
-        const currentIndex = Math.floor(offsetX / (ITEM_SIZE));
+        const currentIndex = Platform.OS == "ios" ? Math.floor((offsetX / (ITEM_SIZE)) + 0.1) : Math.floor(offsetX / (ITEM_SIZE));;
         setHubName(hubsList[currentIndex + 1]?.pos_name)
-        getItemsList(hubsList[currentIndex + 1]?.pos_code)
+        console.log('handleMomentumScrollEnd re-render issue ===>')
+        await getItemsList(hubsList[currentIndex + 1]?.pos_code)
     };
 
     const getHubsList = async () => {
         const result = await GetApiData('all_hub_list')
         if (result?.status == '200') {
             setHubsList([{ key: 'left-spacer', pos_code: result?.data[0]?.pos_code }, ...result?.data, { key: 'right-spacer', pos_code: result?.data[result?.data?.length - 1]?.pos_code },])
-            getItemsList(result?.data[0]?.pos_code)
+            setLoader(false)
+            await getItemsList(result?.data[0]?.pos_code)
+            setHubName(result?.data[0]?.pos_name)
         }
-        setLoader(false)
     }
 
     const getItemsList = async (code) => {
-        setLoaderItem(true)
-        var formdata = new FormData()
-        formdata.append('pos_code', code)
-        const result = await PostApiData('hub_item_list', formdata)
-        if (result?.status == '200') {
-            setFoodItems(result?.data)
-            setFilteredFoodItems(result?.data)
+        try {
+            setLoaderItem(true);
+            const formdata = new FormData();
+            formdata.append('pos_code', code);
+            const result = await PostApiData('hub_item_list', formdata);
+
+            if (result?.status == '200') {
+                setFoodItems(result?.data); // Wait for setFoodItems to complete
+                setFilteredFoodItems(result?.data);
+                setPosCode(code)
+            }
+        } catch (error) {
+            Alert.alert('Error fetching items:', error);
+        } finally {
+            setLoaderItem(false); // Always set loaderItem to false at the end
         }
-        setLoaderItem(false)
-    }
+    };
+
 
     const handlePress = (index) => {
         flatListRef.current.scrollToIndex({
@@ -81,6 +92,7 @@ const FoodDashboard = () => {
             animated: true,
             viewPosition: 0.5 // Centers the item
         });
+        getItemsList(hubsList[index]?.pos_code)
     };
 
     const renderFoodCard = ({ item, index }) => {
@@ -91,8 +103,9 @@ const FoodDashboard = () => {
                 image={item?.product_image}
                 code={item?.itemno}
                 quantity={getCountForItem(item)}
-                onPressAddToCart={() => addToCart(item)}
+                onPressAddToCart={() => addToCart(item, posCode)}
                 onPressMinus={() => removeFromCart(item?.itemno)}
+                productStatus={item.product_status}
             />
         )
     }
@@ -109,6 +122,16 @@ const FoodDashboard = () => {
         }
     };
 
+    const onPressFab = async () => {
+        var formdata = new FormData()
+        for (let i = 0; i < cart.length; i++) {
+            formdata.append('items[]', JSON.stringify(cart[i]))
+        }
+        const result = await PostApiData('bulk_add_to_cart', formdata)
+        if (result?.status == '200') {
+            navigation.navigate('FoodCart')
+        }
+    }
     return (
         <>
             <HeaderTwo Title={"Order Food"} />
@@ -144,7 +167,7 @@ const FoodDashboard = () => {
                                     decelerationRate={0.8}
                                     showsHorizontalScrollIndicator={false}
                                     contentContainerStyle={styles.contentContainerStyle}
-                                    snapToInterval={ITEM_SIZE * 1.2}
+                                    snapToInterval={ITEM_SIZE}
                                     onMomentumScrollEnd={handleMomentumScrollEnd}
                                     bounces={false}
                                     onScroll={Animated.event(
@@ -159,12 +182,12 @@ const FoodDashboard = () => {
                                         const inputRange = [
                                             (index - 2) * ITEM_SIZE,
                                             (index - 1) * ITEM_SIZE,
-                                            index * ITEM_SIZE,
+                                            (index) * ITEM_SIZE,
                                         ];
 
                                         const scale = scrollX.interpolate({
                                             inputRange,
-                                            outputRange: [0.8, 1.2, 0.8],
+                                            outputRange: [0.8, 1.1, 0.8],
                                             extrapolate: 'clamp'
                                         });
 
@@ -200,35 +223,38 @@ const FoodDashboard = () => {
                                 />
                             </View>
                         }
-                        <Searchbar
-                            placeholder={`Search ${hubName}`}
-                            placeholderTextColor={colors.darkgray}
-                            style={[styles.searchBar, { marginTop: isSearchActive ? 10 : 0 }]}
-                            onFocus={() => setIsSearchActive(true)}
-                            onBlur={() => setIsSearchActive(false)}
-                            onChangeText={(t) => initiateSearch(t)}
-                        />
-                        <View style={{ flex: 1, paddingBottom: 5 }}>
+                        <View style={styles.searchBarContainer}>
+                            <Searchbar
+                                placeholder={`Search ${hubName}`}
+                                placeholderTextColor={colors.darkgray}
+                                style={[styles.searchBar, { marginTop: isSearchActive ? 10 : 0 }]}
+                                onFocus={() => setIsSearchActive(true)}
+                                onBlur={() => setIsSearchActive(false)}
+                                onChangeText={(t) => initiateSearch(t)}
+                            />
+                        </View>
+                        <View style={{ flex: 1, padding: 10, paddingBottom: 15 }}>
                             <FlatList
                                 data={filteredFoodItems}
                                 renderItem={renderFoodCard}
                                 keyExtractor={(item, index) => `${index}`}
                             />
                         </View>
-                        <View style={styles.fabContainer}>
-                            {
-                                cart?.length !== 0
-                                &&
+                        {
+                            cart?.length !== 0
+                            &&
+                            <View style={styles.fabContainer}>
                                 <Badge visible={true} style={styles.badge}>
-                                    {cart?.length}
+                                    {getFullCount()}
                                 </Badge>
-                            }
-                            <FAB
-                                color={'#fff'}
-                                icon={'cart'}
-                                collapsable={true}
-                                style={styles.fab} />
-                        </View>
+                                <FAB
+                                    onPress={onPressFab}
+                                    color={'#fff'}
+                                    icon={'cart'}
+                                    collapsable={true}
+                                    style={styles.fab} />
+                            </View>
+                        }
                     </View>
             }
 
@@ -245,7 +271,6 @@ const styles = StyleSheet.create({
         height: ITEM_SIZE / 1.4, // Adjust height as needed
         justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 10,
         borderRadius: 10,
         backgroundColor: '#fff',
         borderRadius: 8,
@@ -259,14 +284,6 @@ const styles = StyleSheet.create({
         width: ITEM_SIZE * 0.8,
         height: ITEM_SIZE * 0.8,
         borderRadius: 8,
-    },
-    searchBar:
-    {
-        width: '90%',
-        alignSelf: 'center',
-        borderRadius: 15,
-        backgroundColor: '#fff',
-        marginBottom: 8
     },
     contentContainerStyle:
     {
@@ -296,6 +313,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 4,
         top: 4
+    },
+    searchBar:
+    {
+        width: W * 0.9,
+        backgroundColor: '#fff',
+    },
+    searchBarContainer:
+    {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 

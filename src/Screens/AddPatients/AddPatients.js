@@ -734,7 +734,7 @@ const AddPatients = ({ navigation, route }) => {
                         style={{
                             alignItems: "center",
                             borderRadius: 5,
-                            height: H * 0.075,
+                            height: 64,
                             borderColor: salutationMandate ? "red" : "gray",
                             borderWidth: 1,
                             width: W * 0.9,

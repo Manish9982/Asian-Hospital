@@ -1,6 +1,6 @@
-import { View, Text, StatusBar, StyleSheet, Image, Modal, TouchableOpacity, Alert, ScrollView } from 'react-native'
+import { View, StatusBar, StyleSheet, Image, Modal, TouchableOpacity, Alert, ScrollView } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
-import { Divider } from 'react-native-paper'
+import { Divider, Text } from 'react-native-paper'
 import { colors, fontFamily, fontSizes, GetApiData, getLocalStorageData, H, W } from '../../../assets/Schemes/Schemes'
 import HeaderTwo from '../../../assets/Schemes/HeaderTwo'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -346,7 +346,7 @@ const More = ({ navigation }) => {
         <Divider style={{ width: W, borderColor: 'gray' }} />
 
         <TouchableOpacity
-          onPress={() => { navigation.navigate("TransactionDetails") }}
+          onPress={() => { navigation.navigate("OrderHistoryScreen") }}
           style={{ flexDirection: 'row' }}>
           <Text style={{
             elevation: 10,
@@ -354,7 +354,7 @@ const More = ({ navigation }) => {
             color: colors.black,
             fontFamily: fontFamily.medium,
             marginLeft: 10
-          }}>Transaction Details</Text>
+          }}>My Food Orders</Text>
 
           {
             <Image style={{

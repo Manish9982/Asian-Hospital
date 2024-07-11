@@ -11,7 +11,7 @@ import messaging from '@react-native-firebase/messaging';
 import { displayNotification } from '../../assets/Schemes/NotificationServices';
 import { Constants } from '../../assets/Schemes/Constants';
 import PackageAppointments from './PackageAppointments';
-
+import notifee, { EventType } from '@notifee/react-native';
 
 
 
@@ -26,24 +26,6 @@ const BottomTabDoctor = () => {
         checkVersion()
         checkDietician()
     }, [])
-
-    const checkDietician = async () => {
-        setIsDietician(true)
-    }
-
-    const getToken = async () => {
-        await messaging().registerDeviceForRemoteMessages();
-        const token = await messaging().getToken();
-        savelocalStorageData('fcm_token', token)
-        var formdata = new FormData()
-        formdata.append("fcm_token", token)
-        formdata.append("user_type", "2")
-        const result = await PostApiData('fcm_update', formdata)
-        //console.log("fcmToken===>", token)
-        //console.log(" result of getToken at Dashboard===>", result)
-        //console.log(" formdata  of getToken at Dashboard===>", formdata)
-    }
-
     useEffect(() => {
         const unsubscribe = messaging().onMessage(async remoteMessage => {
             // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
@@ -70,6 +52,78 @@ const BottomTabDoctor = () => {
         });
         return unsubscribe;
     }, []);
+    useEffect(() => {
+        return notifee.onForegroundEvent(({ type, detail }) => {
+            switch (type) {
+                case EventType.DISMISSED:
+                    console.log('User dismissed notification', detail.notification);
+                    break;
+                case EventType.PRESS:
+                    console.log('User pressed notification', detail);
+                    // if (detail?.notification?.data?.onClick) {
+
+                    //     navigation.navigate(detail?.notification?.data?.onClick,
+                    //         { "user_id": `34` })
+
+                    //     // if (detail?.notification?.data?.onClick !== 'default') {
+                    //     //     navigation.navigate(detail?.notification?.data?.onClick)
+                    //     // } else if (detail?.notification?.data?.onClick == "chat") {
+                    //     //     //navigation.navigate(detail?.notification?.data?.onClick, { "user_id": 14 });
+                    //     //     navigation.navigate('ChatScreen_Parent',
+                    //     //         { user_id: `14` })
+
+
+                    //     // }
+                    // }
+                    break;
+            }
+        });
+    }, []);
+    useEffect(() => {
+        return notifee.onBackgroundEvent(({ type, detail }) => {
+            switch (type) {
+                case EventType.DISMISSED:
+                    console.log('User dismissed notification', detail.notification);
+                    break;
+                case EventType.PRESS:
+                    console.log('User pressed notification', detail);
+                    // if (detail?.notification?.data?.onClick) {
+
+                    //     navigation.navigate(detail?.notification?.data?.onClick,
+                    //         { "user_id": `34` })
+
+                    //     // if (detail?.notification?.data?.onClick !== 'default') {
+                    //     //     navigation.navigate(detail?.notification?.data?.onClick)
+                    //     // } else if (detail?.notification?.data?.onClick == "chat") {
+                    //     //     //navigation.navigate(detail?.notification?.data?.onClick, { "user_id": 14 });
+                    //     //     navigation.navigate('ChatScreen_Parent',
+                    //     //         { user_id: `14` })
+
+
+                    //     // }
+                    // }
+                    break;
+            }
+        });
+    }, []);
+
+    const checkDietician = async () => {
+        setIsDietician(true)
+    }
+
+    const getToken = async () => {
+        await messaging().registerDeviceForRemoteMessages();
+        const token = await messaging().getToken();
+        savelocalStorageData('fcm_token', token)
+        var formdata = new FormData()
+        formdata.append("fcm_token", token)
+        formdata.append("user_type", "2")
+        const result = await PostApiData('fcm_update', formdata)
+        //console.log("fcmToken===>", token)
+        //console.log(" result of getToken at Dashboard===>", result)
+        //console.log(" formdata  of getToken at Dashboard===>", formdata)
+    }
+
 
     const checkVersion = async () => {
         var formdata = new FormData()

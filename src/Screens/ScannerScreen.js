@@ -6,37 +6,17 @@ import Loader from '../assets/Loader/Loader';
 
 const ScannerScreen = ({ navigation }) => {
   const webViewRef = useRef(null);
-  const [canGoBack, setCanGoBack] = useState(false);
 
-  useEffect(() => {
-    const onBackPress = () => {
-      if (canGoBack && webViewRef.current) {
-        webViewRef.current.goBack();
-        return true; // Prevent default behavior (exit the app)
-      } else {
-        Alert.alert('Exit App', 'Do you want to exit?', [
-          { text: 'No', style: 'cancel' },
-          { text: 'Yes', onPress: () => BackHandler.exitApp() },
-        ]);
-        return true; // Prevent default behavior
-      }
-    };
-
-    BackHandler.addEventListener('hardwareBackPress', onBackPress);
-
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-  }, [canGoBack]);
   useEffect(() => {
     setTimeout(() => {
-      //navigation.navigate('FoodDashboard')
-      navigation.navigate('FoodCart')
+      navigation.navigate('FoodDashboard')
+      //navigation.navigate('FoodCart')
     }, 3000);
   }, [])
 
   const navigationOnWebView = (navState) => {
     console.log("URLS ", navState.url);
-    setCanGoBack(navState.canGoBack); // Update canGoBack state
+    // Update canGoBack state
   };
 
   const renderLoading = () => {

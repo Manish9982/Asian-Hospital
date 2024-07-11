@@ -50,25 +50,56 @@ const reducer = (state, action) => {
                 [action.field]: action.value
             };
         case ADD_TO_CART:
-            return {
-                ...state,
-                cart: [...state.cart, action.item]
-            };
-        case REMOVE_FROM_CART:
-            const index = state.cart.findIndex(item => item.itemno === action.itemno);
-            if (index !== -1) {
-                const newCart = [...state.cart];
-                newCart.splice(index, 1);
+            // Check if item already exists in cart
+            const existingIndex = state.cart.findIndex(item => item.itemno === action.item.itemno);
+
+            if (existingIndex !== -1) {
+                // Item already exists, increment quantity
+                const updatedCart = [...state.cart];
+                updatedCart[existingIndex] = {
+                    ...updatedCart[existingIndex],
+                    quantity: updatedCart[existingIndex].quantity + 1
+                };
                 return {
                     ...state,
-                    cart: newCart
+                    cart: updatedCart
+                };
+            } else {
+                // Item doesn't exist, add it to cart
+                return {
+                    ...state,
+                    cart: [...state.cart, { ...action.item, quantity: 1, pos_code: action.code }]
                 };
             }
-            return state;
+
+        case REMOVE_FROM_CART:
+            // Find item in cart
+            const itemIndex = state.cart.findIndex(item => item.itemno === action.itemno);
+
+            if (itemIndex !== -1) {
+                // Item found
+                const updatedCart = [...state.cart];
+                if (updatedCart[itemIndex].quantity > 1) {
+                    // Decrease quantity if more than 1
+                    updatedCart[itemIndex] = {
+                        ...updatedCart[itemIndex],
+                        quantity: updatedCart[itemIndex].quantity - 1
+                    };
+                } else {
+                    // Remove item from cart if quantity is 1
+                    updatedCart.splice(itemIndex, 1);
+                }
+                return {
+                    ...state,
+                    cart: updatedCart
+                };
+            }
+
         default:
             return state;
     }
 };
+
 
 const DataState = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -78,18 +109,25 @@ const DataState = (props) => {
         dispatch({ type: SET_FIELD, field, value });
     };
 
-    const addToCart = (item) => {
-        dispatch({ type: ADD_TO_CART, item });
+    const addToCart = (item, code) => {
+        dispatch({ type: ADD_TO_CART, item, code });
     };
 
     const removeFromCart = (itemno) => {
         dispatch({ type: REMOVE_FROM_CART, itemno });
     };
-
     const getCountForItem = (item) => {
-        const count = state.cart.filter(i => i.itemno === item.itemno).length;
-        return `${count}`;
+        const index = state.cart.findIndex(i => i.itemno == item.itemno)
+        if (index !== -1) {
+            return state.cart[index].quantity;
+        }
+        else return 0
     };
+    const getFullCount = () => {
+        // Calculate total count of items in cart
+        const totalCount = state.cart.reduce((total, item) => total + item.quantity, 0);
+        return totalCount
+    }
 
     // Provide individual setters for each field to maintain the same API
     const value = {
@@ -121,10 +159,11 @@ const DataState = (props) => {
         NmyDoctorEducation: [state.myDoctorEducation, value => setField('myDoctorEducation', value)],
         NshouldDoctorSeeAppointments: [state.shouldDoctorSeeAppointments, value => setField('shouldDoctorSeeAppointments', value)],
         NsignedState: [state.signedState, value => setField('signedState', value)],
-        Ncart : [state.cart, value => setField('cart', value)],
+        Ncart: [state.cart, value => setField('cart', value)],
         addToCart,
         removeFromCart,
-        getCountForItem
+        getCountForItem,
+        getFullCount
     };
 
     return (
