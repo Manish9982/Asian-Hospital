@@ -179,44 +179,43 @@ const PatientDashboard = ({ navigation }) => {
     {
       "name": "Book Appointments",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/4343/4343405.png",
+      "uri": require('../../../assets/Images/bookAppointments.png')
 
     },
 
     {
       "name": "Reports",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/1508/1508964.png",
+      "uri": require('../../../assets/Images/reports-copy.png')
     },
     {
       "name": "My Appointments",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/6548/6548018.png",
+      "uri": require('../../../assets/Images/myAppointments.png')
     },
     {
       "name": "Add Patient",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/7772/7772008.png"
+      "uri": require('../../../assets/Images/addPatients.png')
     },
 
 
     {
-      "name": "Obesity Package",
+      "name": "Obesity Packages",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/2764/2764536.png",
+      "uri": require('../../../assets/Images/obesity.png')
     },
     {
-      "name": "PHC",
+      "name": "Scan QR & Order Food",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/7772/7772008.png"
+      "uri": require('../../../assets/Images/fast-food.png')
     },
 
   ]
 
-  const onPressBecomePrivilegedButton = () =>
-    {
-      navigation.navigate('PrivilegePackages')
-    }
+  const onPressBecomePrivilegedButton = () => {
+    navigation.navigate('PrivilegePackages')
+  }
 
   const renderItem = (item, index) => {
 
@@ -237,7 +236,7 @@ const PatientDashboard = ({ navigation }) => {
         navigation.navigate("ObesityPackages")
       }
       else if (index == 5) {
-        navigation.navigate("AddPatients")
+        navigation.navigate("FoodDashboard")
       }
     }
 
@@ -258,7 +257,6 @@ const PatientDashboard = ({ navigation }) => {
 
       } else if (index == 5) {
         return colors.pink;
-
 
       } else {
         return colors.purplecolor;
@@ -298,7 +296,7 @@ const PatientDashboard = ({ navigation }) => {
             flex: 1
           }}>
             <Image
-              source={{ uri: item.uri }}
+              source={item.uri}
               style={{
                 resizeMode: "contain",
                 tintColor: "white",

@@ -57,7 +57,6 @@ import DoCIpdReportsDisplay from '../Screens/DoCIpdReportsDisplay/DoCIpdReportsD
 import DataContext from '../assets/Context/DataContext';
 import ScannerScreen from '../Screens/ScannerScreen';
 import ObesityPackages from '../Screens/ObesityPackages';
-import TransactionDetails from '../Screens/TransactionDetails';
 import ActivePackageDetails from '../Screens/ActivePackageDetails';
 import DieticianAppointmentDetails from '../Screens/DieticianAppointmentDetails';
 import PrivilegePackages from '../Screens/PrivilegePackages';
@@ -66,6 +65,9 @@ import ChooseDietician from '../Screens/ChooseDietician';
 import FoodDashboard from '../Screens/FoodDashboard';
 import FoodCard from './FoodCard';
 import FoodCart from '../Screens/FoodCart';
+import PaymentFoodApp from '../Screens/PaymentFoodApp';
+import OrderHistoryScreen from '../Screens/OrderHistoryScreen';
+import ShowBillPdf from '../Screens/ShowBillPdf';
 
 const Router = (props) => {
 
@@ -159,13 +161,15 @@ const Router = (props) => {
                     <Stack.Screen name="DoCImageViewer" component={DoCImageViewer} options={{ headerShown: false }} />
                     <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="ObesityPackages" component={ObesityPackages} options={{ headerShown: false }} />
-                    <Stack.Screen name="TransactionDetails" component={TransactionDetails} options={{ headerShown: false }} />
                     <Stack.Screen name="ActivePackageDetails" component={ActivePackageDetails} options={{ headerShown: false }} />
                     <Stack.Screen name="PrivilegePackages" component={PrivilegePackages} options={{ headerShown: false }} />
                     <Stack.Screen name="BookDietician" component={BookDietician} options={{ headerShown: false }} />
                     <Stack.Screen name="ChooseDietician" component={ChooseDietician} options={{ headerShown: false }} />
                     <Stack.Screen name="FoodDashboard" component={FoodDashboard} options={{ headerShown: false }} />
                     <Stack.Screen name="FoodCart" component={FoodCart} options={{ headerShown: false }} />
+                    <Stack.Screen name="PaymentFoodApp" component={PaymentFoodApp} options={{ headerShown: false }} />
+                    <Stack.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="ShowBillPdf" component={ShowBillPdf} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )

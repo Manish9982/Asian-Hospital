@@ -61,6 +61,8 @@
   <true/>
   <key>NSAppTransportSecurity</key>
   <dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
     <key>NSExceptionDomains</key>
     <dict>
       <key>122.180.15.59</key>

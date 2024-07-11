@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import messaging from '@react-native-firebase/messaging';
 import { displayNotification } from '../../assets/Schemes/NotificationServices';
 import { Constants } from '../../assets/Schemes/Constants';
-
+import notifee, { EventType } from '@notifee/react-native';
 
 
 
@@ -48,6 +48,78 @@ const BottomTab = () => {
     useEffect(() => {
         getToken()
         checkVersion()
+    }, [])
+    useEffect(() => {
+        const unsubscribe = messaging().onMessage(async remoteMessage => {
+            // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+            if (remoteMessage?.data?.video_token) {
+                if (remoteMessage?.data?.video_token == "end_call") {
+                    //console.log("remoteMessage for hanging up call for doc", remoteMessage)
+                    //no navigation here because doctor needs to upload the prescription
+                }
+                else {
+                    //console.log('A new FCM message arrived!', JSON.stringify(remoteMessage))
+                    displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body)
+                    // savelocalStorageData('doctorNameDuringCall', remoteMessage?.data?.doctor_name)
+                    // savelocalStorageData('ID', remoteMessage?.data?.appo_id)
+                    // savelocalStorageData('accessToken', remoteMessage?.data?.video_token)
+                    // navigation.navigate("CallingScreen")
+                }
+            }
+            else {
+                displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body)
+                //console.log("remoteMessage for hanging up call doctor dis", remoteMessage)
+            }
+
+
+        });
+        return unsubscribe;
+    }, []);
+    useEffect(() => {
+        return notifee.onForegroundEvent(({ type, detail }) => {
+            switch (type) {
+                case EventType.DISMISSED:
+                    console.log('User dismissed notification', detail.notification);
+                    break;
+                case EventType.PRESS:
+                    console.log('User pressed notification', detail);
+                    // if (detail?.notification?.data?.onClick) {
+
+                    //     navigation.navigate(detail?.notification?.data?.onClick,
+                    //         { "user_id": `34` })
+
+                    //     // if (detail?.notification?.data?.onClick !== 'default') {
+                    //     //     navigation.navigate(detail?.notification?.data?.onClick)
+                    //     // } else if (detail?.notification?.data?.onClick == "chat") {
+                    //     //     //navigation.navigate(detail?.notification?.data?.onClick, { "user_id": 14 });
+                    //     //     navigation.navigate('ChatScreen_Parent',
+                    //     //         { user_id: `14` })
+
+
+                    //     // }
+                    // }
+                    break;
+            }
+        });
+    }, []);
+    useEffect(() => {
+        messaging().onNotificationOpenedApp(remoteMessage => {
+            // //console.log(
+            //     'Notification caused app to open from background state:',
+            //     remoteMessage.notification,
+            // );
+            if (remoteMessage?.data?.video_token) {
+                if (remoteMessage?.data?.video_token == "end_call") {
+                    ////console.log('Do Nothing')
+                }
+                else {
+                    savelocalStorageData("accessToken", remoteMessage?.data?.video_token)
+                    savelocalStorageData("ID", remoteMessage?.data?.appo_id)
+                    savelocalStorageData('doctorNameDuringCall', remoteMessage?.data?.doctor_name)
+                    navigation.navigate("CallingScreen")
+                }
+            }
+        });
     }, [])
 
     const checkVersion = async () => {
@@ -98,25 +170,7 @@ const BottomTab = () => {
         }
     }
 
-    useEffect(() => {
-        messaging().onNotificationOpenedApp(remoteMessage => {
-            // //console.log(
-            //     'Notification caused app to open from background state:',
-            //     remoteMessage.notification,
-            // );
-            if (remoteMessage?.data?.video_token) {
-                if (remoteMessage?.data?.video_token == "end_call") {
-                    ////console.log('Do Nothing')
-                }
-                else {
-                    savelocalStorageData("accessToken", remoteMessage?.data?.video_token)
-                    savelocalStorageData("ID", remoteMessage?.data?.appo_id)
-                    savelocalStorageData('doctorNameDuringCall', remoteMessage?.data?.doctor_name)
-                    navigation.navigate("CallingScreen")
-                }
-            }
-        });
-    }, [])
+    
 
 
     return (
