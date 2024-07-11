@@ -1,4 +1,3 @@
-// OrderHistoryScreen.js
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -6,24 +5,23 @@ import { GetApiData } from '../assets/Schemes/Schemes';
 import HeaderTwo from '../assets/Schemes/HeaderTwo';
 import { Text } from 'react-native-paper';
 import Loader from '../assets/Loader/Loader';
+import LottieView from 'lottie-react-native'; // Import LottieView
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const OrderHistoryScreen = ({ navigation }) => {
     const [orders, setOrders] = useState([]);
-    const [loader, setLoader] = useState(true)
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
         fetchOrderHistory();
     }, []);
-
 
     const fetchOrderHistory = async () => {
         try {
             const result = await GetApiData('transaction_details');
             if (result?.status == 200) {
                 setOrders(result.data);
-                console.log("PDF ", result)
-
-
+                console.log("PDF ", result);
             } else {
                 Alert.alert('Error', result?.message || 'Something went wrong');
             }
@@ -31,10 +29,9 @@ const OrderHistoryScreen = ({ navigation }) => {
             Alert.alert('Error', 'Failed to fetch data');
         }
         finally {
-            setLoader(false)
+            setLoader(false);
         }
     };
-
 
     const renderOrder = ({ item }) => {
         return (
@@ -48,20 +45,13 @@ const OrderHistoryScreen = ({ navigation }) => {
                             <Text style={styles.transactionNumber}>Txn no: {item.transaction_number}</Text>
                             <Text style={styles.orderDate}>{item.order_date} at {item.order_time}</Text>
                         </View>
-
-
-                        {item.pdf_link == '' ? (
-
-
+                        {item.pdf_link === '' ? (
                             <View style={styles.pdfIcon} />
                         ) : (
                             <TouchableOpacity onPress={() =>
                                 navigation.navigate("ShowBillPdf", { "link": item?.pdf_link })
-
-
                             }>
-                                <Icon name="picture-as-pdf"
-                                    size={30} color="#ff0000" style={styles.pdfIcon} />
+                                <Icon name="picture-as-pdf" size={30} color="#ff0000" style={styles.pdfIcon} />
                             </TouchableOpacity>
                         )}
                     </View>
@@ -75,6 +65,7 @@ const OrderHistoryScreen = ({ navigation }) => {
                                 <View style={styles.cartItemDetails}>
                                     <Text style={styles.productName}>{cartItem.product_name}</Text>
                                     <Text style={styles.quantity}>Qty: {cartItem.quantity}</Text>
+                                    <Text style={styles.hubname}>({cartItem.hub_name})</Text>
                                 </View>
                                 <View style={styles.cartItemPrices}>
                                     <Text style={styles.totalPrice}>₹{cartItem.total_price}</Text>
@@ -86,13 +77,23 @@ const OrderHistoryScreen = ({ navigation }) => {
                     />
                 </View>
                 <View style={styles.orderFooter}>
-                    <Text style={[styles.orderStatus, { color: item.color_code }]}>{item.order_status}</Text>
+                    {/* Conditionally render Lottie animation */}
+                    <View style={styles.leftFooter}>
+                            <LottieView
+                                source={require('./animation-1720678078360.json')}
+                                autoPlay
+                                loop
+                                style={{ width: 30, height: 30,
+                                     marginRight: 10, 
+                                     tintColor: item.color_code }}
+                            />
+                            <Text style={[styles.orderStatus, { color: item.color_code }]}>{item.order_status}</Text>
+                        </View>
                     <Text style={styles.orderAmount}>Total: ₹{item.amount}</Text>
                 </View>
             </View>
         );
     };
-
 
     return (
         loader ?
@@ -110,7 +111,6 @@ const OrderHistoryScreen = ({ navigation }) => {
             </View>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -178,6 +178,8 @@ const styles = StyleSheet.create({
     productName: {
         fontSize: 16,
         color: '#333',
+        fontWeight: '600',
+
     },
     quantity: {
         fontSize: 14,
@@ -199,9 +201,19 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: '#eee',
     },
+    leftFooter: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     orderStatus: {
         fontSize: 16,
         fontWeight: 'bold',
+        marginLeft: 0, // Adjust as needed to separate animation from text
+    },
+    hubname: {
+        fontSize: 14,
+        fontWeight: '500',
+        color: '#888',
     },
     orderAmount: {
         fontSize: 16,
@@ -212,4 +224,5 @@ const styles = StyleSheet.create({
         paddingBottom: 10, // Adjust padding if necessary
     },
 });
+
 export default OrderHistoryScreen;
