@@ -7,18 +7,26 @@ import { useNavigation } from '@react-navigation/native'
 import { Constants } from './Constants'
 
 
-const HeaderTwo = (props) => {
+const HeaderTwo = ({ Title, goBackScreen = null }) => {
     const navigation = useNavigation()
+    const backPress = () => {
+        if (goBackScreen) {
+            navigation.navigate(goBackScreen)
+        }
+        else {
+            navigation.goBack()
+        }
+    }
     return (
         <View>
             <>
                 <StatusBar backgroundColor={colors.toobarcolor} />
-               
+
                 <Appbar.Header style={{
                     backgroundColor: colors.toobarcolor,
                     justifyContent: "space-between"
                 }}>
-                    <Appbar.BackAction color={"white"} onPress={() => { navigation.goBack() }} />
+                    <Appbar.BackAction color={"white"} onPress={backPress} />
                     <Appbar.Content style={{
                         position: "absolute",
                         left: W * 0.14,
@@ -27,16 +35,16 @@ const HeaderTwo = (props) => {
                             color: colors.white,
                             fontSize: fontSizes.default,
                             fontFamily: "Poppins-Medium",
-                        }}>{props.Title}</Text>} />
+                        }}>{Title}</Text>} />
                     <TouchableOpacity onPress={() => {
                         navigation.navigate("AllLogos")
                     }}>
-                         <Text style={{position:"absolute", zIndex:25}}>{Constants.VERSION_TEXT}</Text>
+                        <Text style={{ position: "absolute", zIndex: 25 }}>{Constants.VERSION_TEXT}</Text>
                         <Image source={require('../Images/asianlogo.png')}
                             style={{
                                 height: H * 0.08,
                                 aspectRatio: 17 / 7,
-                                resizeMode:'contain'
+                                resizeMode: 'contain'
                             }} />
                     </TouchableOpacity>
 

@@ -100,7 +100,10 @@ const OrderHistoryScreen = ({ navigation }) => {
             <Loader />
             :
             <View style={styles.container}>
-                <HeaderTwo Title="My Orders" />
+                <HeaderTwo 
+                Title="My Orders" 
+                goBackScreen={"More"}
+                />
                 <FlatList
                     data={orders}
                     renderItem={renderOrder}
