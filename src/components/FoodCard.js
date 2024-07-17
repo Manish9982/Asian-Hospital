@@ -14,7 +14,7 @@ export default function FoodCard({ name, price, image, quantity, onPressAddToCar
                 resizeMode={FastImage.resizeMode.contain}
             />
             {
-                (availableQuantity == 0)
+                (quantity > availableQuantity)
                 &&
                 <TouchableOpacity
                     onPress={crossButtonPress}
@@ -58,7 +58,7 @@ export default function FoodCard({ name, price, image, quantity, onPressAddToCar
                                 </TouchableOpacity>
                             </View>
                             {
-                                (quantity > availableQuantity && availableQuantity !== 0)
+                                (quantity > availableQuantity)
                                 &&
                                 <TouchableOpacity
                                     onPress={adjustQuantity}
