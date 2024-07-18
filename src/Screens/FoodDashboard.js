@@ -7,6 +7,8 @@ import FastImage from 'react-native-fast-image';
 import HeaderTwo from '../assets/Schemes/HeaderTwo';
 import Loader from '../assets/Loader/Loader';
 import DataContext from '../assets/Context/DataContext';
+import { setCategory } from 'react-native-sound';
+import { useIsFocused } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.45; // Adjust the item size as needed
@@ -20,11 +22,17 @@ const FoodDashboard = ({ navigation }) => {
     const [loaderItem, setLoaderItem] = useState(true)
     const [isSearchActive, setIsSearchActive] = useState(false)
     const [posCode, setPosCode] = useState("")
+    const [currentInx, setCurrentInx] = useState(0)
+    const [allItems, setAllItems] = useState([])
     const scrollX = useRef(new Animated.Value(0)).current;
     const flatListRef = useRef(null);
+    const flatListRef2 = useRef(null);
+    const searchRef = useRef(null);
+    const isFocused = useIsFocused()
     const { addToCart, removeFromCart, getCountForItem, Ncart, getFullCount } = useContext(DataContext)
     const [cart, setCart] = Ncart
     useEffect(() => { getHubsList() }, [])
+    useEffect(() => { silentGet() }, [])
 
     const spinValue = new Animated.Value(0);
 
@@ -50,10 +58,18 @@ const FoodDashboard = ({ navigation }) => {
     const handleMomentumScrollEnd = async (event) => {
         const offsetX = event.nativeEvent.contentOffset.x;
         const currentIndex = Platform.OS == "ios" ? Math.floor((offsetX / (ITEM_SIZE)) + 0.1) : Math.floor(offsetX / (ITEM_SIZE));;
+        setCurrentInx(currentIndex)
         setHubName(hubsList[currentIndex + 1]?.pos_name)
         console.log('handleMomentumScrollEnd re-render issue ===>')
         await getItemsList(hubsList[currentIndex + 1]?.pos_code)
     };
+
+    const silentGet = async () => {
+        const result = await GetApiData('all_item_list')
+        if (result?.status == '200') {
+            setAllItems(result?.data)
+        }
+    }
 
     const getHubsList = async () => {
         const result = await GetApiData('all_hub_list')
@@ -64,22 +80,39 @@ const FoodDashboard = ({ navigation }) => {
         }
     }
 
-    const getItemsList = async (code) => {
-        try {
-            setLoaderItem(true);
-            const formdata = new FormData();
-            formdata.append('pos_code', code);
-            const result = await PostApiData('hub_item_list', formdata);
+    const onFocusSearch = async () => {
+        searchRef?.current?.blur()
+        navigation.navigate("SearchScreen", { allData: allItems })
+    }
+    const onBlur = async () => {
+        setIsSearchActive(false)
+        console.log(hubsList[currentInx + 1]?.pos_code)
+        await getItemsList(hubsList[currentInx + 1]?.pos_code)
+        flatListRef.current.scrollToIndex({
+            index: currentInx + 1,
+            animated: true,
+            viewPosition: 0.5 // Centers the item
+        });
+    }
 
-            if (result?.status == '200') {
-                setFoodItems(result?.data); // Wait for setFoodItems to complete
-                setFilteredFoodItems(result?.data);
-                setPosCode(code)
+    const getItemsList = async (code) => {
+        if (isFocused) {
+            try {
+                setLoaderItem(true);
+                const formdata = new FormData();
+                formdata.append('pos_code', code);
+                const result = await PostApiData('hub_item_list', formdata);
+
+                if (result?.status == '200') {
+                    setFoodItems(result?.data); // Wait for setFoodItems to complete
+                    setFilteredFoodItems(result?.data);
+                    setPosCode(code)
+                }
+            } catch (error) {
+                Alert.alert('Error fetching items:', error);
+            } finally {
+                setLoaderItem(false); // Always set loaderItem to false at the end
             }
-        } catch (error) {
-            Alert.alert('Error fetching items:', error);
-        } finally {
-            setLoaderItem(false); // Always set loaderItem to false at the end
         }
     };
 
@@ -108,8 +141,37 @@ const FoodDashboard = ({ navigation }) => {
         )
     }
 
+    const getMoreElements = async (prop) => {
+        if (!isSearchActive) {
+            await getItemsList(hubsList[currentInx + 2]?.pos_code)
+            await flatListRef?.current?.scrollToIndex({
+                index: currentInx + 2,
+                animated: true,
+                viewPosition: 0.5 // Centers the item
+            });
+            await flatListRef2?.current?.scrollToIndex({
+                index: 0,
+                //animated: true
+            })
+        }
+    }
+    const goToPrevious = async (prop) => {
+        if (!isSearchActive) {
+            console.log('start', prop)
+            getItemsList(hubsList[currentInx - 1]?.pos_code)
+            flatListRef.current.scrollToIndex({
+                index: currentInx - 1,
+                animated: true,
+                viewPosition: 0.5 // Centers the item
+            });
+            flatListRef2.current.scrollToIndex({
+                index: 0,
+                //animated: true
+            })
+        }
+    }
     const initiateSearch = (query) => {
-        if (query.trim() === '') {
+        if (query?.trim() === '') {
             setFilteredFoodItems(foodItems); // Reset to original items when search query is empty
         } else {
             const lowerCaseQuery = query.toLowerCase();
@@ -218,19 +280,24 @@ const FoodDashboard = ({ navigation }) => {
                 }
                 <View style={styles.searchBarContainer}>
                     <Searchbar
-                        placeholder={`Search ${hubName}`}
+                        ref={searchRef}
+                        placeholder={`Search All Hubs`}
                         placeholderTextColor={colors.darkgray}
                         style={[styles.searchBar, { marginTop: isSearchActive ? 10 : 0 }]}
-                        onFocus={() => setIsSearchActive(true)}
-                        onBlur={() => setIsSearchActive(false)}
-                        onChangeText={(t) => initiateSearch(t)}
+                        onFocus={onFocusSearch}
+                        onBlur={onBlur}
+                    //onChangeText={(t) => initiateSearch(t)}
                     />
                 </View>
                 <View style={{ flex: 1, padding: 10, paddingBottom: 15 }}>
                     <FlatList
+                        ref={flatListRef2}
                         data={filteredFoodItems}
                         renderItem={renderFoodCard}
                         keyExtractor={(item, index) => `${index}`}
+                        onEndReached={getMoreElements}
+                        onStartReached={goToPrevious}
+                        onStartReachedThreshold={1}
                     />
                 </View>
                 {

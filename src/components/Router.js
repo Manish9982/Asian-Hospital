@@ -68,6 +68,7 @@ import FoodCart from '../Screens/FoodCart';
 import PaymentFoodApp from '../Screens/PaymentFoodApp';
 import OrderHistoryScreen from '../Screens/OrderHistoryScreen';
 import ShowBillPdf from '../Screens/ShowBillPdf';
+import SearchScreen from '../Screens/SearchScreen';
 
 const Router = (props) => {
 
@@ -170,6 +171,7 @@ const Router = (props) => {
                     <Stack.Screen name="PaymentFoodApp" component={PaymentFoodApp} options={{ headerShown: false }} />
                     <Stack.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="ShowBillPdf" component={ShowBillPdf} options={{ headerShown: false }} />
+                    <Stack.Screen name="SearchScreen" component={SearchScreen} options={{ headerShown: false, animation: 'none' }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )
