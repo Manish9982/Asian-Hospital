@@ -5,9 +5,7 @@ import FoodCard from '../components/FoodCard';
 import { GetApiData, PostApiData, W, colors } from '../assets/Schemes/Schemes';
 import FastImage from 'react-native-fast-image';
 import HeaderTwo from '../assets/Schemes/HeaderTwo';
-import Loader from '../assets/Loader/Loader';
 import DataContext from '../assets/Context/DataContext';
-import { setCategory } from 'react-native-sound';
 import { useIsFocused } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
@@ -27,6 +25,7 @@ const FoodDashboard = ({ navigation }) => {
     const scrollX = useRef(new Animated.Value(0)).current;
     const flatListRef = useRef(null);
     const flatListRef2 = useRef(null);
+    const carouselRef = useRef(null);
     const searchRef = useRef(null);
     const isFocused = useIsFocused()
     const { addToCart, removeFromCart, getCountForItem, Ncart, getFullCount } = useContext(DataContext)
@@ -56,8 +55,12 @@ const FoodDashboard = ({ navigation }) => {
     })
 
     const handleMomentumScrollEnd = async (event) => {
+        console.log('ITEM==>', ITEM_SIZE)
         const offsetX = event.nativeEvent.contentOffset.x;
-        const currentIndex = Platform.OS == "ios" ? Math.floor((offsetX / (ITEM_SIZE)) + 0.1) : Math.floor(offsetX / (ITEM_SIZE));;
+        console.log('offsetX==>', offsetX)
+        console.log('unfixed==>', offsetX/ITEM_SIZE )
+        const currentIndex = Math.floor((Math.floor(offsetX) / Math.floor(ITEM_SIZE)))
+        console.log('current index =========>', currentIndex)
         setCurrentInx(currentIndex)
         setHubName(hubsList[currentIndex + 1]?.pos_name)
         console.log('handleMomentumScrollEnd re-render issue ===>')
@@ -170,17 +173,6 @@ const FoodDashboard = ({ navigation }) => {
             })
         }
     }
-    const initiateSearch = (query) => {
-        if (query?.trim() === '') {
-            setFilteredFoodItems(foodItems); // Reset to original items when search query is empty
-        } else {
-            const lowerCaseQuery = query.toLowerCase();
-            const filteredFoods = foodItems.filter(food =>
-                food.product_name.toLowerCase().includes(lowerCaseQuery)
-            );
-            setFilteredFoodItems(filteredFoods);
-        }
-    };
 
     const onPressFab = async () => {
         var formdata = new FormData()
@@ -298,7 +290,10 @@ const FoodDashboard = ({ navigation }) => {
                         onEndReached={getMoreElements}
                         onStartReached={goToPrevious}
                         onStartReachedThreshold={1}
+                        initialNumToRender={10}
+                        windowSize={15}
                     />
+
                 </View>
                 {
                     cart?.length !== 0

@@ -13,7 +13,6 @@ import DataContext from '../../../assets/Context/DataContext';
 import BecomePrivilegedUserButton from '../../../components/BecomePrivilegedUserButton';
 
 const PatientDashboard = ({ navigation }) => {
-
   const isFocused = useIsFocused()
 
   const { Ndata, NmobileNo, Nuhid, NmySelf } = useContext(DataContext)
@@ -22,8 +21,6 @@ const PatientDashboard = ({ navigation }) => {
   const [data, setData] = Ndata
   const [modalVisible, setModalVisible] = useState(false)
   const [hospitals, setHospitals] = useState([])
-
-
 
   const [mobileNo, setMobileNo] = NmobileNo
   const [uhid, setUhid] = Nuhid
@@ -99,7 +96,8 @@ const PatientDashboard = ({ navigation }) => {
               "hospital": {
                 "name": `${item.name}`,
                 "address1": `${item.address1}`,
-                "logo": `${item.logo}`
+                "logo": `${item.logo}`,
+                "hospital_id": `${item.id}`
               },
             })
           }}
@@ -141,8 +139,9 @@ const PatientDashboard = ({ navigation }) => {
         const value2 = await AsyncStorage.getItem('hospital_name')
         const value3 = await AsyncStorage.getItem('addressHospital')
         const value4 = await AsyncStorage.getItem('token')
+        const value5 = await AsyncStorage.getItem('hospital_id')
         //console.log("Token At Dashboard========>", value4)
-        if ((value1 == null) && (value2 == null) && (value3 == null)) {
+        if ((value1 == null) && (value2 == null) && (value3 == null) && (value5 == null)) {
           savelocalStorageData('hospital_id', JSON.stringify(result?.hospital?.id))
           savelocalStorageData('hospital_code', result?.hospital?.organizationcode)
           savelocalStorageData('logoHospital', result?.hospital?.logo)
@@ -152,7 +151,8 @@ const PatientDashboard = ({ navigation }) => {
             "hospital": {
               "name": `${result?.hospital?.name}`,
               "address1": `${result?.hospital?.address1}`,
-              "logo": `${result?.hospital?.logo}`
+              "logo": `${result?.hospital?.logo}`,
+              "hospital_id": `${result?.hospital?.id}`,
             },
           })
         }
@@ -161,7 +161,8 @@ const PatientDashboard = ({ navigation }) => {
             "hospital": {
               "name": `${value2}`,
               "address1": `${value3}`,
-              "logo": `${value1}`
+              "logo": `${value1}`,
+              "hospital_id": `${value5}`
             },
           })
         }
@@ -179,36 +180,48 @@ const PatientDashboard = ({ navigation }) => {
     {
       "name": "Book Appointments",
       "number_of_doc": "25 Doctors",
-      "uri": require('../../../assets/Images/bookAppointments.png')
-
+      "uri": require('../../../assets/Images/bookAppointments.png'),
+      "isvisible": true
     },
 
     {
       "name": "Reports",
       "number_of_doc": "25 Doctors",
-      "uri": require('../../../assets/Images/reports-copy.png')
+      "uri": require('../../../assets/Images/reports-copy.png'),
+      "isvisible": true
     },
     {
       "name": "My Appointments",
       "number_of_doc": "25 Doctors",
-      "uri": require('../../../assets/Images/myAppointments.png')
+      "uri": require('../../../assets/Images/myAppointments.png'),
+      "isvisible": true
     },
     {
       "name": "Add Patient",
       "number_of_doc": "25 Doctors",
-      "uri": require('../../../assets/Images/addPatients.png')
+      "uri": require('../../../assets/Images/addPatients.png'),
+      "isvisible": true
     },
 
 
     {
       "name": "Obesity Packages",
       "number_of_doc": "25 Doctors",
-      "uri": require('../../../assets/Images/obesity.png')
+      "uri": require('../../../assets/Images/obesity.png'),
+      "isvisible": true
     },
     {
       "name": "Scan QR & Order Food",
       "number_of_doc": "25 Doctors",
-      "uri": require('../../../assets/Images/fast-food.png')
+      "uri": require('../../../assets/Images/fast-food.png'),
+      "isvisible": data?.hospital?.hospital_id == '1'
+    },
+    {
+      //spacer
+      "name": "",
+      "number_of_doc": "",
+      //"uri": require('../../../assets/Images/fast-food.png'),
+      "isvisible": !(data?.hospital?.hospital_id == '1')
     },
 
   ]
@@ -236,7 +249,7 @@ const PatientDashboard = ({ navigation }) => {
         navigation.navigate("ObesityPackages")
       }
       else if (index == 5) {
-        navigation.navigate("FoodDashboard")
+        navigation.navigate("ScannerScreen")
       }
     }
 
@@ -257,79 +270,76 @@ const PatientDashboard = ({ navigation }) => {
 
       } else if (index == 5) {
         return colors.pink;
+      } else if (index == 6) {
+        return null;
+      } 
+      
+    }
+    if (item?.isvisible) {
+      return (
 
-      } else {
-        return colors.purplecolor;
-      }
+        <View key={index}>
+
+          <TouchableOpacity
+
+            onPress={() => { getPressed() }}
+
+            style={{
+              flex: 3,
+              backgroundColor: getColor(),
+              height: H * 0.185,
+              width: H * 0.185,
+              marginTop: H * 0.015,
+              borderRadius: 8,
+              justifyContent: "space-evenly",
+              alignItems: "center"
+            }}>
+            <View style={{
+              flex: 1
+            }}>
+              <Image
+                source={require('../../../assets/Images/asianlogo.png')}
+                style={{
+                  height: H * 0.05,
+                  tintColor: 'white',
+                  resizeMode: "contain",
+                }} />
+            </View>
+            <View style={{
+              flex: 1
+            }}>
+              <Image
+                source={item.uri}
+                style={{
+                  resizeMode: "contain",
+                  tintColor: "white",
+                  height: H * 0.05,
+                  width: H * 0.05
+                }}
+              />
+            </View>
+            <View style={{
+              flex: 1,
+              justifyContent: "center"
+            }}>
+              <Text
+                numberOfLines={2}
+                adjustsFontSizeToFit
+                style={{
+                  alignSelf: "center",
+                  width: H * 0.15,
+                  color: 'white',
+                  fontSize: fontSizes.default,
+                  fontFamily: fontFamily.medium,
+                  textAlign: "center",
+                }}>{item.name}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )
     }
 
-    return (
-
-      <View key={index}>
-
-        <TouchableOpacity
-
-          onPress={() => { getPressed() }}
-
-          style={{
-            flex: 3,
-            backgroundColor: getColor(),
-            height: H * 0.185,
-            width: H * 0.185,
-            marginTop: H * 0.015,
-            borderRadius: 8,
-            justifyContent: "space-evenly",
-            alignItems: "center"
-          }}>
-          <View style={{
-            flex: 1
-          }}>
-            <Image
-              source={require('../../../assets/Images/asianlogo.png')}
-              style={{
-                height: H * 0.05,
-                tintColor: 'white',
-                resizeMode: "contain",
-              }} />
-          </View>
-          <View style={{
-            flex: 1
-          }}>
-            <Image
-              source={item.uri}
-              style={{
-                resizeMode: "contain",
-                tintColor: "white",
-                height: H * 0.05,
-                width: H * 0.05
-              }}
-            />
-          </View>
-          <View style={{
-            flex: 1,
-            justifyContent: "center"
-          }}>
-            <Text
-              numberOfLines={2}
-              adjustsFontSizeToFit
-              style={{
-                alignSelf: "center",
-                width: H * 0.15,
-                color: 'white',
-                fontSize: fontSizes.default,
-                fontFamily: fontFamily.medium,
-                textAlign: "center",
-              }}>{item.name}</Text>
-          </View>
-
-
-        </TouchableOpacity>
-      </View>
-
-
-    )
   }
-
   return (
     loader ?
       <>

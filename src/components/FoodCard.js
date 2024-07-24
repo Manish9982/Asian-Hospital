@@ -1,18 +1,18 @@
-import { StyleSheet, Touchable, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import React, { memo } from 'react'
 import { Text } from 'react-native-paper'
 import FastImage from 'react-native-fast-image'
 import { colors, fontFamily } from '../assets/Schemes/Schemes'
 import Entypo from 'react-native-vector-icons/dist/Entypo'
 
-export default function FoodCard({ name, price, image, quantity, onPressAddToCart, onPressMinus, totalPriceNeeded = false, productStatus = '1', availableQuantity, crossButtonPress = null, adjustQuantity }) {
+const FoodCard = ({ name, price, image, quantity, onPressAddToCart, onPressMinus, totalPriceNeeded = false, productStatus = '1', availableQuantity, crossButtonPress = null, adjustQuantity }) => {
     return (
         <View style={[styles.foodCard, { borderColor: productStatus == '1' ? '#fff' : colors.maroon, borderWidth: 1 }]}>
             <FastImage
                 source={{ uri: image }}
                 style={styles.image}
                 resizeMode={FastImage.resizeMode.contain}
-            />
+            /> 
             {
                 (quantity > availableQuantity)
                 &&
@@ -82,6 +82,8 @@ export default function FoodCard({ name, price, image, quantity, onPressAddToCar
         </View>
     )
 }
+
+export default FoodCard
 
 const styles = StyleSheet.create({
     foodCard:
@@ -174,13 +176,13 @@ const styles = StyleSheet.create({
     {
         backgroundColor: colors.maroon,
         marginTop: 5,
-        alignSelf:'flex-start',
-        borderRadius:8,
-        padding:5
+        alignSelf: 'flex-start',
+        borderRadius: 8,
+        padding: 5
     },
     setQuantityText:
     {
-        fontSize:14,
+        fontSize: 14,
         color: '#fff'
     }
 

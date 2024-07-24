@@ -1,20 +1,16 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { View, FlatList, StyleSheet, Platform, Dimensions, TouchableOpacity, Alert, Modal, Animated, Easing } from 'react-native';
-import { Searchbar, Text } from 'react-native-paper';
-import { GetApiData, H, PostApiData, W, colors, fontFamily, fontSizes } from '../assets/Schemes/Schemes';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, StyleSheet, TouchableOpacity, Alert, Modal, Animated, Easing, ScrollView } from 'react-native';
+import { Text } from 'react-native-paper';
+import { GetApiData, PostApiData, colors, fontFamily, fontSizes } from '../assets/Schemes/Schemes';
 import HeaderTwo from '../assets/Schemes/HeaderTwo';
-import LinearGradient from 'react-native-linear-gradient'
-const { height, width } = Dimensions.get('window');
-const ITEM_SIZE = width * 0.45; // Adjust the item size as needed
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FoodCard from '../components/FoodCard';
 import DataContext from '../assets/Context/DataContext';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons'
 
 const FoodCart = ({ navigation }) => {
     const [price, setPrice] = useState(null)
+    const [charges, setCharges] = useState(null)
     const [loaderItem, setLoaderItem] = useState(false)
-
     const { Ncart } = useContext(DataContext)
     const [cart, setCart] = Ncart
     const goAhead = (cart?.every(item => item.product_status == "1"))
@@ -46,6 +42,7 @@ const FoodCart = ({ navigation }) => {
             if (result?.status == 200) {
                 setPrice(result.data.order_total)
                 setCart(result.data.orders)
+                setCharges(result.data.charges)
             } else if (result?.status == '201') {
                 setPrice(null)
                 await setCart([])
@@ -98,9 +95,10 @@ const FoodCart = ({ navigation }) => {
         }
     }
 
-    const renderFoodCard = ({ item }) => {
+    const renderFoodCard = (item, index) => {
         return (
             <FoodCard
+                key={index}
                 name={item.product_name}
                 price={item.product_price}
                 image={item.product_image}
@@ -135,36 +133,66 @@ const FoodCart = ({ navigation }) => {
         }
     }
 
-    return (
-
-        <View style={styles.container}>
-            <Modal
-                visible={loaderItem}
-                transparent={true}
+    const renderCharges = (item, index) => {
+        return (
+            <View
+                key={index}
+                style={styles.chargesRow}
             >
-                <View style={styles.loader}>
-                    <Animated.Image
-                        style={{
-                            height: '12%',
-                            aspectRatio: 1,
-                            transform: [{ rotate: spin }]
-                        }}
-                        source={require('../assets/Images/favicon.png')} />
+                <View style={styles.chargeNameContainer}>
+                    <MaterialCommunityIcons
+                        color={'#000'}
+                        name={item?.icon_name}
+                        size={30}
+                        style={styles.iconStyle}
+                    />
+                    <Text>{item?.charge_name}</Text>
                 </View>
-            </Modal>
+                <View>
+                    <Text style={styles.priceText}>₹ {item?.charges}</Text>
+                </View>
+            </View>
+        )
+    }
+
+    return (
+        <>
             <HeaderTwo Title="Review Order" />
-            <FlatList
-                data={cart}
-                renderItem={renderFoodCard}
-                keyExtractor={(item, index) => `${index}`}
-                contentContainerStyle={styles.flatListContent}
-                showsVerticalScrollIndicator={false}
-            />
-            {
-                !goAhead
-                &&
-                <Text style={styles.stopText}>Please remove all unavailable items from cart to proceed.</Text>
-            }
+            <ScrollView contentContainerStyle={styles.container}>
+                <Modal
+                    visible={loaderItem}
+                    transparent={true}
+                >
+                    <View style={styles.loader}>
+                        <Animated.Image
+                            style={{
+                                height: '12%',
+                                aspectRatio: 1,
+                                transform: [{ rotate: spin }]
+                            }}
+                            source={require('../assets/Images/favicon.png')} />
+                    </View>
+                </Modal>
+                <View style={{ flex: 1 }}>
+                    {
+                        cart?.map((item, index) => renderFoodCard(item, index))
+                    }
+                </View>
+                {
+                    !goAhead
+                    &&
+                    <Text style={styles.stopText}>Please remove all unavailable items from cart to proceed.</Text>
+                }
+                <View>
+                    <View style={styles.billSummaryContainer}>
+                        <Text style={styles.billHeading}>Bill Summary</Text>
+                    </View>
+                    {
+                        charges?.map((item, index) => renderCharges(item, index))
+                    }
+                </View>
+
+            </ScrollView>
             <View style={styles.totalSection}>
                 {
                     price &&
@@ -183,23 +211,14 @@ const FoodCart = ({ navigation }) => {
                         </View>
                     </TouchableOpacity>}
             </View>
-        </View>
+        </>
+
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-    },
-    item: {
-        width: ITEM_SIZE,
-        height: ITEM_SIZE / 1.4, // Adjust height as needed
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 10,
-        borderRadius: 10,
-        backgroundColor: '#fff',
-        borderRadius: 8,
+        paddingBottom: '30%'
     },
     totalText: {
         fontSize: fontSizes.default,
@@ -234,12 +253,6 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         padding: 8,
     },
-    image:
-    {
-        width: ITEM_SIZE * 0.8,
-        height: ITEM_SIZE * 0.8,
-        borderRadius: 8,
-    },
     payButtonContent: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -255,11 +268,6 @@ const styles = StyleSheet.create({
         fontFamily: fontFamily.medium,
         fontSize: fontSizes.default,
     },
-    contentContainerStyle:
-    {
-        alignItems: 'center',
-        height: ITEM_SIZE * 1.2
-    },
     divider: {
         height: 1,
         backgroundColor: '#e0e0e0',
@@ -267,7 +275,11 @@ const styles = StyleSheet.create({
     },
     totalSection: {
         marginTop: 5,
-        margin: 20
+        margin: 20,
+        position: 'absolute',
+        bottom: 10,
+        width: '97%',
+        alignSelf: 'center'
         //alignItems: 'center',
     },
     totalItem: {
@@ -307,6 +319,42 @@ const styles = StyleSheet.create({
         color: colors.maroon,
         marginHorizontal: 20,
         alignSelf: 'center'
+    },
+    billSummaryContainer:
+    {
+        backgroundColor: '#d3d3d3',
+        padding: 10,
+        margin: 10,
+        borderRadius: 8,
+    },
+    billImage:
+    {
+        height: 20,
+        width: 20
+    },
+    chargesRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        margin: 5,
+        padding: 5
+    },
+    chargeNameContainer:
+    {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    iconStyle:
+    {
+        marginRight: 10
+    },
+    billHeading:
+    {
+        fontWeight: '600'
+    },
+    priceText:
+    {
+        fontWeight: '600'
     }
 });
 
