@@ -79,16 +79,19 @@ const OrderHistoryScreen = ({ navigation }) => {
                 <View style={styles.orderFooter}>
                     {/* Conditionally render Lottie animation */}
                     <View style={styles.leftFooter}>
-                            <LottieView
-                                source={require('./animation-1720678078360.json')}
-                                autoPlay
-                                loop
-                                style={{ width: 30, height: 30,
-                                     marginRight: 10, 
-                                     tintColor: item.color_code }}
-                            />
-                            <Text style={[styles.orderStatus, { color: item.color_code }]}>{item.order_status}</Text>
-                        </View>
+                        <LottieView
+                            source={require('../assets/Loader/animation-1720678078360.json')}
+                            autoPlay
+                            loop
+                            style={{
+                                width: 30,
+                                height: 30,
+                                marginRight: 10,
+                                tintColor: item.color_code
+                            }}
+                        />
+                        <Text style={[styles.orderStatus, { color: item.color_code }]}>{item.order_status}</Text>
+                    </View>
                     <Text style={styles.orderAmount}>Total: ₹{item.amount}</Text>
                 </View>
             </View>
@@ -100,9 +103,9 @@ const OrderHistoryScreen = ({ navigation }) => {
             <Loader />
             :
             <View style={styles.container}>
-                <HeaderTwo 
-                Title="My Orders" 
-                goBackScreen={"MoreNav"}
+                <HeaderTwo
+                    Title="My Orders"
+                    goBackScreen={"MoreNav"}
                 />
                 <FlatList
                     data={orders}

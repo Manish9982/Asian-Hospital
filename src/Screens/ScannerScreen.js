@@ -1,21 +1,45 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { SafeAreaView, BackHandler, Alert, View, StyleSheet } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
 import { WebView } from 'react-native-webview';
 import HeaderTwo from '../assets/Schemes/HeaderTwo'
 import Loader from '../assets/Loader/Loader';
+import { savelocalStorageData } from '../assets/Schemes/Schemes';
+import { LocalStore } from '../assets/Schemes/Constants';
 
 const ScannerScreen = ({ navigation }) => {
   const webViewRef = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate('FoodDashboard')
-      //navigation.navigate('FoodCart')
-    }, 3000);
+    navigation.replace('FoodDashboard')
   }, [])
+  
+  function extractRoomAndBed(url) {
+    console.log('url===>', url);
+
+    // Use regular expressions to extract the parameters
+    const roomMatch = url.match(/roomno=([^&]*)/);
+    const bedMatch = url.match(/bedno=([^&]*)/);
+
+    // Extract the values
+    const roomno = roomMatch ? roomMatch[1] : null;
+    const bedno = bedMatch ? bedMatch[1] : null;
+
+    Alert.alert('Ordering For', `Room number: ${roomno} \nBed number: ${bedno}`)
+    // Save to local storage
+    if (roomno) {
+      savelocalStorageData(LocalStore.ROOM_NO, roomno);
+    }
+    if (bedno) {
+      savelocalStorageData(LocalStore.BED_NO, bedno);
+    }
+  }
 
   const navigationOnWebView = (navState) => {
     console.log("URLS ", navState.url);
+    if (navState?.url?.toString()?.includes('aimsindia.com/qrcode/data?')) {
+      extractRoomAndBed(navState.url)
+      navigation.replace('FoodDashboard')
+    }
     // Update canGoBack state
   };
 
