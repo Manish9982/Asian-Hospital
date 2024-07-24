@@ -68,7 +68,7 @@ const ObesityPackages = () => {
                 {item?.benefits?.map((benefit, idx) => {
                     return (
                         <View key={idx} style={styles.benefitsContainer}>
-                            <MaterialCommunityIcons name="check-circle-outline" size={20} color={colors.purplecolor} />
+                            <MaterialCommunityIcons name="check-circle-outline" size={20} color={colors.toobarcolor} />
                             <Text style={typography.benefitText}>  {benefit}</Text>
                         </View>
                     )
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     activePackage: {
-        borderColor: colors.purplecolor,
+        borderColor: colors.toobarcolor,
         borderWidth: 2,
     },
     namePriceContainer: {
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     },
     purchaseButton: {
         marginTop: 20,
-        backgroundColor: colors.purplecolor,
+        backgroundColor: colors.toobarcolor,
     },
 })
 
@@ -151,7 +151,7 @@ const typography = StyleSheet.create({
         fontFamily: fontFamily.semibold,
         fontWeight: '600',
         fontSize: 20,
-        color: colors.purplecolor,
+        color: colors.toobarcolor,
     },
     price2: {
         fontFamily: fontFamily.semibold,

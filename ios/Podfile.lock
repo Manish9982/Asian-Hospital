@@ -380,8 +380,6 @@ PODS:
   - React-jsinspector (0.70.6)
   - React-logger (0.70.6):
     - glog
-  - react-native-basic-carousel (1.1.2):
-    - React
   - react-native-blob-util (0.17.1):
     - React-Core
   - react-native-change-icon (5.0.0):
@@ -585,7 +583,6 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
-  - react-native-basic-carousel (from `../node_modules/react-native-basic-carousel`)
   - react-native-blob-util (from `../node_modules/react-native-blob-util`)
   - react-native-change-icon (from `../node_modules/react-native-change-icon`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
@@ -704,8 +701,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
-  react-native-basic-carousel:
-    :path: "../node_modules/react-native-basic-carousel"
   react-native-blob-util:
     :path: "../node_modules/react-native-blob-util"
   react-native-change-icon:
@@ -828,7 +823,6 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b4a65947391c658450151275aa406f2b8263178f
   React-jsinspector: 60769e5a0a6d4b32294a2456077f59d0266f9a8b
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
-  react-native-basic-carousel: 4712491d39fb724fb5ef9dc37f577df69a118875
   react-native-blob-util: 4949dcc0dd5ee25fcb5abe0687f67fa3d5cdf05a
   react-native-change-icon: a288b2ed9bcade6083e2ee300b645dafe2ecf09b
   react-native-geolocation: 3ed60c3d7f613c36b777b9fd0bc3453214e1b0d5
