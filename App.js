@@ -7,7 +7,7 @@ import { colors, fontSizes, savelocalStorageData } from './src/assets/Schemes/Sc
 import DataState from './src/assets/Context/DataState';
 import { checkNotificationPermission, displayNotification, NotificationListener, requestUserPermission } from './src/assets/Schemes/NotificationServices';
 import Router from './src/components/Router';
-
+import { changeIcon, getIcon } from 'react-native-change-icon';
 
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
@@ -18,7 +18,7 @@ LogBox.ignoreAllLogs();//Ignore all log notifications
 const fontConfig = {
   fontFamily: 'Poppins-Regular',
   fontSize: fontSizes.default,
-  color: "black"
+  color: "#000"
 };
 const theme = {
   ...DefaultTheme,
@@ -38,6 +38,7 @@ const App = () => {
   useEffect(() => {
     requestUserPermission()
     checkNotificationPermission()
+    // pass the icon name to change the icon 
   }, [])
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const App = () => {
         if (remoteMessage?._data?.video_token) {
           savelocalStorageData("accessToken", remoteMessage?._data?.video_token)
           savelocalStorageData("ID", remoteMessage?._data?.appo_id)
-          savelocalStorageData('doctorNameDuringCall', remoteMessage?._data?.doctor_name)
+          savelocalStorageData("doctorNameDuringCall", remoteMessage?._data?.doctor_name)
           setInitialRoute("CallingScreen"); // e.g. "Settings"
           //console.log("VideoTrigger")
         }

@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, Image, Linking, Platform } from 'react-native';
 import HomeNav from './HomeNav/HomeNav';
 import BookingsNav from './ReportsNav/BookingsNav';
@@ -10,37 +10,29 @@ import DoCPatientsAppointmentList from '../DoCPatientsAppointmentList/DoCPatient
 import messaging from '@react-native-firebase/messaging';
 import { displayNotification } from '../../assets/Schemes/NotificationServices';
 import { Constants } from '../../assets/Schemes/Constants';
-
+import PackageAppointments from './PackageAppointments';
+import notifee, { EventType } from '@notifee/react-native';
 
 
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabDoctor = () => {
+
+    const [isDietician, setIsDietician] = useState(false)
+
     useEffect(() => {
         getToken()
         checkVersion()
+        checkDietician()
     }, [])
-    const getToken = async () => {
-        await messaging().registerDeviceForRemoteMessages();
-        const token = await messaging().getToken();
-        savelocalStorageData('fcm_token', token)
-        var formdata = new FormData()
-        formdata.append("fcm_token", token)
-        formdata.append("user_type", "2")
-        const result = await PostApiData('fcm_update', formdata)
-        //console.log("fcmToken===>", token)
-        //console.log(" result of getToken at Dashboard===>", result)
-        //console.log(" formdata  of getToken at Dashboard===>", formdata)
-    }
-
     useEffect(() => {
         const unsubscribe = messaging().onMessage(async remoteMessage => {
             // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
             if (remoteMessage?.data?.video_token) {
                 if (remoteMessage?.data?.video_token == "end_call") {
                     //console.log("remoteMessage for hanging up call for doc", remoteMessage)
-                   //no navigation here because doctor needs to upload the prescription
+                    //no navigation here because doctor needs to upload the prescription
                 }
                 else {
                     //console.log('A new FCM message arrived!', JSON.stringify(remoteMessage))
@@ -60,6 +52,78 @@ const BottomTabDoctor = () => {
         });
         return unsubscribe;
     }, []);
+    useEffect(() => {
+        return notifee.onForegroundEvent(({ type, detail }) => {
+            switch (type) {
+                case EventType.DISMISSED:
+                    console.log('User dismissed notification', detail.notification);
+                    break;
+                case EventType.PRESS:
+                    console.log('User pressed notification', detail);
+                    // if (detail?.notification?.data?.onClick) {
+
+                    //     navigation.navigate(detail?.notification?.data?.onClick,
+                    //         { "user_id": `34` })
+
+                    //     // if (detail?.notification?.data?.onClick !== 'default') {
+                    //     //     navigation.navigate(detail?.notification?.data?.onClick)
+                    //     // } else if (detail?.notification?.data?.onClick == "chat") {
+                    //     //     //navigation.navigate(detail?.notification?.data?.onClick, { "user_id": 14 });
+                    //     //     navigation.navigate('ChatScreen_Parent',
+                    //     //         { user_id: `14` })
+
+
+                    //     // }
+                    // }
+                    break;
+            }
+        });
+    }, []);
+    useEffect(() => {
+        return notifee.onBackgroundEvent(({ type, detail }) => {
+            switch (type) {
+                case EventType.DISMISSED:
+                    console.log('User dismissed notification', detail.notification);
+                    break;
+                case EventType.PRESS:
+                    console.log('User pressed notification', detail);
+                    // if (detail?.notification?.data?.onClick) {
+
+                    //     navigation.navigate(detail?.notification?.data?.onClick,
+                    //         { "user_id": `34` })
+
+                    //     // if (detail?.notification?.data?.onClick !== 'default') {
+                    //     //     navigation.navigate(detail?.notification?.data?.onClick)
+                    //     // } else if (detail?.notification?.data?.onClick == "chat") {
+                    //     //     //navigation.navigate(detail?.notification?.data?.onClick, { "user_id": 14 });
+                    //     //     navigation.navigate('ChatScreen_Parent',
+                    //     //         { user_id: `14` })
+
+
+                    //     // }
+                    // }
+                    break;
+            }
+        });
+    }, []);
+
+    const checkDietician = async () => {
+        setIsDietician(true)
+    }
+
+    const getToken = async () => {
+        await messaging().registerDeviceForRemoteMessages();
+        const token = await messaging().getToken();
+        savelocalStorageData('fcm_token', token)
+        var formdata = new FormData()
+        formdata.append("fcm_token", token)
+        formdata.append("user_type", "2")
+        const result = await PostApiData('fcm_update', formdata)
+        //console.log("fcmToken===>", token)
+        //console.log(" result of getToken at Dashboard===>", result)
+        //console.log(" formdata  of getToken at Dashboard===>", formdata)
+    }
+
 
     const checkVersion = async () => {
         var formdata = new FormData()
@@ -88,25 +152,31 @@ const BottomTabDoctor = () => {
 
                         return <Image source={require('../../assets/Images/home2.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'AppointmentsNav') {
 
                         return <Image source={require('../../assets/Images/appointment.png')}
                             tintColor={color}
-                            style={{ height: 21, aspectRatio: 8 / 8 }} />
+                            style={{ height: 21, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'ReportsNav') {
 
                         return <Image source={require('../../assets/Images/reportss.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                     else if (propsTab.route.name === 'MoreNav') {
 
                         return <Image source={require('../../assets/Images/menu2.png')}
                             tintColor={color}
-                            style={{ height: 20, aspectRatio: 8 / 8 }} />
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
+                    }
+                    else if (propsTab.route.name === 'PackageAppointments') {
+
+                        return <Image source={require('../../assets/Images/nutrition.png')}
+                            tintColor={color}
+                            style={{ height: 20, aspectRatio: 8 / 8, tintColor: color }} />
                     }
                 },
                 tabBarActiveTintColor: colors.toobarcolor,
@@ -124,6 +194,13 @@ const BottomTabDoctor = () => {
             })}>
             <Tab.Screen name="HomeNav" component={HomeNav} options={{ tabBarLabel: "Home" }} />
             <Tab.Screen name="AppointmentsNav" component={DoCPatientsAppointmentList} options={{ tabBarLabel: "Appointments" }} />
+            {
+                isDietician ?
+                    <Tab.Screen name="PackageAppointments" component={PackageAppointments} options={{ tabBarLabel: "Packages" }} />
+                    :
+                    null
+            }
+
             {/* <Tab.Screen name="ReportsNav" component={BookingsNav} options={{ tabBarLabel: "Reports" }} /> */}
             <Tab.Screen name="MoreNav" component={MoreNav} options={{ tabBarLabel: "More" }} />
         </Tab.Navigator >

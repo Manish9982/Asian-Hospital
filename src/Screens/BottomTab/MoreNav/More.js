@@ -1,12 +1,13 @@
-import { View, Text, StatusBar, StyleSheet, Image, Modal, TouchableOpacity, Alert } from 'react-native'
+import { View, StatusBar, StyleSheet, Image, Modal, TouchableOpacity, Alert, ScrollView } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
-import { Divider } from 'react-native-paper'
+import { Divider, Text } from 'react-native-paper'
 import { colors, fontFamily, fontSizes, GetApiData, getLocalStorageData, H, W } from '../../../assets/Schemes/Schemes'
 import HeaderTwo from '../../../assets/Schemes/HeaderTwo'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import messaging from '@react-native-firebase/messaging'
 import { useIsFocused } from '@react-navigation/native'
 import DataContext from '../../../assets/Context/DataContext'
+import { changeIcon } from 'react-native-change-icon'
 
 
 const More = ({ navigation }) => {
@@ -47,14 +48,16 @@ const More = ({ navigation }) => {
   }
 
   const getJoinCallStatus = async () => {
-    const result = await GetApiData('getCallStatus')
-    //console.log(result)
-    if (result?.status == "200") {
-      if (result?.call_status == '1') {
-        setJoinCallStatus(true)
-      }
-      else {
-        setJoinCallStatus(false)
+    if (isFocused) {
+      const result = await GetApiData('getCallStatus')
+      //console.log(result)
+      if (result?.status == "200") {
+        if (result?.call_status == '1') {
+          setJoinCallStatus(true)
+        }
+        else {
+          setJoinCallStatus(false)
+        }
       }
     }
   }
@@ -67,7 +70,6 @@ const More = ({ navigation }) => {
       await setVisible(false)
       //await console.log('Done.')
       setSignedState(null)
-
     } catch (e) {
       //console.log(e)
     }
@@ -168,7 +170,7 @@ const More = ({ navigation }) => {
         </View>
       </Modal>
 
-      <View >
+      <ScrollView contentContainerStyle={styles.contentContainerStyle} >
         {joinCallStatus &&
           <>
             <TouchableOpacity
@@ -249,7 +251,7 @@ const More = ({ navigation }) => {
           </>
         }
         <TouchableOpacity
-          onPress={() => { navigation.navigate("Profile") }}
+          onPress={() => { navigation.navigate("PrivilegePackages") }}
           style={{ flexDirection: 'row' }}>
 
           <Text style={{
@@ -258,8 +260,7 @@ const More = ({ navigation }) => {
             color: colors.black,
             fontFamily: fontFamily.medium,
             marginLeft: 10
-          }}>My Profile</Text>
-
+          }}>Become Privileged User</Text>
           {
             <Image style={{
               height: H * 0.02,
@@ -272,6 +273,30 @@ const More = ({ navigation }) => {
           }
         </TouchableOpacity>
         <Divider style={{ width: W, borderColor: 'gray' }} />
+        <TouchableOpacity
+          onPress={() => { navigation.navigate("Profile") }}
+          style={{ flexDirection: 'row' }}>
+
+          <Text style={{
+            elevation: 10,
+            padding: 15,
+            color: colors.black,
+            fontFamily: fontFamily.medium,
+            marginLeft: 10
+          }}>My Profile</Text>
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+
         <TouchableOpacity
           onPress={() => { navigation.navigate("NotificationsDisplaying") }}
           style={{ flexDirection: 'row' }}>
@@ -294,7 +319,33 @@ const More = ({ navigation }) => {
               source={require('../../../assets/Images/arrow.png')} />
           }
         </TouchableOpacity>
+
         <Divider style={{ width: W, borderColor: 'gray' }} />
+
+        <TouchableOpacity
+          onPress={() => { navigation.navigate("OrderHistoryScreen") }}
+          style={{ flexDirection: 'row' }}>
+          <Text style={{
+            elevation: 10,
+            padding: 15,
+            color: colors.black,
+            fontFamily: fontFamily.medium,
+            marginLeft: 10
+          }}>My Food Orders</Text>
+
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+
 
         <TouchableOpacity
           onPress={() => { changePatient() }}
@@ -413,8 +464,56 @@ const More = ({ navigation }) => {
         </TouchableOpacity>
 
         <Divider style={{ width: W, borderColor: 'gray' }} />
+        <TouchableOpacity
+          onPress={() => { changeIcon('Free') }}
+          style={{ flexDirection: 'row' }}>
+          <Text
+            style={{
+              padding: 15,
+              color: colors.black,
+              fontFamily: fontFamily.medium,
+              marginLeft: 10
+            }}>Change to Icon 1</Text>
 
-      </View>
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+        <TouchableOpacity
+          onPress={() => { changeIcon('Paid') }}
+          style={{ flexDirection: 'row' }}>
+          <Text
+            style={{
+              padding: 15,
+              color: colors.black,
+              fontFamily: fontFamily.medium,
+              marginLeft: 10
+            }}>Change to Icon 2</Text>
+
+          {
+            <Image style={{
+              height: H * 0.02,
+              width: W * 0.024,
+              position: "absolute",
+              alignSelf: "center",
+              left: W * 0.9
+            }}
+              source={require('../../../assets/Images/arrow.png')} />
+          }
+        </TouchableOpacity>
+
+        <Divider style={{ width: W, borderColor: 'gray' }} />
+
+      </ScrollView>
 
     </View>
   )
@@ -426,10 +525,11 @@ const styles = StyleSheet.create({
   {
     height: H,
     resizeMode: 'cover',
+  },
+  contentContainerStyle:
+  {
+    paddingBottom: '30%',
   }
 })
-
-
-
 
 export default More

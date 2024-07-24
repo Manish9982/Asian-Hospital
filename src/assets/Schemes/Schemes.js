@@ -22,6 +22,7 @@ export const colors = {
    "iconcolor": "#009ED9",
    "blue": '#90E1FF',
    "toobarcolor": "#00aeef",
+   "toobarcolor2": "#ffa500",
    "greencolor": "#27b99f",
    "orangecolor": "#f1624b",
    "purplecolor": "#7f7dd1",
@@ -29,7 +30,9 @@ export const colors = {
    "maroon": "#f54242",
    "doctorCardBlueColor": "#C6EFFE",
    "placeholderColor": "#f09a23",
-   "badgeColor": "#fd3b2f"
+   "badgeColor": "#fd3b2f",
+   "mustard": '#c8a464',
+   "pink": '#D88DBC'
 }
 
 export const fontSizes =
@@ -102,7 +105,7 @@ export const GetApiData = async (ApiName) => {
       return result
    } catch (error) {
       //Alert.alert('Error', `${error}`)
-      Alert.alert('No Response From Server', `Please Try Again.`)
+      Alert.alert('No Response From Server', `Error Code: ${ApiName} .Please Try Again.`)
       console.log('Error', `${error}`)
    }
 
@@ -139,7 +142,6 @@ export const PostApiData = async (ApiName, formdata) => {
          if (result?.status == 502) {
 
             try {
-
                await AsyncStorage.clear()
                Alert.alert('Info', `Your Session Has Expired. Please Login Again.`)
                RNRestart.Restart()
@@ -160,7 +162,8 @@ export const PostApiData = async (ApiName, formdata) => {
       catch (error) {
          // const temp = await getLocalStorageData('user_id')
          console.log(`Api Failure:`, ApiName, JSON.stringify(error))
-         Alert.alert('No Response From Server', `Please try again or contact customer support if the problem persists.`)
+         //Alert.alert('No Response From Server', `Please try again or contact customer support if the problem persists.`)
+         Alert.alert('No Response From Server', `Error Code: ${ApiName} .Please Try Again.`)
          // clearTimeout(timeout)
          //Alert.alert('Time Out', 'Please Try Again.')
          // Alert.alert('Message For Developer:', `Api Failure:${ApiName}`)

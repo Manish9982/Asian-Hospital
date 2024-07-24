@@ -1,4 +1,4 @@
-import { Modal, ScrollView, View, Text, FlatList, Dimensions, Image, TouchableOpacity, Alert, SafeAreaView, Platform, StatusBar } from 'react-native'
+import { Modal, ScrollView, View, Text, FlatList, Dimensions, Image, TouchableOpacity, Alert, SafeAreaView, Platform, StatusBar, StyleSheet } from 'react-native'
 
 import React, { useEffect, useState, useContext } from 'react'
 import { Divider } from 'react-native-paper';
@@ -10,9 +10,9 @@ import Loader from '../../../assets/Loader/Loader';
 import { useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DataContext from '../../../assets/Context/DataContext';
+import BecomePrivilegedUserButton from '../../../components/BecomePrivilegedUserButton';
 
 const PatientDashboard = ({ navigation }) => {
-
   const isFocused = useIsFocused()
 
   const { Ndata, NmobileNo, Nuhid, NmySelf } = useContext(DataContext)
@@ -21,8 +21,6 @@ const PatientDashboard = ({ navigation }) => {
   const [data, setData] = Ndata
   const [modalVisible, setModalVisible] = useState(false)
   const [hospitals, setHospitals] = useState([])
-
-
 
   const [mobileNo, setMobileNo] = NmobileNo
   const [uhid, setUhid] = Nuhid
@@ -98,7 +96,8 @@ const PatientDashboard = ({ navigation }) => {
               "hospital": {
                 "name": `${item.name}`,
                 "address1": `${item.address1}`,
-                "logo": `${item.logo}`
+                "logo": `${item.logo}`,
+                "hospital_id": `${item.id}`
               },
             })
           }}
@@ -124,15 +123,10 @@ const PatientDashboard = ({ navigation }) => {
   }
 
   const getPatientDashboardDetails = async (lat, lon) => {
-
     setLoader(true)
-
     var formdata = new FormData();
-
-
     formdata.append("lat", lat)
     formdata.append("lang", lon)
-
     const result = await PostApiData('patient_dashboard', formdata)
     //console.log("Patient Dashboard Api response", result)
     if (result.status == '200') {
@@ -145,8 +139,9 @@ const PatientDashboard = ({ navigation }) => {
         const value2 = await AsyncStorage.getItem('hospital_name')
         const value3 = await AsyncStorage.getItem('addressHospital')
         const value4 = await AsyncStorage.getItem('token')
+        const value5 = await AsyncStorage.getItem('hospital_id')
         //console.log("Token At Dashboard========>", value4)
-        if ((value1 == null) && (value2 == null) && (value3 == null)) {
+        if ((value1 == null) && (value2 == null) && (value3 == null) && (value5 == null)) {
           savelocalStorageData('hospital_id', JSON.stringify(result?.hospital?.id))
           savelocalStorageData('hospital_code', result?.hospital?.organizationcode)
           savelocalStorageData('logoHospital', result?.hospital?.logo)
@@ -156,7 +151,8 @@ const PatientDashboard = ({ navigation }) => {
             "hospital": {
               "name": `${result?.hospital?.name}`,
               "address1": `${result?.hospital?.address1}`,
-              "logo": `${result?.hospital?.logo}`
+              "logo": `${result?.hospital?.logo}`,
+              "hospital_id": `${result?.hospital?.id}`,
             },
           })
         }
@@ -165,15 +161,13 @@ const PatientDashboard = ({ navigation }) => {
             "hospital": {
               "name": `${value2}`,
               "address1": `${value3}`,
-              "logo": `${value1}`
+              "logo": `${value1}`,
+              "hospital_id": `${value5}`
             },
           })
         }
       } catch (e) {
-        //console.log("Value not found in local storage")
       }
-
-      // setData(result)
 
     } else {
 
@@ -183,35 +177,62 @@ const PatientDashboard = ({ navigation }) => {
   }
 
   const sliderdata = [
-
     {
       "name": "Book Appointments",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/4343/4343405.png",
-
+      "uri": require('../../../assets/Images/bookAppointments.png'),
+      "isvisible": true
     },
 
     {
       "name": "Reports",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/1508/1508964.png",
+      "uri": require('../../../assets/Images/reports-copy.png'),
+      "isvisible": true
     },
     {
       "name": "My Appointments",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/6548/6548018.png",
+      "uri": require('../../../assets/Images/myAppointments.png'),
+      "isvisible": true
     },
     {
       "name": "Add Patient",
       "number_of_doc": "25 Doctors",
-      "uri": "https://cdn-icons-png.flaticon.com/512/7772/7772008.png"
+      "uri": require('../../../assets/Images/addPatients.png'),
+      "isvisible": true
     },
+
+
+    {
+      "name": "Obesity Packages",
+      "number_of_doc": "25 Doctors",
+      "uri": require('../../../assets/Images/obesity.png'),
+      "isvisible": true
+    },
+    {
+      "name": "Scan QR & Order Food",
+      "number_of_doc": "25 Doctors",
+      "uri": require('../../../assets/Images/fast-food.png'),
+      "isvisible": data?.hospital?.hospital_id == '1'
+    },
+    {
+      //spacer
+      "name": "",
+      "number_of_doc": "",
+      //"uri": require('../../../assets/Images/fast-food.png'),
+      "isvisible": !(data?.hospital?.hospital_id == '1')
+    },
+
   ]
 
-  const renderItem = ({ item, index }) => {
+  const onPressBecomePrivilegedButton = () => {
+    navigation.navigate('PrivilegePackages')
+  }
+
+  const renderItem = (item, index) => {
 
     const getPressed = () => {
-
       if (index == 0) {
         navigation.navigate("AppointmentsNav")
       }
@@ -224,104 +245,102 @@ const PatientDashboard = ({ navigation }) => {
       else if (index == 3) {
         navigation.navigate("AddPatients")
       }
-
+      else if (index == 4) {
+        navigation.navigate("ObesityPackages")
+      }
+      else if (index == 5) {
+        navigation.navigate("ScannerScreen")
+      }
     }
-
 
     const getColor = () => {
       if (index == 0) {
-        return (
-          "#27B99F"
-        )
+        return colors.greencolor;
       } else if (index == 1) {
-
-        return (
-          colors.toobarcolor
-        )
+        return colors.toobarcolor;
       }
       else if (index == 2) {
+        return "#F1624B";
 
-        return (
-          "#F1624B"
-        )
+      } else if (index == 3) {
+        return colors.purplecolor;
 
-      } else {
-        return (
-          colors.purplecolor
-        )
-      }
+      } else if (index == 4) {
+        return colors.mustard;
+
+      } else if (index == 5) {
+        return colors.pink;
+      } else if (index == 6) {
+        return null;
+      } 
+      
+    }
+    if (item?.isvisible) {
+      return (
+
+        <View key={index}>
+
+          <TouchableOpacity
+
+            onPress={() => { getPressed() }}
+
+            style={{
+              flex: 3,
+              backgroundColor: getColor(),
+              height: H * 0.185,
+              width: H * 0.185,
+              marginTop: H * 0.015,
+              borderRadius: 8,
+              justifyContent: "space-evenly",
+              alignItems: "center"
+            }}>
+            <View style={{
+              flex: 1
+            }}>
+              <Image
+                source={require('../../../assets/Images/asianlogo.png')}
+                style={{
+                  height: H * 0.05,
+                  tintColor: 'white',
+                  resizeMode: "contain",
+                }} />
+            </View>
+            <View style={{
+              flex: 1
+            }}>
+              <Image
+                source={item.uri}
+                style={{
+                  resizeMode: "contain",
+                  tintColor: "white",
+                  height: H * 0.05,
+                  width: H * 0.05
+                }}
+              />
+            </View>
+            <View style={{
+              flex: 1,
+              justifyContent: "center"
+            }}>
+              <Text
+                numberOfLines={2}
+                adjustsFontSizeToFit
+                style={{
+                  alignSelf: "center",
+                  width: H * 0.15,
+                  color: 'white',
+                  fontSize: fontSizes.default,
+                  fontFamily: fontFamily.medium,
+                  textAlign: "center",
+                }}>{item.name}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )
     }
 
-    return (
-
-      <View>
-
-        <TouchableOpacity
-
-          onPress={() => { getPressed() }}
-
-          style={{
-            flex: 3,
-            backgroundColor: getColor(),
-            height: H * 0.185,
-            width: H * 0.185,
-            marginTop: H * 0.015,
-            borderRadius: 8,
-            justifyContent: "space-evenly",
-            alignItems: "center"
-          }}>
-          <View style={{
-            flex: 1
-          }}>
-            <Image
-              source={require('../../../assets/Images/asianlogo.png')}
-              style={{
-                height: H * 0.05,
-                tintColor: 'white',
-                resizeMode: "contain",
-              }} />
-          </View>
-          <View style={{
-            flex: 1
-          }}>
-            <Image
-              source={{ uri: item.uri }}
-              style={{
-                resizeMode: "contain",
-                tintColor: "white",
-                height: H * 0.05,
-                width: H * 0.05
-              }}
-            />
-          </View>
-          <View style={{
-            flex: 1,
-            justifyContent: "center"
-          }}>
-            <Text
-              numberOfLines={2}
-              adjustsFontSizeToFit
-              style={{
-                alignSelf: "center",
-                width: H * 0.15,
-                color: 'white',
-                fontSize: fontSizes.default,
-                fontFamily: fontFamily.medium,
-                textAlign: "center",
-              }}>{item.name}</Text>
-          </View>
-
-
-        </TouchableOpacity>
-      </View>
-
-
-    )
   }
-
   return (
-
-
     loader ?
       <>
         <Loader />
@@ -329,13 +348,7 @@ const PatientDashboard = ({ navigation }) => {
 
       :
 
-      <View
-        style={{
-          height: H,
-          width: W,
-          backgroundColor: 'white',
-        }}>
-
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <StatusBar backgroundColor={colors.toobarcolor} />
 
         {<Image
@@ -343,12 +356,15 @@ const PatientDashboard = ({ navigation }) => {
           style={{
             height: H * 0.25,
             position: 'absolute',
+
             width: W,
           }} />}
 
 
         <View
           style={{
+            //backgroundColor: 'red',
+            paddingBottom: 30,
             alignItems: "center",
             flexDirection: 'row',
             marginTop: Platform.OS == "ios" ? H * 0.04 : H * 0.025,
@@ -410,17 +426,20 @@ const PatientDashboard = ({ navigation }) => {
               </View>
             </View>
           </Modal>
-          <Text
-            style={{
-
-              alignSelf: 'center',
-              fontFamily: fontFamily.medium,
-              color: colors.white,
-              marginLeft: H * 0.035,
-              color: "white",
-              fontSize: fontSizes.XL,
-            }}>Dashboard</Text>
-
+          <View>
+            <Text
+              style={{
+                alignSelf: 'center',
+                fontFamily: fontFamily.medium,
+                color: colors.white,
+                marginLeft: H * 0.035,
+                color: "white",
+                fontSize: fontSizes.XL,
+              }}>Dashboard</Text>
+          </View>
+          <BecomePrivilegedUserButton
+            onPress={onPressBecomePrivilegedButton}
+            style={styles.becomePrivilegedButton} />
           <TouchableOpacity
             style={{
               alignSelf: "center",
@@ -428,10 +447,7 @@ const PatientDashboard = ({ navigation }) => {
               top: - H * 0.01
 
             }}
-            onPress={() => { navigation.navigate("AllLogos") }}
-          >
-
-
+            onPress={() => { navigation.navigate("AllLogos") }}>
             <Image
               source={require('../../../assets/Images/asianlogo.png')}
               style={{
@@ -446,10 +462,10 @@ const PatientDashboard = ({ navigation }) => {
           </TouchableOpacity>
 
         </View>
+
         {
           data?.hospital?.logo
             ?
-
             <Image source={{ uri: `${data?.hospital.logo}` }}
 
               style={{
@@ -470,13 +486,11 @@ const PatientDashboard = ({ navigation }) => {
                 marginTop: H * 0.03,
                 borderRadius: 12,
               }} />
-
         }
 
         <TouchableOpacity onPress={() => {
           openHospitallist()
         }}>
-
 
           <View style={{ flexDirection: 'row' }}>
             <Text style={{
@@ -487,8 +501,6 @@ const PatientDashboard = ({ navigation }) => {
               fontSize: fontSizes.XL,
               fontFamily: fontFamily.medium,
             }}>{data?.hospital?.name}</Text>
-
-
 
             <Image
               style={{
@@ -502,8 +514,6 @@ const PatientDashboard = ({ navigation }) => {
               source={require('../../../assets/Images/pencil.png')}></Image>
 
           </View>
-
-
 
           <View style={{
             flexDirection: 'row',
@@ -531,8 +541,9 @@ const PatientDashboard = ({ navigation }) => {
         </TouchableOpacity>
 
         <View
-          style={{ width: W }}>
-          <FlatList
+          style={{ width: W, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}
+        >
+          {/* <FlatList
             columnWrapperStyle={{
               flex: 1,
               justifyContent: "space-evenly"
@@ -542,15 +553,34 @@ const PatientDashboard = ({ navigation }) => {
             renderItem={renderItem}
             keyExtractor={(item, index) => `${index}`}
             scrollEnabled={false}
-            numColumns={2} />
+            numColumns={2} /> */}
+          {
+
+            sliderdata?.map((item, index) => {
+              return (
+                renderItem(item, index)
+              )
+            })
+          }
         </View>
 
-
-
-      </View>
-
-
+      </ScrollView>
   )
 }
 
+const styles = StyleSheet.create({
+  contentContainerStyle:
+  {
+    paddingBottom: 20,
+    backgroundColor: '#fff'
+  },
+  becomePrivilegedButton:
+  {
+    position: 'absolute',
+    bottom: 0,
+    left: 0
+  }
+})
+
 export default PatientDashboard
+

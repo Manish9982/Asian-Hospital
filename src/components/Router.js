@@ -47,7 +47,6 @@ import NotificationsDisplaying from '../Screens/NotificationsDisplaying/Notifica
 import DoCBookAppointmnetForMe from '../Screens/DoCBookAppointmentForMe/DoCBookAppointmnetForMe';
 import LoginWhenSwitchingFromDoctorToPatient from '../Screens/LoginWhenSwitchingFromDoctorToPatient/LoginWhenSwitchingFromDoctorToPatient';
 import DoCIpdBilling from '../Screens/DoCIpdBilling/DoCIpdBilling';
-import PermissionScreenForVideoCall from '../Screens/PermissionScreenForVideoCall/PermissionScreenForVideoCall';
 import ChangePatient from '../Screens/ChangePatient/ChangePatient';
 import CoordinatorWebview from '../Screens/CoordinatorWebview/CoordinatorWebview';
 import VirtualPHC from '../Screens/VirtualPHC/VirtualPHC';
@@ -56,6 +55,20 @@ import ContactUs from '../Screens/ContactUs/ContactUs';
 import DoCIpdReports from '../Screens/DoCIpdReports/DoCIpdReports';
 import DoCIpdReportsDisplay from '../Screens/DoCIpdReportsDisplay/DoCIpdReportsDisplay';
 import DataContext from '../assets/Context/DataContext';
+import ScannerScreen from '../Screens/ScannerScreen';
+import ObesityPackages from '../Screens/ObesityPackages';
+import ActivePackageDetails from '../Screens/ActivePackageDetails';
+import DieticianAppointmentDetails from '../Screens/DieticianAppointmentDetails';
+import PrivilegePackages from '../Screens/PrivilegePackages';
+import BookDietician from '../Screens/BookDietician';
+import ChooseDietician from '../Screens/ChooseDietician';
+import FoodDashboard from '../Screens/FoodDashboard';
+import FoodCard from './FoodCard';
+import FoodCart from '../Screens/FoodCart';
+import PaymentFoodApp from '../Screens/PaymentFoodApp';
+import OrderHistoryScreen from '../Screens/OrderHistoryScreen';
+import ShowBillPdf from '../Screens/ShowBillPdf';
+import SearchScreen from '../Screens/SearchScreen';
 
 const Router = (props) => {
 
@@ -98,6 +111,7 @@ const Router = (props) => {
                     <Stack.Screen name="DoCIpdReports" component={DoCIpdReports} options={{ headerShown: false }} />
                     <Stack.Screen name="DoCIpdReportsDisplay" component={DoCIpdReportsDisplay} options={{ headerShown: false }} />
                     <Stack.Screen name="DisplayBill" component={DisplayBill} options={{ headerShown: false }} />
+                    <Stack.Screen name="DieticianAppointmentDetails" component={DieticianAppointmentDetails} options={{ headerShown: false }} />
 
                 </Stack.Navigator>
             </NavigationContainer>
@@ -146,7 +160,18 @@ const Router = (props) => {
                     <Stack.Screen name="ChangePatient" component={ChangePatient} options={{ headerShown: false }} />
                     <Stack.Screen name="DoCViewPrescription" component={DoCViewPrescription} options={{ headerShown: false }} />
                     <Stack.Screen name="DoCImageViewer" component={DoCImageViewer} options={{ headerShown: false }} />
-                    
+                    <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="ObesityPackages" component={ObesityPackages} options={{ headerShown: false }} />
+                    <Stack.Screen name="ActivePackageDetails" component={ActivePackageDetails} options={{ headerShown: false }} />
+                    <Stack.Screen name="PrivilegePackages" component={PrivilegePackages} options={{ headerShown: false }} />
+                    <Stack.Screen name="BookDietician" component={BookDietician} options={{ headerShown: false }} />
+                    <Stack.Screen name="ChooseDietician" component={ChooseDietician} options={{ headerShown: false }} />
+                    <Stack.Screen name="FoodDashboard" component={FoodDashboard} options={{ headerShown: false }} />
+                    <Stack.Screen name="FoodCart" component={FoodCart} options={{ headerShown: false }} />
+                    <Stack.Screen name="PaymentFoodApp" component={PaymentFoodApp} options={{ headerShown: false }} />
+                    <Stack.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="ShowBillPdf" component={ShowBillPdf} options={{ headerShown: false }} />
+                    <Stack.Screen name="SearchScreen" component={SearchScreen} options={{ headerShown: false, animation: 'none' }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )
@@ -170,6 +195,7 @@ const Router = (props) => {
                     <Stack.Screen name="SearchState" component={SearchState} options={{ headerShown: false }} />
                     <Stack.Screen name="SearchCountry" component={SearchCountry} options={{ headerShown: false }} />
                     <Stack.Screen name="AllLogos" component={AllLogos} options={{ headerShown: false }} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         )

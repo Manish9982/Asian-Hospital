@@ -19,12 +19,82 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3202381718D9106CC8DF6CD6 /* Pods_AsianHospital_AsianHospitalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B38FA93369304DC3FDA7AF /* Pods_AsianHospital_AsianHospitalTests.framework */; };
 		327E0F9046844C149A6C9897 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 400C17CDD9BD429881129054 /* Poppins-SemiBoldItalic.ttf */; };
 		432BD9F67CDD4B82B584F2F6 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23FDBAFD46B240FAB30DF084 /* Poppins-ExtraLight.ttf */; };
+		6074AF89133DC5A7DAEA87E2 /* Pods_AsianHospital_AsianHospitalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A8D0734A08BD70B15948A /* Pods_AsianHospital_AsianHospitalTests.framework */; };
 		818ECEAD776E46EA845BC8CF /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4258B865861845318249741E /* Poppins-ExtraBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8560A180AAFD41E6902AC0DF /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27CE4A570C664B10B23BD762 /* Poppins-Regular.ttf */; };
+		890572542C072E6E008F7EB5 /* 57@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905720E2C072E6C008F7EB5 /* 57@3x.png */; };
+		890572552C072E6E008F7EB5 /* 40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905720F2C072E6C008F7EB5 /* 40@3x.png */; };
+		890572562C072E6E008F7EB5 /* 58@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572102C072E6C008F7EB5 /* 58@2x.png */; };
+		890572572C072E6E008F7EB5 /* 20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572112C072E6C008F7EB5 /* 20@2x.png */; };
+		890572582C072E6E008F7EB5 /* 40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572122C072E6C008F7EB5 /* 40@2x.png */; };
+		890572592C072E6E008F7EB5 /* 152@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572132C072E6C008F7EB5 /* 152@2x.png */; };
+		8905725A2C072E6E008F7EB5 /* 87@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572142C072E6C008F7EB5 /* 87@2x.png */; };
+		8905725B2C072E6E008F7EB5 /* 72@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572152C072E6C008F7EB5 /* 72@3x.png */; };
+		8905725C2C072E6E008F7EB5 /* 256@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572162C072E6D008F7EB5 /* 256@2x.png */; };
+		8905725D2C072E6E008F7EB5 /* 66@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572172C072E6D008F7EB5 /* 66@3x.png */; };
+		8905725E2C072E6E008F7EB5 /* 114@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572182C072E6D008F7EB5 /* 114@2x.png */; };
+		8905725F2C072E6E008F7EB5 /* 60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572192C072E6D008F7EB5 /* 60@2x.png */; };
+		890572602C072E6E008F7EB5 /* 87@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905721A2C072E6D008F7EB5 /* 87@3x.png */; };
+		890572612C072E6E008F7EB5 /* 114@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905721B2C072E6D008F7EB5 /* 114@3x.png */; };
+		890572622C072E6E008F7EB5 /* 60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905721C2C072E6D008F7EB5 /* 60@3x.png */; };
+		890572632C072E6E008F7EB5 /* 144@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905721D2C072E6D008F7EB5 /* 144@2x.png */; };
+		890572642C072E6E008F7EB5 /* 20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905721E2C072E6D008F7EB5 /* 20@3x.png */; };
+		890572652C072E6E008F7EB5 /* 80@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905721F2C072E6D008F7EB5 /* 80@3x.png */; };
+		890572662C072E6E008F7EB5 /* 32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572202C072E6D008F7EB5 /* 32@2x.png */; };
+		890572672C072E6E008F7EB5 /* 216@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572212C072E6D008F7EB5 /* 216@2x.png */; };
+		890572682C072E6E008F7EB5 /* 92@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572222C072E6D008F7EB5 /* 92@3x.png */; };
+		890572692C072E6E008F7EB5 /* 48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572232C072E6D008F7EB5 /* 48@2x.png */; };
+		8905726A2C072E6E008F7EB5 /* 72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572242C072E6D008F7EB5 /* 72@2x.png */; };
+		8905726B2C072E6E008F7EB5 /* 1024@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572252C072E6D008F7EB5 /* 1024@3x.png */; };
+		8905726C2C072E6E008F7EB5 /* 102@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572262C072E6D008F7EB5 /* 102@3x.png */; };
+		8905726D2C072E6E008F7EB5 /* 167@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572272C072E6D008F7EB5 /* 167@3x.png */; };
+		8905726E2C072E6E008F7EB5 /* 120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572282C072E6D008F7EB5 /* 120@2x.png */; };
+		8905726F2C072E6E008F7EB5 /* 88@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572292C072E6D008F7EB5 /* 88@3x.png */; };
+		890572702C072E6E008F7EB5 /* 196@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905722A2C072E6D008F7EB5 /* 196@2x.png */; };
+		890572712C072E6E008F7EB5 /* 1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905722B2C072E6D008F7EB5 /* 1024@2x.png */; };
+		890572722C072E6E008F7EB5 /* 180@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905722C2C072E6D008F7EB5 /* 180@2x.png */; };
+		890572732C072E6E008F7EB5 /* 92@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905722D2C072E6D008F7EB5 /* 92@2x.png */; };
+		890572742C072E6E008F7EB5 /* 216@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905722E2C072E6D008F7EB5 /* 216@3x.png */; };
+		890572752C072E6E008F7EB5 /* 16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905722F2C072E6D008F7EB5 /* 16@2x.png */; };
+		890572762C072E6E008F7EB5 /* 256@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572302C072E6D008F7EB5 /* 256@3x.png */; };
+		890572772C072E6E008F7EB5 /* 48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572312C072E6D008F7EB5 /* 48@3x.png */; };
+		890572782C072E6E008F7EB5 /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572322C072E6D008F7EB5 /* 57@2x.png */; };
+		890572792C072E6E008F7EB5 /* 76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572332C072E6D008F7EB5 /* 76@2x.png */; };
+		8905727A2C072E6E008F7EB5 /* 64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572342C072E6D008F7EB5 /* 64@2x.png */; };
+		8905727B2C072E6E008F7EB5 /* 152@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572352C072E6D008F7EB5 /* 152@3x.png */; };
+		8905727C2C072E6E008F7EB5 /* 29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572362C072E6D008F7EB5 /* 29@3x.png */; };
+		8905727D2C072E6E008F7EB5 /* 64@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572372C072E6D008F7EB5 /* 64@3x.png */; };
+		8905727E2C072E6E008F7EB5 /* 512@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572382C072E6D008F7EB5 /* 512@3x.png */; };
+		8905727F2C072E6E008F7EB5 /* 29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572392C072E6D008F7EB5 /* 29@2x.png */; };
+		890572802C072E6E008F7EB5 /* 66@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905723A2C072E6D008F7EB5 /* 66@2x.png */; };
+		890572812C072E6E008F7EB5 /* 167@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905723B2C072E6D008F7EB5 /* 167@2x.png */; };
+		890572822C072E6E008F7EB5 /* 100@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905723C2C072E6D008F7EB5 /* 100@3x.png */; };
+		890572832C072E6E008F7EB5 /* 76@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905723D2C072E6D008F7EB5 /* 76@3x.png */; };
+		890572842C072E6E008F7EB5 /* 180@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905723E2C072E6D008F7EB5 /* 180@3x.png */; };
+		890572852C072E6E008F7EB5 /* Contents@2x.json in Resources */ = {isa = PBXBuildFile; fileRef = 8905723F2C072E6D008F7EB5 /* Contents@2x.json */; };
+		890572862C072E6E008F7EB5 /* 16@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572402C072E6D008F7EB5 /* 16@3x.png */; };
+		890572872C072E6E008F7EB5 /* 196@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572412C072E6D008F7EB5 /* 196@3x.png */; };
+		890572882C072E6E008F7EB5 /* 55@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572422C072E6D008F7EB5 /* 55@3x.png */; };
+		890572892C072E6E008F7EB5 /* 102@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572432C072E6D008F7EB5 /* 102@2x.png */; };
+		8905728A2C072E6E008F7EB5 /* 172@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572442C072E6D008F7EB5 /* 172@2x.png */; };
+		8905728B2C072E6E008F7EB5 /* 128@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572452C072E6E008F7EB5 /* 128@2x.png */; };
+		8905728C2C072E6E008F7EB5 /* 512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572462C072E6E008F7EB5 /* 512@2x.png */; };
+		8905728D2C072E6E008F7EB5 /* 144@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572472C072E6E008F7EB5 /* 144@3x.png */; };
+		8905728E2C072E6E008F7EB5 /* 128@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572482C072E6E008F7EB5 /* 128@3x.png */; };
+		8905728F2C072E6E008F7EB5 /* 120@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572492C072E6E008F7EB5 /* 120@3x.png */; };
+		890572902C072E6E008F7EB5 /* Contents@3x.json in Resources */ = {isa = PBXBuildFile; fileRef = 8905724A2C072E6E008F7EB5 /* Contents@3x.json */; };
+		890572912C072E6E008F7EB5 /* 50@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905724B2C072E6E008F7EB5 /* 50@3x.png */; };
+		890572922C072E6E008F7EB5 /* 58@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905724C2C072E6E008F7EB5 /* 58@3x.png */; };
+		890572932C072E6E008F7EB5 /* 50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905724D2C072E6E008F7EB5 /* 50@2x.png */; };
+		890572942C072E6E008F7EB5 /* 80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905724E2C072E6E008F7EB5 /* 80@2x.png */; };
+		890572952C072E6E008F7EB5 /* 172@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8905724F2C072E6E008F7EB5 /* 172@3x.png */; };
+		890572962C072E6E008F7EB5 /* 55@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572502C072E6E008F7EB5 /* 55@2x.png */; };
+		890572972C072E6E008F7EB5 /* 88@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572512C072E6E008F7EB5 /* 88@2x.png */; };
+		890572982C072E6E008F7EB5 /* 100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572522C072E6E008F7EB5 /* 100@2x.png */; };
+		890572992C072E6E008F7EB5 /* 32@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 890572532C072E6E008F7EB5 /* 32@3x.png */; };
 		892EE8F529CDB026009EE485 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 892EE8F429CDB026009EE485 /* GoogleService-Info.plist */; };
 		8986D4E029751FDC007A2343 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8986D4D029751FDC007A2343 /* Fontisto.ttf */; };
 		8986D4E129751FDC007A2343 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8986D4D129751FDC007A2343 /* Octicons.ttf */; };
@@ -48,8 +118,8 @@
 		BEE46C177B7944D4B1663F01 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 581778879EE04FCE9A3D8F2A /* Poppins-Medium.ttf */; };
 		C8837E0F4EF2470FA937523C /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B546F7B52D4412E9DD32F11 /* Poppins-Thin.ttf */; };
 		CF49CEE41E2D4EF696D38584 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60DCDFAAABE64371A7F7BBA4 /* OFL.txt */; };
+		CF5D5BB396765B4CC0F6EB9D /* Pods_AsianHospital.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2917320AC3DBC4B9CABF501 /* Pods_AsianHospital.framework */; };
 		D3428A2CD8D545C0B63BFEB1 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5919444921948AD9945EB4A /* Poppins-Bold.ttf */; };
-		E417D8746C4916F1050280A4 /* Pods_AsianHospital.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74218653EEF1F2ABB2D30EFD /* Pods_AsianHospital.framework */; };
 		EAE2E2F5380B462590C82AD2 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F71088B4E534CA09451C60C /* Poppins-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +137,7 @@
 		00E356EE1AD99517003FC87E /* AsianHospitalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsianHospitalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AsianHospitalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsianHospitalTests.m; sourceTree = "<group>"; };
+		014A8D0734A08BD70B15948A /* Pods_AsianHospital_AsianHospitalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsianHospital_AsianHospitalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0403D9FD7F594E779BE8963D /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		115B1515C4C34C62AE729164 /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../src/assets/fonts/Poppins/Poppins-Light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* AsianHospital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsianHospital.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,19 +148,89 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AsianHospital/main.m; sourceTree = "<group>"; };
 		1626310023D6429AB058D38B /* Poppins-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Italic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		1B546F7B52D4412E9DD32F11 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Thin.ttf"; path = "../src/assets/fonts/Poppins/Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		1FB955CB966C3787BFA4935C /* Pods-AsianHospital-AsianHospitalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital-AsianHospitalTests.release.xcconfig"; path = "Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests.release.xcconfig"; sourceTree = "<group>"; };
 		23FDBAFD46B240FAB30DF084 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../src/assets/fonts/Poppins/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		27CE4A570C664B10B23BD762 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		400C17CDD9BD429881129054 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		4258B865861845318249741E /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBold.ttf"; path = "../src/assets/fonts/Poppins/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		42F6C301590034344394656A /* Pods-AsianHospital.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital.debug.xcconfig"; path = "Target Support Files/Pods-AsianHospital/Pods-AsianHospital.debug.xcconfig"; sourceTree = "<group>"; };
 		4936D65C507C43BBB727E26D /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BlackItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
-		4D3552F9DB941671A00C9B46 /* Pods-AsianHospital.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital.debug.xcconfig"; path = "Target Support Files/Pods-AsianHospital/Pods-AsianHospital.debug.xcconfig"; sourceTree = "<group>"; };
 		581778879EE04FCE9A3D8F2A /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../src/assets/fonts/Poppins/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		5B3AA81F5A444D8BA680D446 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BoldItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
 		60DCDFAAABE64371A7F7BBA4 /* OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OFL.txt; path = ../src/assets/fonts/Poppins/OFL.txt; sourceTree = "<group>"; };
 		6F71088B4E534CA09451C60C /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
-		74218653EEF1F2ABB2D30EFD /* Pods_AsianHospital.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsianHospital.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		795A705BAC8C4958A4446EA8 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AsianHospital/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8905720E2C072E6C008F7EB5 /* 57@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@3x.png"; sourceTree = "<group>"; };
+		8905720F2C072E6C008F7EB5 /* 40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40@3x.png"; sourceTree = "<group>"; };
+		890572102C072E6C008F7EB5 /* 58@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "58@2x.png"; sourceTree = "<group>"; };
+		890572112C072E6C008F7EB5 /* 20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20@2x.png"; sourceTree = "<group>"; };
+		890572122C072E6C008F7EB5 /* 40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40@2x.png"; sourceTree = "<group>"; };
+		890572132C072E6C008F7EB5 /* 152@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "152@2x.png"; sourceTree = "<group>"; };
+		890572142C072E6C008F7EB5 /* 87@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "87@2x.png"; sourceTree = "<group>"; };
+		890572152C072E6C008F7EB5 /* 72@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "72@3x.png"; sourceTree = "<group>"; };
+		890572162C072E6D008F7EB5 /* 256@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "256@2x.png"; sourceTree = "<group>"; };
+		890572172C072E6D008F7EB5 /* 66@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "66@3x.png"; sourceTree = "<group>"; };
+		890572182C072E6D008F7EB5 /* 114@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "114@2x.png"; sourceTree = "<group>"; };
+		890572192C072E6D008F7EB5 /* 60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "60@2x.png"; sourceTree = "<group>"; };
+		8905721A2C072E6D008F7EB5 /* 87@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "87@3x.png"; sourceTree = "<group>"; };
+		8905721B2C072E6D008F7EB5 /* 114@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "114@3x.png"; sourceTree = "<group>"; };
+		8905721C2C072E6D008F7EB5 /* 60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "60@3x.png"; sourceTree = "<group>"; };
+		8905721D2C072E6D008F7EB5 /* 144@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "144@2x.png"; sourceTree = "<group>"; };
+		8905721E2C072E6D008F7EB5 /* 20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20@3x.png"; sourceTree = "<group>"; };
+		8905721F2C072E6D008F7EB5 /* 80@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "80@3x.png"; sourceTree = "<group>"; };
+		890572202C072E6D008F7EB5 /* 32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32@2x.png"; sourceTree = "<group>"; };
+		890572212C072E6D008F7EB5 /* 216@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "216@2x.png"; sourceTree = "<group>"; };
+		890572222C072E6D008F7EB5 /* 92@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "92@3x.png"; sourceTree = "<group>"; };
+		890572232C072E6D008F7EB5 /* 48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "48@2x.png"; sourceTree = "<group>"; };
+		890572242C072E6D008F7EB5 /* 72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "72@2x.png"; sourceTree = "<group>"; };
+		890572252C072E6D008F7EB5 /* 1024@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1024@3x.png"; sourceTree = "<group>"; };
+		890572262C072E6D008F7EB5 /* 102@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "102@3x.png"; sourceTree = "<group>"; };
+		890572272C072E6D008F7EB5 /* 167@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "167@3x.png"; sourceTree = "<group>"; };
+		890572282C072E6D008F7EB5 /* 120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "120@2x.png"; sourceTree = "<group>"; };
+		890572292C072E6D008F7EB5 /* 88@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "88@3x.png"; sourceTree = "<group>"; };
+		8905722A2C072E6D008F7EB5 /* 196@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "196@2x.png"; sourceTree = "<group>"; };
+		8905722B2C072E6D008F7EB5 /* 1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1024@2x.png"; sourceTree = "<group>"; };
+		8905722C2C072E6D008F7EB5 /* 180@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "180@2x.png"; sourceTree = "<group>"; };
+		8905722D2C072E6D008F7EB5 /* 92@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "92@2x.png"; sourceTree = "<group>"; };
+		8905722E2C072E6D008F7EB5 /* 216@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "216@3x.png"; sourceTree = "<group>"; };
+		8905722F2C072E6D008F7EB5 /* 16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "16@2x.png"; sourceTree = "<group>"; };
+		890572302C072E6D008F7EB5 /* 256@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "256@3x.png"; sourceTree = "<group>"; };
+		890572312C072E6D008F7EB5 /* 48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "48@3x.png"; sourceTree = "<group>"; };
+		890572322C072E6D008F7EB5 /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
+		890572332C072E6D008F7EB5 /* 76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "76@2x.png"; sourceTree = "<group>"; };
+		890572342C072E6D008F7EB5 /* 64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "64@2x.png"; sourceTree = "<group>"; };
+		890572352C072E6D008F7EB5 /* 152@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "152@3x.png"; sourceTree = "<group>"; };
+		890572362C072E6D008F7EB5 /* 29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "29@3x.png"; sourceTree = "<group>"; };
+		890572372C072E6D008F7EB5 /* 64@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "64@3x.png"; sourceTree = "<group>"; };
+		890572382C072E6D008F7EB5 /* 512@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "512@3x.png"; sourceTree = "<group>"; };
+		890572392C072E6D008F7EB5 /* 29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "29@2x.png"; sourceTree = "<group>"; };
+		8905723A2C072E6D008F7EB5 /* 66@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "66@2x.png"; sourceTree = "<group>"; };
+		8905723B2C072E6D008F7EB5 /* 167@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "167@2x.png"; sourceTree = "<group>"; };
+		8905723C2C072E6D008F7EB5 /* 100@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "100@3x.png"; sourceTree = "<group>"; };
+		8905723D2C072E6D008F7EB5 /* 76@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "76@3x.png"; sourceTree = "<group>"; };
+		8905723E2C072E6D008F7EB5 /* 180@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "180@3x.png"; sourceTree = "<group>"; };
+		8905723F2C072E6D008F7EB5 /* Contents@2x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Contents@2x.json"; sourceTree = "<group>"; };
+		890572402C072E6D008F7EB5 /* 16@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "16@3x.png"; sourceTree = "<group>"; };
+		890572412C072E6D008F7EB5 /* 196@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "196@3x.png"; sourceTree = "<group>"; };
+		890572422C072E6D008F7EB5 /* 55@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "55@3x.png"; sourceTree = "<group>"; };
+		890572432C072E6D008F7EB5 /* 102@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "102@2x.png"; sourceTree = "<group>"; };
+		890572442C072E6D008F7EB5 /* 172@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "172@2x.png"; sourceTree = "<group>"; };
+		890572452C072E6E008F7EB5 /* 128@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "128@2x.png"; sourceTree = "<group>"; };
+		890572462C072E6E008F7EB5 /* 512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "512@2x.png"; sourceTree = "<group>"; };
+		890572472C072E6E008F7EB5 /* 144@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "144@3x.png"; sourceTree = "<group>"; };
+		890572482C072E6E008F7EB5 /* 128@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "128@3x.png"; sourceTree = "<group>"; };
+		890572492C072E6E008F7EB5 /* 120@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "120@3x.png"; sourceTree = "<group>"; };
+		8905724A2C072E6E008F7EB5 /* Contents@3x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Contents@3x.json"; sourceTree = "<group>"; };
+		8905724B2C072E6E008F7EB5 /* 50@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "50@3x.png"; sourceTree = "<group>"; };
+		8905724C2C072E6E008F7EB5 /* 58@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "58@3x.png"; sourceTree = "<group>"; };
+		8905724D2C072E6E008F7EB5 /* 50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "50@2x.png"; sourceTree = "<group>"; };
+		8905724E2C072E6E008F7EB5 /* 80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "80@2x.png"; sourceTree = "<group>"; };
+		8905724F2C072E6E008F7EB5 /* 172@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "172@3x.png"; sourceTree = "<group>"; };
+		890572502C072E6E008F7EB5 /* 55@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "55@2x.png"; sourceTree = "<group>"; };
+		890572512C072E6E008F7EB5 /* 88@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "88@2x.png"; sourceTree = "<group>"; };
+		890572522C072E6E008F7EB5 /* 100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "100@2x.png"; sourceTree = "<group>"; };
+		890572532C072E6E008F7EB5 /* 32@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32@3x.png"; sourceTree = "<group>"; };
 		892A84DB29A39B2400F35229 /* AsianHospitalRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = AsianHospitalRelease.entitlements; path = AsianHospital/AsianHospitalRelease.entitlements; sourceTree = "<group>"; };
 		892EE8F429CDB026009EE485 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8986D4D029751FDC007A2343 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
@@ -110,16 +251,15 @@
 		8986D4DF29751FDC007A2343 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		89A6C45B29AD216C00AF9C93 /* samsung.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = samsung.mp3; sourceTree = "<group>"; };
 		89EF5F7029BEE53000E4197B /* AsianHospital.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = AsianHospital.entitlements; path = AsianHospital/AsianHospital.entitlements; sourceTree = "<group>"; };
-		97819FECFFD726777BF7422F /* Pods-AsianHospital-AsianHospitalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital-AsianHospitalTests.debug.xcconfig"; path = "Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A46D0FEC596D45249D7AAB09 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		A5919444921948AD9945EB4A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		AAC124613906945510EA6055 /* Pods-AsianHospital-AsianHospitalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital-AsianHospitalTests.debug.xcconfig"; path = "Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C406B25DBADD40FEA7CB1F57 /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../src/assets/fonts/Poppins/Poppins-Black.ttf"; sourceTree = "<group>"; };
+		D2917320AC3DBC4B9CABF501 /* Pods_AsianHospital.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsianHospital.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D715C32F6C5740638AFACB27 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-LightItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
-		E1CDDFC4EF002803041E1D55 /* Pods-AsianHospital.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital.release.xcconfig"; path = "Target Support Files/Pods-AsianHospital/Pods-AsianHospital.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F1027F9EDD9C4A0BB90923F4 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ThinItalic.ttf"; path = "../src/assets/fonts/Poppins/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
-		F2B38FA93369304DC3FDA7AF /* Pods_AsianHospital_AsianHospitalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsianHospital_AsianHospitalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCA756B3F178B05F4F90C414 /* Pods-AsianHospital-AsianHospitalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital-AsianHospitalTests.release.xcconfig"; path = "Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests.release.xcconfig"; sourceTree = "<group>"; };
+		F716A549C103A0B3AF8A1FFF /* Pods-AsianHospital.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsianHospital.release.xcconfig"; path = "Target Support Files/Pods-AsianHospital/Pods-AsianHospital.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3202381718D9106CC8DF6CD6 /* Pods_AsianHospital_AsianHospitalTests.framework in Frameworks */,
+				6074AF89133DC5A7DAEA87E2 /* Pods_AsianHospital_AsianHospitalTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E417D8746C4916F1050280A4 /* Pods_AsianHospital.framework in Frameworks */,
+				CF5D5BB396765B4CC0F6EB9D /* Pods_AsianHospital.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +329,7 @@
 		13B07FAE1A68108700A75B9A /* AsianHospital */ = {
 			isa = PBXGroup;
 			children = (
+				8905720D2C07048D008F7EB5 /* AppIcons */,
 				89EF5F7029BEE53000E4197B /* AsianHospital.entitlements */,
 				892A84DB29A39B2400F35229 /* AsianHospitalRelease.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -207,8 +348,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				74218653EEF1F2ABB2D30EFD /* Pods_AsianHospital.framework */,
-				F2B38FA93369304DC3FDA7AF /* Pods_AsianHospital_AsianHospitalTests.framework */,
+				D2917320AC3DBC4B9CABF501 /* Pods_AsianHospital.framework */,
+				014A8D0734A08BD70B15948A /* Pods_AsianHospital_AsianHospitalTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -245,6 +386,83 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8905720D2C07048D008F7EB5 /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				8905722F2C072E6D008F7EB5 /* 16@2x.png */,
+				890572402C072E6D008F7EB5 /* 16@3x.png */,
+				890572112C072E6C008F7EB5 /* 20@2x.png */,
+				8905721E2C072E6D008F7EB5 /* 20@3x.png */,
+				890572392C072E6D008F7EB5 /* 29@2x.png */,
+				890572362C072E6D008F7EB5 /* 29@3x.png */,
+				890572202C072E6D008F7EB5 /* 32@2x.png */,
+				890572532C072E6E008F7EB5 /* 32@3x.png */,
+				890572122C072E6C008F7EB5 /* 40@2x.png */,
+				8905720F2C072E6C008F7EB5 /* 40@3x.png */,
+				890572232C072E6D008F7EB5 /* 48@2x.png */,
+				890572312C072E6D008F7EB5 /* 48@3x.png */,
+				8905724D2C072E6E008F7EB5 /* 50@2x.png */,
+				8905724B2C072E6E008F7EB5 /* 50@3x.png */,
+				890572502C072E6E008F7EB5 /* 55@2x.png */,
+				890572422C072E6D008F7EB5 /* 55@3x.png */,
+				890572322C072E6D008F7EB5 /* 57@2x.png */,
+				8905720E2C072E6C008F7EB5 /* 57@3x.png */,
+				890572102C072E6C008F7EB5 /* 58@2x.png */,
+				8905724C2C072E6E008F7EB5 /* 58@3x.png */,
+				890572192C072E6D008F7EB5 /* 60@2x.png */,
+				8905721C2C072E6D008F7EB5 /* 60@3x.png */,
+				890572342C072E6D008F7EB5 /* 64@2x.png */,
+				890572372C072E6D008F7EB5 /* 64@3x.png */,
+				8905723A2C072E6D008F7EB5 /* 66@2x.png */,
+				890572172C072E6D008F7EB5 /* 66@3x.png */,
+				890572242C072E6D008F7EB5 /* 72@2x.png */,
+				890572152C072E6C008F7EB5 /* 72@3x.png */,
+				890572332C072E6D008F7EB5 /* 76@2x.png */,
+				8905723D2C072E6D008F7EB5 /* 76@3x.png */,
+				8905724E2C072E6E008F7EB5 /* 80@2x.png */,
+				8905721F2C072E6D008F7EB5 /* 80@3x.png */,
+				890572142C072E6C008F7EB5 /* 87@2x.png */,
+				8905721A2C072E6D008F7EB5 /* 87@3x.png */,
+				890572512C072E6E008F7EB5 /* 88@2x.png */,
+				890572292C072E6D008F7EB5 /* 88@3x.png */,
+				8905722D2C072E6D008F7EB5 /* 92@2x.png */,
+				890572222C072E6D008F7EB5 /* 92@3x.png */,
+				890572522C072E6E008F7EB5 /* 100@2x.png */,
+				8905723C2C072E6D008F7EB5 /* 100@3x.png */,
+				890572432C072E6D008F7EB5 /* 102@2x.png */,
+				890572262C072E6D008F7EB5 /* 102@3x.png */,
+				890572182C072E6D008F7EB5 /* 114@2x.png */,
+				8905721B2C072E6D008F7EB5 /* 114@3x.png */,
+				890572282C072E6D008F7EB5 /* 120@2x.png */,
+				890572492C072E6E008F7EB5 /* 120@3x.png */,
+				890572452C072E6E008F7EB5 /* 128@2x.png */,
+				890572482C072E6E008F7EB5 /* 128@3x.png */,
+				8905721D2C072E6D008F7EB5 /* 144@2x.png */,
+				890572472C072E6E008F7EB5 /* 144@3x.png */,
+				890572132C072E6C008F7EB5 /* 152@2x.png */,
+				890572352C072E6D008F7EB5 /* 152@3x.png */,
+				8905723B2C072E6D008F7EB5 /* 167@2x.png */,
+				890572272C072E6D008F7EB5 /* 167@3x.png */,
+				890572442C072E6D008F7EB5 /* 172@2x.png */,
+				8905724F2C072E6E008F7EB5 /* 172@3x.png */,
+				8905722C2C072E6D008F7EB5 /* 180@2x.png */,
+				8905723E2C072E6D008F7EB5 /* 180@3x.png */,
+				8905722A2C072E6D008F7EB5 /* 196@2x.png */,
+				890572412C072E6D008F7EB5 /* 196@3x.png */,
+				890572212C072E6D008F7EB5 /* 216@2x.png */,
+				8905722E2C072E6D008F7EB5 /* 216@3x.png */,
+				890572162C072E6D008F7EB5 /* 256@2x.png */,
+				890572302C072E6D008F7EB5 /* 256@3x.png */,
+				890572462C072E6E008F7EB5 /* 512@2x.png */,
+				890572382C072E6D008F7EB5 /* 512@3x.png */,
+				8905722B2C072E6D008F7EB5 /* 1024@2x.png */,
+				890572252C072E6D008F7EB5 /* 1024@3x.png */,
+				8905723F2C072E6D008F7EB5 /* Contents@2x.json */,
+				8905724A2C072E6E008F7EB5 /* Contents@3x.json */,
+			);
+			path = AppIcons;
+			sourceTree = "<group>";
+		};
 		8986D4CF29751FDC007A2343 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,10 +489,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4D3552F9DB941671A00C9B46 /* Pods-AsianHospital.debug.xcconfig */,
-				E1CDDFC4EF002803041E1D55 /* Pods-AsianHospital.release.xcconfig */,
-				97819FECFFD726777BF7422F /* Pods-AsianHospital-AsianHospitalTests.debug.xcconfig */,
-				FCA756B3F178B05F4F90C414 /* Pods-AsianHospital-AsianHospitalTests.release.xcconfig */,
+				42F6C301590034344394656A /* Pods-AsianHospital.debug.xcconfig */,
+				F716A549C103A0B3AF8A1FFF /* Pods-AsianHospital.release.xcconfig */,
+				AAC124613906945510EA6055 /* Pods-AsianHospital-AsianHospitalTests.debug.xcconfig */,
+				1FB955CB966C3787BFA4935C /* Pods-AsianHospital-AsianHospitalTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -286,12 +504,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AsianHospitalTests" */;
 			buildPhases = (
-				7A345F576BFEF930F432860A /* [CP] Check Pods Manifest.lock */,
+				00C05D8B8690DD93C771C0D2 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				4B899B0AD2AEF09843DDDCC4 /* [CP] Embed Pods Frameworks */,
-				CAF7DF192313DFFED1CC897D /* [CP] Copy Pods Resources */,
+				BE0DCF2FA56048C84BD80AF6 /* [CP] Embed Pods Frameworks */,
+				A67994851DA52F585489AEC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -307,15 +525,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AsianHospital" */;
 			buildPhases = (
-				2C0568153DE1E7F1A1FAAA6C /* [CP] Check Pods Manifest.lock */,
+				652AA2BC9C856FB1E16D11DE /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				560FF8C9FBB4C628A0B43597 /* [CP] Embed Pods Frameworks */,
-				20C41AF7DDB90CA4BDC0B543 /* [CP] Copy Pods Resources */,
-				6E546BF03CAB7B1978B2A6F4 /* [CP-User] [RNFB] Core Configuration */,
+				A3A3E7D90C4AD6A47E2D0169 /* [CP] Embed Pods Frameworks */,
+				304F5897B1C57A93ABFDA600 /* [CP] Copy Pods Resources */,
+				1EB4EE19E6962F2577200196 /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -374,154 +592,122 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8905725D2C072E6E008F7EB5 /* 66@3x.png in Resources */,
+				8905726B2C072E6E008F7EB5 /* 1024@3x.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				8905725F2C072E6E008F7EB5 /* 60@2x.png in Resources */,
+				890572732C072E6E008F7EB5 /* 92@2x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				8905728D2C072E6E008F7EB5 /* 144@3x.png in Resources */,
+				890572862C072E6E008F7EB5 /* 16@3x.png in Resources */,
 				8986D4EA29751FDC007A2343 /* FontAwesome5_Regular.ttf in Resources */,
+				890572762C072E6E008F7EB5 /* 256@3x.png in Resources */,
+				8905728B2C072E6E008F7EB5 /* 128@2x.png in Resources */,
+				8905727A2C072E6E008F7EB5 /* 64@2x.png in Resources */,
 				8986D4ED29751FDC007A2343 /* EvilIcons.ttf in Resources */,
+				8905725C2C072E6E008F7EB5 /* 256@2x.png in Resources */,
+				890572662C072E6E008F7EB5 /* 32@2x.png in Resources */,
+				890572552C072E6E008F7EB5 /* 40@3x.png in Resources */,
+				890572922C072E6E008F7EB5 /* 58@3x.png in Resources */,
 				8986D4E629751FDC007A2343 /* AntDesign.ttf in Resources */,
+				8905727D2C072E6E008F7EB5 /* 64@3x.png in Resources */,
 				8986D4EF29751FDC007A2343 /* MaterialIcons.ttf in Resources */,
 				8986D4EE29751FDC007A2343 /* SimpleLineIcons.ttf in Resources */,
 				892EE8F529CDB026009EE485 /* GoogleService-Info.plist in Resources */,
 				8986D4E729751FDC007A2343 /* Foundation.ttf in Resources */,
+				890572952C072E6E008F7EB5 /* 172@3x.png in Resources */,
+				890572822C072E6E008F7EB5 /* 100@3x.png in Resources */,
+				8905727C2C072E6E008F7EB5 /* 29@3x.png in Resources */,
+				890572792C072E6E008F7EB5 /* 76@2x.png in Resources */,
 				8986D4E929751FDC007A2343 /* FontAwesome5_Solid.ttf in Resources */,
 				8986D4E129751FDC007A2343 /* Octicons.ttf in Resources */,
+				890572572C072E6E008F7EB5 /* 20@2x.png in Resources */,
+				890572672C072E6E008F7EB5 /* 216@2x.png in Resources */,
+				8905728E2C072E6E008F7EB5 /* 128@3x.png in Resources */,
+				890572962C072E6E008F7EB5 /* 55@2x.png in Resources */,
+				8905728F2C072E6E008F7EB5 /* 120@3x.png in Resources */,
 				8986D4E429751FDC007A2343 /* FontAwesome5_Brands.ttf in Resources */,
 				8986D4E029751FDC007A2343 /* Fontisto.ttf in Resources */,
+				8905725A2C072E6E008F7EB5 /* 87@2x.png in Resources */,
 				8986D4E229751FDC007A2343 /* Feather.ttf in Resources */,
 				8986D4E829751FDC007A2343 /* Ionicons.ttf in Resources */,
 				8986D4EB29751FDC007A2343 /* FontAwesome.ttf in Resources */,
+				890572832C072E6E008F7EB5 /* 76@3x.png in Resources */,
+				890572602C072E6E008F7EB5 /* 87@3x.png in Resources */,
+				890572612C072E6E008F7EB5 /* 114@3x.png in Resources */,
+				890572702C072E6E008F7EB5 /* 196@2x.png in Resources */,
+				890572812C072E6E008F7EB5 /* 167@2x.png in Resources */,
+				890572802C072E6E008F7EB5 /* 66@2x.png in Resources */,
+				890572932C072E6E008F7EB5 /* 50@2x.png in Resources */,
+				890572652C072E6E008F7EB5 /* 80@3x.png in Resources */,
+				8905725E2C072E6E008F7EB5 /* 114@2x.png in Resources */,
+				890572642C072E6E008F7EB5 /* 20@3x.png in Resources */,
+				890572912C072E6E008F7EB5 /* 50@3x.png in Resources */,
 				8986D4E329751FDC007A2343 /* Entypo.ttf in Resources */,
 				8986D4E529751FDC007A2343 /* MaterialCommunityIcons.ttf in Resources */,
+				8905725B2C072E6E008F7EB5 /* 72@3x.png in Resources */,
+				8905726F2C072E6E008F7EB5 /* 88@3x.png in Resources */,
+				890572562C072E6E008F7EB5 /* 58@2x.png in Resources */,
 				8986D4EC29751FDC007A2343 /* Zocial.ttf in Resources */,
+				890572872C072E6E008F7EB5 /* 196@3x.png in Resources */,
+				890572972C072E6E008F7EB5 /* 88@2x.png in Resources */,
+				890572582C072E6E008F7EB5 /* 40@2x.png in Resources */,
+				890572542C072E6E008F7EB5 /* 57@3x.png in Resources */,
+				890572632C072E6E008F7EB5 /* 144@2x.png in Resources */,
+				890572772C072E6E008F7EB5 /* 48@3x.png in Resources */,
 				13061837BC91472382639AB0 /* Poppins-Black.ttf in Resources */,
 				B6CBB67D7D50433A8BBD1DB0 /* Poppins-BlackItalic.ttf in Resources */,
+				890572722C072E6E008F7EB5 /* 180@2x.png in Resources */,
 				D3428A2CD8D545C0B63BFEB1 /* Poppins-Bold.ttf in Resources */,
+				890572882C072E6E008F7EB5 /* 55@3x.png in Resources */,
+				8905727F2C072E6E008F7EB5 /* 29@2x.png in Resources */,
 				01F7CD71652C4518A43DE74F /* Poppins-BoldItalic.ttf in Resources */,
 				818ECEAD776E46EA845BC8CF /* Poppins-ExtraBold.ttf in Resources */,
+				890572752C072E6E008F7EB5 /* 16@2x.png in Resources */,
+				8905728C2C072E6E008F7EB5 /* 512@2x.png in Resources */,
+				890572782C072E6E008F7EB5 /* 57@2x.png in Resources */,
 				0F8861A1107449FC974F1D1F /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				432BD9F67CDD4B82B584F2F6 /* Poppins-ExtraLight.ttf in Resources */,
+				890572592C072E6E008F7EB5 /* 152@2x.png in Resources */,
 				0DF3E6FC0C3A44D78446E543 /* Poppins-ExtraLightItalic.ttf in Resources */,
+				890572682C072E6E008F7EB5 /* 92@3x.png in Resources */,
+				890572842C072E6E008F7EB5 /* 180@3x.png in Resources */,
+				890572852C072E6E008F7EB5 /* Contents@2x.json in Resources */,
+				890572942C072E6E008F7EB5 /* 80@2x.png in Resources */,
+				890572622C072E6E008F7EB5 /* 60@3x.png in Resources */,
+				8905728A2C072E6E008F7EB5 /* 172@2x.png in Resources */,
+				8905727B2C072E6E008F7EB5 /* 152@3x.png in Resources */,
+				8905726D2C072E6E008F7EB5 /* 167@3x.png in Resources */,
+				8905726E2C072E6E008F7EB5 /* 120@2x.png in Resources */,
 				9EA5E53229E546B8B3B7A730 /* Poppins-Italic.ttf in Resources */,
 				087CDDF9C1CF4C70B06A3E7D /* Poppins-Light.ttf in Resources */,
 				02C81133E05F440BAFAB32A0 /* Poppins-LightItalic.ttf in Resources */,
 				BEE46C177B7944D4B1663F01 /* Poppins-Medium.ttf in Resources */,
+				890572692C072E6E008F7EB5 /* 48@2x.png in Resources */,
+				890572982C072E6E008F7EB5 /* 100@2x.png in Resources */,
+				8905726A2C072E6E008F7EB5 /* 72@2x.png in Resources */,
 				0BE1A2E93B754E229B812F95 /* Poppins-MediumItalic.ttf in Resources */,
 				8560A180AAFD41E6902AC0DF /* Poppins-Regular.ttf in Resources */,
 				EAE2E2F5380B462590C82AD2 /* Poppins-SemiBold.ttf in Resources */,
 				89A6C45C29AD216C00AF9C93 /* samsung.mp3 in Resources */,
+				8905727E2C072E6E008F7EB5 /* 512@3x.png in Resources */,
+				890572742C072E6E008F7EB5 /* 216@3x.png in Resources */,
+				8905726C2C072E6E008F7EB5 /* 102@3x.png in Resources */,
 				327E0F9046844C149A6C9897 /* Poppins-SemiBoldItalic.ttf in Resources */,
+				890572892C072E6E008F7EB5 /* 102@2x.png in Resources */,
 				C8837E0F4EF2470FA937523C /* Poppins-Thin.ttf in Resources */,
 				1371316BFB0E4C2CBDF5A4B2 /* Poppins-ThinItalic.ttf in Resources */,
+				890572902C072E6E008F7EB5 /* Contents@3x.json in Resources */,
+				890572712C072E6E008F7EB5 /* 1024@2x.png in Resources */,
 				CF49CEE41E2D4EF696D38584 /* OFL.txt in Resources */,
+				890572992C072E6E008F7EB5 /* 32@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/.xcode.env",
-			);
-			name = "Bundle React Native code and images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
-		};
-		20C41AF7DDB90CA4BDC0B543 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2C0568153DE1E7F1A1FAAA6C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AsianHospital-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4B899B0AD2AEF09843DDDCC4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		560FF8C9FBB4C628A0B43597 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6E546BF03CAB7B1978B2A6F4 /* [CP-User] [RNFB] Core Configuration */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "[CP-User] [RNFB] Core Configuration";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -Ku -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | /usr/bin/head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -Ku -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    if ! python3 --version >/dev/null 2>&1; then echo \"python3 not found, firebase.json file processing error.\" && exit 1; fi\n    _JSON_OUTPUT_BASE64=$(python3 -c 'import json,sys,base64;print(base64.b64encode(bytes(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"', '\"'rb'\"').read())['${_JSON_ROOT}']), '\"'utf-8'\"')).decode())' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.analytics_registration_with_ad_network_enabled\n  _ANALYTICS_REGISTRATION_WITH_AD_NETWORK=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_registration_with_ad_network_enabled\")\n  if [[ $_ANALYTICS_REGISTRATION_WITH_AD_NETWORK ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_REGISTRATION_WITH_AD_NETWORK\")\")\n  fi\n\n  # config.google_analytics_automatic_screen_reporting_enabled\n  _ANALYTICS_AUTO_SCREEN_REPORTING=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_automatic_screen_reporting_enabled\")\n  if [[ $_ANALYTICS_AUTO_SCREEN_REPORTING ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAutomaticScreenReportingEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_SCREEN_REPORTING\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
-		};
-		7A345F576BFEF930F432860A /* [CP] Check Pods Manifest.lock */ = {
+		00C05D8B8690DD93C771C0D2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -543,7 +729,92 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CAF7DF192313DFFED1CC897D /* [CP] Copy Pods Resources */ = {
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+		};
+		1EB4EE19E6962F2577200196 /* [CP-User] [RNFB] Core Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[CP-User] [RNFB] Core Configuration";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -Ku -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | /usr/bin/head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -Ku -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    if ! python3 --version >/dev/null 2>&1; then echo \"python3 not found, firebase.json file processing error.\" && exit 1; fi\n    _JSON_OUTPUT_BASE64=$(python3 -c 'import json,sys,base64;print(base64.b64encode(bytes(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"', '\"'rb'\"').read())['${_JSON_ROOT}']), '\"'utf-8'\"')).decode())' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.analytics_registration_with_ad_network_enabled\n  _ANALYTICS_REGISTRATION_WITH_AD_NETWORK=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_registration_with_ad_network_enabled\")\n  if [[ $_ANALYTICS_REGISTRATION_WITH_AD_NETWORK ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_REGISTRATION_WITH_AD_NETWORK\")\")\n  fi\n\n  # config.google_analytics_automatic_screen_reporting_enabled\n  _ANALYTICS_AUTO_SCREEN_REPORTING=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_automatic_screen_reporting_enabled\")\n  if [[ $_ANALYTICS_AUTO_SCREEN_REPORTING ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAutomaticScreenReportingEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_SCREEN_REPORTING\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
+		};
+		304F5897B1C57A93ABFDA600 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		652AA2BC9C856FB1E16D11DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AsianHospital-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3A3E7D90C4AD6A47E2D0169 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AsianHospital/Pods-AsianHospital-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A67994851DA52F585489AEC3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -558,6 +829,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE0DCF2FA56048C84BD80AF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AsianHospital-AsianHospitalTests/Pods-AsianHospital-AsianHospitalTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -612,7 +900,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97819FECFFD726777BF7422F /* Pods-AsianHospital-AsianHospitalTests.debug.xcconfig */;
+			baseConfigurationReference = AAC124613906945510EA6055 /* Pods-AsianHospital-AsianHospitalTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -640,7 +928,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCA756B3F178B05F4F90C414 /* Pods-AsianHospital-AsianHospitalTests.release.xcconfig */;
+			baseConfigurationReference = 1FB955CB966C3787BFA4935C /* Pods-AsianHospital-AsianHospitalTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -665,9 +953,10 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D3552F9DB941671A00C9B46 /* Pods-AsianHospital.debug.xcconfig */;
+			baseConfigurationReference = 42F6C301590034344394656A /* Pods-AsianHospital.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AsianHospital/AsianHospital.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -699,6 +988,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -708,9 +998,10 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1CDDFC4EF002803041E1D55 /* Pods-AsianHospital.release.xcconfig */;
+			baseConfigurationReference = F716A549C103A0B3AF8A1FFF /* Pods-AsianHospital.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AsianHospital/AsianHospitalRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -741,6 +1032,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
