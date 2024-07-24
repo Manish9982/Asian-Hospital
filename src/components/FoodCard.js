@@ -1,3 +1,4 @@
+
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Text } from 'react-native-paper';
@@ -21,15 +22,16 @@ export default function FoodCard({
     rating = 0,
     rating_count = 0
 }) {
+
     return (
         <View style={[styles.foodCard, { borderColor: productStatus == '1' ? '#fff' : colors.maroon, borderWidth: 1 }]}>
             <FastImage
                 source={{ uri: image }}
                 style={styles.image}
                 resizeMode={FastImage.resizeMode.contain}
-            />
+            /> 
             {
-                (availableQuantity == 0)
+                (quantity > availableQuantity)
                 &&
                 <TouchableOpacity
                     onPress={crossButtonPress}
@@ -110,7 +112,7 @@ export default function FoodCard({
                                 </TouchableOpacity>
                             </View>
                             {
-                                (quantity > availableQuantity && availableQuantity !== 0)
+                                (quantity > availableQuantity)
                                 &&
                                 <TouchableOpacity
                                     onPress={adjustQuantity}
@@ -134,6 +136,8 @@ export default function FoodCard({
         </View>
     );
 }
+
+export default FoodCard
 
 const styles = StyleSheet.create({
     foodCard: {
@@ -234,3 +238,4 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
 });
+

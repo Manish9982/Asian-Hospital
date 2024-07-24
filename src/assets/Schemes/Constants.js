@@ -28,7 +28,9 @@ export const Constants = {
 }
 
 export const LocalStore = {
-    'APPOINTMENT_ID': ''
+    'APPOINTMENT_ID': '',
+    'BED_NO': 'bed_number',
+    'ROOM_NO': 'room_number'
 }
 
 

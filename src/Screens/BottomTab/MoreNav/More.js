@@ -48,14 +48,16 @@ const More = ({ navigation }) => {
   }
 
   const getJoinCallStatus = async () => {
-    const result = await GetApiData('getCallStatus')
-    //console.log(result)
-    if (result?.status == "200") {
-      if (result?.call_status == '1') {
-        setJoinCallStatus(true)
-      }
-      else {
-        setJoinCallStatus(false)
+    if (isFocused) {
+      const result = await GetApiData('getCallStatus')
+      //console.log(result)
+      if (result?.status == "200") {
+        if (result?.call_status == '1') {
+          setJoinCallStatus(true)
+        }
+        else {
+          setJoinCallStatus(false)
+        }
       }
     }
   }
@@ -320,31 +322,6 @@ const More = ({ navigation }) => {
 
         <Divider style={{ width: W, borderColor: 'gray' }} />
 
-
-        <TouchableOpacity
-          onPress={() => { navigation.navigate("ScannerScreen") }}
-          style={{ flexDirection: 'row' }}>
-          <Text style={{
-            elevation: 10,
-            padding: 15,
-            color: colors.black,
-            fontFamily: fontFamily.medium,
-            marginLeft: 10
-          }}>Scan QR here to order food</Text>
-
-          {
-            <Image style={{
-              height: H * 0.02,
-              width: W * 0.024,
-              position: "absolute",
-              alignSelf: "center",
-              left: W * 0.9
-            }}
-              source={require('../../../assets/Images/arrow.png')} />
-          }
-        </TouchableOpacity>
-        <Divider style={{ width: W, borderColor: 'gray' }} />
-
         <TouchableOpacity
           onPress={() => { navigation.navigate("OrderHistoryScreen") }}
           style={{ flexDirection: 'row' }}>
@@ -551,7 +528,7 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle:
   {
-    paddingBottom:'30%',
+    paddingBottom: '30%',
   }
 })
 

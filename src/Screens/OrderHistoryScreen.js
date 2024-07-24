@@ -137,26 +137,29 @@ const OrderHistoryScreen = ({ navigation }) => {
                             <View style={styles.cartItemPrices}>
                                 <Text style={styles.totalPrice}>₹{cartItem.total_price}</Text>
                             </View>
-                        </View>
-                    )}
-                    contentContainerStyle={styles.cartListContent}
-                    scrollEnabled={false} // Disable internal scroll to allow parent scroll
-                />
-            </View>
-            <View style={styles.orderFooter}>
-                <View style={styles.leftFooter}>
-                    <LottieView
-                        source={require('./animation-1720678078360.json')}
-                        autoPlay
-                        loop
-                        style={{
-                            width: 30,
-                            height: 30,
-                            marginRight: 10,
-                            tintColor: item.color_code
-                        }}
+                        )}
+                        contentContainerStyle={styles.cartListContent}
+                        scrollEnabled={false} // Disable internal scroll to allow parent scroll
                     />
-                    <Text style={[styles.orderStatus, { color: item.color_code }]}>{item.order_status}</Text>
+                </View>
+                <View style={styles.orderFooter}>
+                    {/* Conditionally render Lottie animation */}
+                    <View style={styles.leftFooter}>
+                        <LottieView
+                            source={require('../assets/Loader/animation-1720678078360.json')}
+                            autoPlay
+                            loop
+                            style={{
+                                width: 30,
+                                height: 30,
+                                marginRight: 10,
+                                tintColor: item.color_code
+                            }}
+                        />
+                        <Text style={[styles.orderStatus, { color: item.color_code }]}>{item.order_status}</Text>
+                    </View>
+                    <Text style={styles.orderAmount}>Total: ₹{item.amount}</Text>
+
                 </View>
                 <Text style={styles.orderAmount}>Total: ₹{item.amount}</Text>
             </View>
