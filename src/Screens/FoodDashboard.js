@@ -106,6 +106,8 @@ const FoodDashboard = ({ navigation }) => {
                 onPressAddToCart={() => addToCart(item, posCode)}
                 onPressMinus={() => removeFromCart(item?.itemno)}
                 productStatus={item.product_status}
+                rating={item.rating}
+                rating_count={item.rating_count}
             />
         )
     }

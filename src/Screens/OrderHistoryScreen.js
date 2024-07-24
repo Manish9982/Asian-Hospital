@@ -114,8 +114,8 @@ const OrderHistoryScreen = ({ navigation }) => {
                                         <Image
                                             source={require('../assets/Images/star.png')}
                                             style={{
-                                                width: 15,
-                                                height: 15,
+                                                width: 13,
+                                                height: 13,
                                                 marginTop: 2,
                                                 tintColor: colors.toobarcolor
                                             }}
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
         color: '#888',
     },
     rating: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: '600',
         color: '#000',
     },
