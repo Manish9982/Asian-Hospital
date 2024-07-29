@@ -8,12 +8,10 @@ import DataState from './src/assets/Context/DataState';
 import { checkNotificationPermission, displayNotification, NotificationListener, requestUserPermission } from './src/assets/Schemes/NotificationServices';
 import Router from './src/components/Router';
 import { changeIcon, getIcon } from 'react-native-change-icon';
-
+import ToastManager from 'toastify-react-native';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
-
-
 
 const fontConfig = {
   fontFamily: 'Poppins-Regular',
@@ -79,6 +77,8 @@ const App = () => {
   return (
     <DataState>
       <PaperProvider theme={theme}>
+        <ToastManager
+          duration={1000}/>
         <Router initialRoute={initialRoute} />
       </PaperProvider>
     </DataState>

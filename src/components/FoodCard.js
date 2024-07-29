@@ -26,10 +26,12 @@ export default function FoodCard({
     return (
         <View style={[styles.foodCard, { borderColor: productStatus == '1' ? '#fff' : colors.maroon, borderWidth: 1 }]}>
             <FastImage
-                source={{ uri: image }}
+                source={{ uri: image,
+                    priority: FastImage.priority.high,
+                 }}
                 style={styles.image}
                 resizeMode={FastImage.resizeMode.contain}
-            /> 
+            />
             {
                 (quantity > availableQuantity)
                 &&
@@ -98,40 +100,50 @@ export default function FoodCard({
                         </>
                         :
                         <View>
-                            <View style={styles.plusMinusBox}>
-                                <TouchableOpacity
-                                    onPress={onPressMinus}
-                                    style={styles.plusMinusButton}>
-                                    <Text style={styles.addText}>-</Text>
-                                </TouchableOpacity>
-                                <Text style={styles.quantityText}>{quantity}</Text>
-                                <TouchableOpacity
-                                    onPress={onPressAddToCart}
-                                    style={styles.plusMinusButton}>
-                                    <Text style={styles.addText}>+</Text>
-                                </TouchableOpacity>
-                            </View>
                             {
-                                (quantity > availableQuantity)
+                                availableQuantity == 0
+                                    ?
+                                    <Text style={{ color: colors.maroon }}>Item not available</Text>
+                                    :
+                                    <View style={styles.plusMinusBox}>
+                                        <TouchableOpacity
+                                            onPress={onPressMinus}
+                                            style={styles.plusMinusButton}>
+                                            <Text style={styles.addText}>-</Text>
+                                        </TouchableOpacity>
+                                        <Text style={styles.quantityText}>{quantity}</Text>
+                                        <TouchableOpacity
+                                            onPress={onPressAddToCart}
+                                            style={styles.plusMinusButton}>
+                                            <Text style={styles.addText}>+</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                            }
+
+                            {
+                                ((quantity > availableQuantity) && (availableQuantity !== 0))
                                 &&
                                 <TouchableOpacity
                                     onPress={adjustQuantity}
-                                    style={styles.setQuantityButton}>
-                                    <Text style={styles.setQuantityText}>Set to {availableQuantity}</Text>
+                                >
+                                    <Text
+                                        style={styles.setQuantityText}>Available qty is {availableQuantity}.{`\n`}Tap here to set</Text>
                                 </TouchableOpacity>
+
                             }
                         </View>
                 }
                 {
-                    totalPriceNeeded
+                    (totalPriceNeeded
+                        && availableQuantity !== 0)
                     &&
                     <Text style={[styles.priceText, styles.totalPriceText]}>₹ {price * quantity}</Text>
                 }
-                {
-                    (totalPriceNeeded && productStatus !== '1')
+                {/* {
+                    ((totalPriceNeeded && productStatus !== '1') && (availableQuantity !== 0))
                     &&
                     <Text style={[styles.notAvailableText, styles.availableText]}>Available quantity: {availableQuantity}</Text>
-                }
+                } */}
             </View>
         </View>
     );
@@ -161,7 +173,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 5,
-        
+
     },
     addToCartButton: {
         backgroundColor: colors.toobarcolor,
@@ -233,7 +245,9 @@ const styles = StyleSheet.create({
     },
     setQuantityText: {
         fontSize: 14,
-        color: '#fff',
+        // color: '#fff',
+        color: colors.maroon,
+        textDecorationLine: 'underline',
     },
 });
 

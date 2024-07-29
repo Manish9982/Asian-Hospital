@@ -15,7 +15,7 @@
 
 export const Constants = {
     'COORDINATOR_LOGIN': 'http://.101.25.43/staging/portal/hospital',
-    'VERSION_TEXT': 'v3Test-15/12',
+    'VERSION_TEXT': 'v3Test-29/07/24',
     'API_BASE': 'https://appl.aimsindia.com/api/v3/',
     'APP_VERSION': '1.6',
     'IPD_REPORTS_URL': 'https://appl.aimsindia.com/api/v3/IPDReports/',

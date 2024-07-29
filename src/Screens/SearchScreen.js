@@ -10,6 +10,7 @@ const SearchScreen = ({ navigation, route }) => {
     const [foodItems, setFoodItems] = useState(null)
     const [filteredFoodItems, setFilteredFoodItems] = useState([]);
     const [isSearchActive, setIsSearchActive] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
     const flatListRef2 = useRef(null);
     const { addToCart, removeFromCart, getCountForItem, Ncart, getFullCount } = useContext(DataContext)
     const [cart, setCart] = Ncart
@@ -38,7 +39,7 @@ const SearchScreen = ({ navigation, route }) => {
 
     const getAllItems = async () => {
         setFoodItems(route?.params?.allData); // Wait for setFoodItems to complete
-        setFilteredFoodItems(route?.params?.allData);
+        setFilteredFoodItems([]);
     }
 
     const renderFoodCard = ({ item, index }) => {
@@ -57,8 +58,9 @@ const SearchScreen = ({ navigation, route }) => {
     }
 
     const initiateSearch = (query) => {
+        setSearchQuery(query?.trim())
         if (query?.trim() === '') {
-            setFilteredFoodItems(foodItems); // Reset to original items when search query is empty
+            setFilteredFoodItems([]); // Reset to original items when search query is empty
         } else {
             const lowerCaseQuery = query.toLowerCase();
             const filteredFoods = foodItems.filter(food =>
@@ -92,6 +94,18 @@ const SearchScreen = ({ navigation, route }) => {
                     />
                 </View>
                 <View style={{ flex: 1, padding: 10, paddingBottom: 15 }}>
+                    {
+                        (searchQuery == '' && filteredFoodItems?.length == 0) &&
+                        <View style={styles.info}>
+                            <Text>Start typing to see results..</Text>
+                        </View>
+                    }
+                    {
+                        (searchQuery !== '' && filteredFoodItems?.length == 0) &&
+                        <View style={styles.info}>
+                            <Text>No results found. Please try a different search.</Text>
+                        </View>
+                    }
                     <FlatList
                         ref={flatListRef2}
                         data={filteredFoodItems}
@@ -167,7 +181,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10,
-    }
+    },
+    info:
+    {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 200
+    },
 });
 
 export default SearchScreen;

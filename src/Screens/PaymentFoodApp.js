@@ -30,11 +30,11 @@ const PaymentFoodApp = ({ navigation, route }) => {
 
     const navigationOnWebView = (info) => {
         if (info?.url == Constants.PAYMENT_SUCCESS) {
-            navigation.navigate("OrderHistoryScreen")
+            navigation.navigate("OrderHistoryScreen", { goBackScreen: 'FoodDashboard' })
             setCart([])
         }
         else if (info?.url == Constants.FOOD_PAYMENT_FAIL) {
-            navigation.navigate("PatientDashboard")
+            navigation.navigate("FoodCart")
         }
     }
     return (

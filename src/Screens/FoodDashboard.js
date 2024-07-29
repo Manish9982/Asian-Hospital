@@ -55,16 +55,18 @@ const FoodDashboard = ({ navigation }) => {
     })
 
     const handleMomentumScrollEnd = async (event) => {
-        console.log('ITEM==>', ITEM_SIZE)
-        const offsetX = event.nativeEvent.contentOffset.x;
-        console.log('offsetX==>', offsetX)
-        console.log('unfixed==>', offsetX/ITEM_SIZE )
-        const currentIndex = Math.floor((Math.floor(offsetX) / Math.floor(ITEM_SIZE)))
-        console.log('current index =========>', currentIndex)
-        setCurrentInx(currentIndex)
-        setHubName(hubsList[currentIndex + 1]?.pos_name)
-        console.log('handleMomentumScrollEnd re-render issue ===>')
-        await getItemsList(hubsList[currentIndex + 1]?.pos_code)
+        if (isFocused) {
+            console.log('ITEM==>', ITEM_SIZE)
+            const offsetX = event.nativeEvent.contentOffset.x;
+            console.log('offsetX==>', offsetX)
+            console.log('unfixed==>', offsetX / ITEM_SIZE)
+            const currentIndex = Math.floor((Math.floor(offsetX) / Math.floor(ITEM_SIZE)))
+            console.log('current index =========>', currentIndex)
+            setCurrentInx(currentIndex)
+            setHubName(hubsList[currentIndex + 1]?.pos_name)
+            console.log('handleMomentumScrollEnd re-render issue ===>')
+            await getItemsList(hubsList[currentIndex + 1]?.pos_code)
+        }
     };
 
     const silentGet = async () => {
@@ -145,21 +147,7 @@ const FoodDashboard = ({ navigation }) => {
             />
         )
     }
-
-    const getMoreElements = async (prop) => {
-        if (!isSearchActive) {
-            await getItemsList(hubsList[currentInx + 2]?.pos_code)
-            await flatListRef?.current?.scrollToIndex({
-                index: currentInx + 2,
-                animated: true,
-                viewPosition: 0.5 // Centers the item
-            });
-            await flatListRef2?.current?.scrollToIndex({
-                index: 0,
-                //animated: true
-            })
-        }
-    }
+    
     const goToPrevious = async (prop) => {
         if (!isSearchActive) {
             console.log('start', prop)
@@ -177,14 +165,20 @@ const FoodDashboard = ({ navigation }) => {
     }
 
     const onPressFab = async () => {
+        setLoaderItem(true)
         var formdata = new FormData()
         for (let i = 0; i < cart.length; i++) {
             formdata.append('items[]', JSON.stringify(cart[i]))
         }
         const result = await PostApiData('bulk_add_to_cart', formdata)
         if (result?.status == '200') {
+            setLoaderItem(false)
             navigation.navigate('FoodCart')
         }
+        else {
+            Alert.alert(result.status)
+        }
+        setLoaderItem(false)
     }
     return (
         <>
@@ -289,7 +283,6 @@ const FoodDashboard = ({ navigation }) => {
                         data={filteredFoodItems}
                         renderItem={renderFoodCard}
                         keyExtractor={(item, index) => `${index}`}
-                        onEndReached={getMoreElements}
                         onStartReached={goToPrevious}
                         onStartReachedThreshold={1}
                         initialNumToRender={10}

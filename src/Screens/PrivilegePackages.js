@@ -1,179 +1,142 @@
-import { FlatList, StyleSheet, View, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import HeaderTwo from '../assets/Schemes/HeaderTwo'
-import { Text, Button } from 'react-native-paper'
-import { colors, fontFamily } from '../assets/Schemes/Schemes'
-import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons'
+import React from 'react';
+import { View, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'; // or any other icon library
+import HeaderTwo from '../assets/Schemes/HeaderTwo';
+import { Text } from 'react-native-paper';
+//GOLD SCREEN
 
-const DATA = {
-    status: '200',
-    data: [
-        {
-            plan_name: "Basic Plan",
-            price: '700',
-            currency: 'Rs.',
-            period: '/ month',
-            isActive: true,
-            benefits: [
-                'Manage 1 Unit',
-                'Upload upto 2 documents'
-            ]
-        },
-        {
-            plan_name: "Silver Plan",
-            price: '1400',
-            currency: 'Rs.',
-            period: '/ month',
-            isActive: false,
-            benefits: [
-                'Everything from free plan &',
-                'Income and Expense Tracking',
-                'Upload upto 10 documents'
-            ]
-        },
-        {
-            plan_name: "Gold Plan",
-            price: '2000',
-            currency: 'Rs.',
-            period: '/ month',
-            isActive: false,
-            benefits: [
-                'Everything from silver plan &',
-                'Upload upto 15 documents',
-                'Free 12 visits to the dietician',
-            ]
-        },
-    ]
-}
 
-const ObesityPackages = () => {
-    const [packagesData, setPackagesData] = useState(null)
-
-    useEffect(() => {
-        setPackagesData(DATA)
-    }, [])
-
-    const renderPackages = ({ item, index }) => {
-        return (
-            <TouchableOpacity style={[styles.cardForPackage, item.isActive && styles.activePackage]}>
-                <View style={styles.namePriceContainer}>
-                    <Text style={typography.planName}>{item?.plan_name}</Text>
-                    <Text>
-                        <Text style={typography.price}>{item?.currency}</Text>
-                        <Text style={typography.price}>{item?.price} </Text>
-                        <Text style={typography.price2}>{item?.period}</Text>
-                    </Text>
-                </View>
-
-                {item?.benefits?.map((benefit, idx) => {
-                    return (
-                        <View key={idx} style={styles.benefitsContainer}>
-                            <MaterialCommunityIcons name="check-circle-outline" size={20} color={colors.toobarcolor} />
-                            <Text style={typography.benefitText}>  {benefit}</Text>
-                        </View>
-                    )
-                })}
-                <Button
-                    mode="contained"
-                    onPress={() => console.log('Package Purchased')}
-                    style={styles.purchaseButton}
-                    labelStyle={typography.buttonText}
-                >
-                    {item.isActive ? 'Current Plan' : 'Purchase'}
-                </Button>
-            </TouchableOpacity>
-        )
-    }
-
+const GoldScreen = () => {
     return (
-        <View style={styles.container}>
-            <HeaderTwo Title={"Privilege Packages"} />
-            <FlatList
-                contentContainerStyle={styles.listContainer}
-                renderItem={renderPackages}
-                data={packagesData?.data}
-                keyExtractor={(item, index) => `${index}`}
-            />
-        </View>
-    )
-}
+        <>
+            <HeaderTwo 
+            Title={''}
+            color="#000" />
+            <View style={styles.container}>
+                <ScrollView contentContainerStyle={styles.scrollContainer}>
+                    <View style={styles.header}>
+                        <Text style={styles.headerText}>Asian Connect</Text>
+                        <Text style={styles.headerGoldText}>GOLD</Text>
+                        <Text style={styles.headerSubText}>UNLIMITED FREE DELIVERIES & MORE</Text>
+                    </View>
 
-export default ObesityPackages
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.price}>₹30</Text>
+                        <Text style={styles.priceDuration}>for 3 months</Text>
+                    </View>
+
+                    <View style={styles.benefitsContainer}>
+                        <Text style={styles.benefitsHeader}>GOLD BENEFITS</Text>
+                        <View style={styles.benefitItem}>
+                            <Icon name="motorcycle" size={24} color="#FFD700" />
+                            <Text style={styles.benefitText}>
+                                Free delivery at all restaurants under 7 km, on orders above ₹199. May not be applicable at a few restaurants that manage their own delivery.
+                            </Text>
+                        </View>
+                        <View style={styles.benefitItem}>
+                            <Icon name="percent" size={24} color="#FFD700" />
+                            <Text style={styles.benefitText}>
+                                Up to 30% extra off above all existing offers at 20,000+ partner restaurants across India.
+                            </Text>
+                        </View>
+                    </View>
+                </ScrollView>
+                <TouchableOpacity style={styles.joinButton}>
+                    <Text style={styles.joinButtonText}>Join Gold</Text>
+                </TouchableOpacity>
+            </View>
+        </>
+    );
+};
 
 const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+        backgroundColor: '#000',
+    },
     container: {
         flex: 1,
-        backgroundColor: colors.lightGray,
+        backgroundColor: '#000',
     },
-    listContainer: {
-        paddingVertical: 20,
-    },
-    cardForPackage: {
-        minHeight: 250,
-        width: '90%',
-        alignSelf: 'center',
+    scrollContainer: {
+        alignItems: 'center',
         padding: 20,
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        marginVertical: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
     },
-    activePackage: {
-        borderColor: colors.toobarcolor,
-        borderWidth: 2,
-    },
-    namePriceContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+    header: {
         alignItems: 'center',
         marginBottom: 20,
     },
-    benefitsContainer: {
+    headerText: {
+        fontSize: 24,
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    headerGoldText: {
+        fontSize: 48,
+        color: '#FFD700',
+        fontWeight: 'bold',
+    },
+    headerSubText: {
+        fontSize: 16,
+        color: '#FFD700',
+    },
+    priceContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: 5,
-    },
-    purchaseButton: {
-        marginTop: 20,
-        backgroundColor: colors.toobarcolor,
-    },
-})
-
-const typography = StyleSheet.create({
-    planName: {
-        fontFamily: fontFamily.semibold,
-        fontWeight: '600',
-        fontSize: 20,
-        color: colors.toobarcolor,
-    },
-    price2: {
-        fontFamily: fontFamily.semibold,
-        fontWeight: '600',
-        fontSize: 18,
-        color: colors.darkGray,
+        marginVertical: 20,
     },
     price: {
-        fontFamily: fontFamily.bold,
-        fontWeight: '700',
-        fontSize: 24,
-        color: colors.black,
+        fontSize: 40,
+        color: '#FFD700',
+        fontWeight: 'bold',
     },
-    benefitText: {
-        fontFamily: fontFamily.regular,
-        fontSize: 16,
-        color: colors.darkGray,
-        marginLeft: 10,
-    },
-    buttonText: {
-        fontFamily: fontFamily.semibold,
+    priceDuration: {
         fontSize: 16,
         color: '#fff',
+        marginLeft: 10,
     },
-})
+    joinButton: {
+        backgroundColor: '#FFD700',
+        padding: 15,
+        borderRadius: 10,
+        marginBottom: 30,
+        position: 'absolute',
+        bottom: 20,
+        left: '50%',
+        transform: [{ translateX: -90 }], // Center the button horizontally
+        width: 180,
+        alignItems: 'center',
+    },
+    joinButtonText: {
+        color: '#000',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    benefitsContainer: {
+        width: '100%',
+        padding: 20,
+        backgroundColor: '#333',
+        borderRadius: 10,
+        marginBottom: 70, // Add some space to avoid overlapping with the button
+    },
+    benefitsHeader: {
+        color: '#FFD700',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    benefitItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 15,
+    },
+    benefitText: {
+        color: '#fff',
+        fontSize: 16,
+        marginLeft: 10,
+        flex: 1,  // Allow text to wrap within the container
+    },
+});
+
+export default GoldScreen;

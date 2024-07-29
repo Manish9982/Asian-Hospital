@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 import { Constants } from './Constants'
 
 
-const HeaderTwo = ({ Title, goBackScreen = null }) => {
+const HeaderTwo = ({ Title, goBackScreen = null, color = colors.toobarcolor  }) => {
     const navigation = useNavigation()
     const backPress = () => {
         if (goBackScreen) {
@@ -20,10 +20,10 @@ const HeaderTwo = ({ Title, goBackScreen = null }) => {
     return (
         <View>
             <>
-                <StatusBar backgroundColor={colors.toobarcolor} />
+                <StatusBar backgroundColor={color} />
 
                 <Appbar.Header style={{
-                    backgroundColor: colors.toobarcolor,
+                    backgroundColor: color,
                     justifyContent: "space-between"
                 }}>
                     <Appbar.BackAction color={"white"} onPress={backPress} />

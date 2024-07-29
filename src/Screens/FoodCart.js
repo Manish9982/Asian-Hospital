@@ -1,19 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Alert, Modal, Animated, Easing, ScrollView } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Snackbar, Text } from 'react-native-paper';
 import { GetApiData, PostApiData, colors, fontFamily, fontSizes } from '../assets/Schemes/Schemes';
 import HeaderTwo from '../assets/Schemes/HeaderTwo';
 import FoodCard from '../components/FoodCard';
 import DataContext from '../assets/Context/DataContext';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons'
+import ToastManager, { Toast } from 'toastify-react-native';
 
 const FoodCart = ({ navigation }) => {
     const [price, setPrice] = useState(null)
+    const [itemCount, setItemCount] = useState('')
     const [charges, setCharges] = useState(null)
     const [loaderItem, setLoaderItem] = useState(false)
+    const [showSnack, setShowSnack] = useState(false)
     const { Ncart } = useContext(DataContext)
     const [cart, setCart] = Ncart
-    const goAhead = (cart?.every(item => item.product_status == "1"))
+    const goAhead = (cart?.some(item => item.product_status == "1"))
+    const goAheadAbsolute = (cart?.every(item => item.product_status == "1"))
     useEffect(() => { getCartDetails() }, [])
     const spinValue = new Animated.Value(0);
 
@@ -40,14 +44,16 @@ const FoodCart = ({ navigation }) => {
         try {
             const result = await GetApiData('cart_details');
             if (result?.status == 200) {
-                setPrice(result.data.order_total)
-                setCart(result.data.orders)
-                setCharges(result.data.charges)
+                console.log("price===>", result?.data?.order_total)
+                setPrice(result?.data?.order_total)
+                setCart(result?.data?.orders)
+                setCharges(result?.data?.charges)
+                setItemCount(result?.data?.item_count)
             } else if (result?.status == '201') {
+                Toast.info('Cart is empty!')
                 setPrice(null)
                 await setCart([])
                 navigation.goBack()
-                Alert.alert('Info', result?.message);
             }
             else {
                 Alert.alert('Error', result?.message || 'Something went wrong');
@@ -65,6 +71,7 @@ const FoodCart = ({ navigation }) => {
         formdata.append('product_price', item?.product_price)
         formdata.append('quantity', '1')
         formdata.append('pos_code', "")
+        formdata.append('tax_amount', item?.tax_amount)
         const result = await PostApiData('add_to_cart', formdata)
         await getCartDetails()
 
@@ -81,6 +88,7 @@ const FoodCart = ({ navigation }) => {
         formdata.append('product_price', item?.product_price)
         formdata.append('quantity', '-1')
         formdata.append('pos_code', "")
+        formdata.append('tax_amount', item?.tax_amount)
         const result = await PostApiData('add_to_cart', formdata)
         await getCartDetails()
         if (result?.status == '200') {
@@ -93,25 +101,50 @@ const FoodCart = ({ navigation }) => {
         if (goAhead) {
             navigation.navigate('PaymentFoodApp')
         }
+        else {
+            navigation.goBack()
+        }
     }
 
+    const renderFoodCardUnavailable = (item, index) => {
+        if (item?.product_status == '0') {
+            return (
+                <FoodCard
+                    key={index}
+                    name={item.product_name}
+                    price={item.product_price}
+                    image={item.product_image}
+                    totalPriceNeeded={true}
+                    quantity={item.quantity}
+                    onPressAddToCart={() => onPressPlus(item)}
+                    onPressMinus={() => onPressMinus(item)}
+                    productStatus={item.product_status}
+                    availableQuantity={Number.parseInt(item?.available_quantity, 10)}
+                    crossButtonPress={() => removeFromCart(item.itemno)}
+                    adjustQuantity={() => adjustQuantity(item.itemno)}
+                />
+            )
+        }
+    }
     const renderFoodCard = (item, index) => {
-        return (
-            <FoodCard
-                key={index}
-                name={item.product_name}
-                price={item.product_price}
-                image={item.product_image}
-                totalPriceNeeded={true}
-                quantity={item.quantity}
-                onPressAddToCart={() => onPressPlus(item)}
-                onPressMinus={() => onPressMinus(item)}
-                productStatus={item.product_status}
-                availableQuantity={Number.parseInt(item?.available_quantity, 10)}
-                crossButtonPress={() => removeFromCart(item.itemno)}
-                adjustQuantity={() => adjustQuantity(item.itemno)}
-            />
-        )
+        if (item?.product_status == '1') {
+            return (
+                <FoodCard
+                    key={index}
+                    name={item.product_name}
+                    price={item.product_price}
+                    image={item.product_image}
+                    totalPriceNeeded={true}
+                    quantity={item.quantity}
+                    onPressAddToCart={() => onPressPlus(item)}
+                    onPressMinus={() => onPressMinus(item)}
+                    productStatus={item.product_status}
+                    availableQuantity={Number.parseInt(item?.available_quantity, 10)}
+                    crossButtonPress={() => removeFromCart(item.itemno)}
+                    adjustQuantity={() => adjustQuantity(item.itemno)}
+                />
+            )
+        }
     }
 
     const removeFromCart = async (num) => {
@@ -175,41 +208,69 @@ const FoodCart = ({ navigation }) => {
                 </Modal>
                 <View style={{ flex: 1 }}>
                     {
+                        (goAhead && !goAheadAbsolute)
+                        &&
+                        <Text style={styles.stopText}>These items are not available at the moment. You can Proceed without them.</Text>
+                    }
+                    {
+                        (!goAhead)
+                        &&
+                        <Text style={styles.stopText}>These items are not available. Please add other available items to proceed.</Text>
+                    }
+                    {
+                        cart?.map((item, index) => renderFoodCardUnavailable(item, index))
+                    }
+                    {
+                        goAhead &&
+                        <View style={styles.billSummaryContainer}>
+                            <Text style={styles.billHeading}>Cart</Text>
+                        </View>
+                    }
+                    {
                         cart?.map((item, index) => renderFoodCard(item, index))
                     }
                 </View>
                 {
-                    !goAhead
+                    goAhead
                     &&
-                    <Text style={styles.stopText}>Please remove all unavailable items from cart to proceed.</Text>
-                }
-                <View>
-                    <View style={styles.billSummaryContainer}>
-                        <Text style={styles.billHeading}>Bill Summary</Text>
+                    <View>
+                        <View style={styles.billSummaryContainer}>
+                            <Text style={styles.billHeading}>Bill Summary</Text>
+                        </View>
+                        {
+                            charges?.map((item, index) => renderCharges(item, index))
+                        }
                     </View>
-                    {
-                        charges?.map((item, index) => renderCharges(item, index))
-                    }
-                </View>
-
+                }
             </ScrollView>
             <View style={styles.totalSection}>
                 {
                     price &&
                     <TouchableOpacity
                         onPress={onPressProceedToPayment}
-                        style={[styles.payButtonContainer, { opacity: goAhead ? 1 : 0.5 }]}
+                        style={[styles.payButtonContainer, { justifyContent: goAhead ? 'space-between' : 'center', alignItems: goAhead ? null : 'center' }]}
                     >
                         <View style={styles.payButtonContent}>
-                            <View style={styles.priceContainer}>
-                                <Text style={styles.payButtonPriceText}>₹ {price}</Text>
-                                <Text style={styles.totalText}>Total</Text>
-                            </View>
+                            {
+                                goAhead
+                                &&
+                                <View style={styles.priceContainer}>
+                                    <Text style={styles.payButtonPriceText}>₹ {price}</Text>
+                                    <Text style={styles.totalText}>Total</Text>
+                                </View>
+                            }
                             <View style={styles.payButtonTextContainer}>
-                                <Text style={styles.payButtonText}>Proceed to Pay</Text>
+                                {
+                                    goAhead
+                                        ?
+                                        <Text style={styles.payButtonText}>Proceed to Pay ({itemCount == 1 ? `${itemCount} item` : `${itemCount} items`})</Text>
+                                        :
+                                        <Text style={styles.payButtonText}>Go back to menu</Text>
+                                }
                             </View>
                         </View>
-                    </TouchableOpacity>}
+                    </TouchableOpacity>
+                }
             </View>
         </>
 
@@ -247,6 +308,7 @@ const styles = StyleSheet.create({
     },
 
     payButtonContainer: {
+        height: 70,
         width: '97%',
         backgroundColor: colors.toobarcolor,
         alignSelf: 'center',
@@ -325,6 +387,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#d3d3d3',
         padding: 10,
         margin: 10,
+        marginBottom: 0,
         borderRadius: 8,
     },
     billImage:
@@ -336,7 +399,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        margin: 5,
+        //margin: 5,
         padding: 5
     },
     chargeNameContainer:
