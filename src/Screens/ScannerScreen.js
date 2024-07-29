@@ -9,10 +9,10 @@ import { LocalStore } from '../assets/Schemes/Constants';
 const ScannerScreen = ({ navigation }) => {
   const webViewRef = useRef(null);
 
-  useEffect(() => {
-    navigation.replace('FoodDashboard')
-  }, [])
-  
+  // useEffect(() => {
+  //   navigation.replace('FoodDashboard')
+  // }, [])
+
   function extractRoomAndBed(url) {
     console.log('url===>', url);
 
@@ -24,7 +24,7 @@ const ScannerScreen = ({ navigation }) => {
     const roomno = roomMatch ? roomMatch[1] : null;
     const bedno = bedMatch ? bedMatch[1] : null;
 
-    Alert.alert('Ordering For', `Room number: ${roomno} \nBed number: ${bedno}`)
+    Alert.alert('Hello!', `You are ordering food for room number: ${roomno} and bed number: ${bedno}`)
     // Save to local storage
     if (roomno) {
       savelocalStorageData(LocalStore.ROOM_NO, roomno);
@@ -40,7 +40,14 @@ const ScannerScreen = ({ navigation }) => {
       extractRoomAndBed(navState.url)
       navigation.replace('FoodDashboard')
     }
-    // Update canGoBack state
+    else if (navState?.url?.toString()?.includes('aimsindia.com/qrcode')) {
+      null
+    }
+    else {
+      Alert.alert('Invalid QR Code', 'Please check if the QR code is valid.')
+      navigation.goBack()
+    }
+
   };
 
   const renderLoading = () => {

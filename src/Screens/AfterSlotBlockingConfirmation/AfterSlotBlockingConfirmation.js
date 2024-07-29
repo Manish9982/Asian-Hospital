@@ -222,603 +222,603 @@ const AfterSlotBlockingConfirmation = ({ navigation, route }) => {
 
 
     return (
-        loader
-            ?
-            <Loader />
-            :
-            <View style={{
+        <View style={{
+        }}>
+            <HeaderTwo Title="Appointment Details" />
+            <Modal
+                visible={loader}
+                transparent={true}
+            >
+                <Loader />
+            </Modal >
+            <Modal
+                visible={patientListModal}
+                transparent={true}
+            >
+                <View style={{
+                    backgroundColor: "rgba(0,0,0,0.3)",
+                    height: H,
+                    width: W,
+                    justifyContent: "center",
+                    alignItems: "center",
 
-            }}>
-                <HeaderTwo Title="Appointment Details" />
-
-                <Modal
-                    visible={patientListModal}
-                    transparent={true}
-                >
-                    <View style={{
-                        backgroundColor: "rgba(0,0,0,0.3)",
-                        height: H,
-                        width: W,
-                        justifyContent: "center",
-                        alignItems: "center",
-
-                    }}>
-
-
-                        <View style={{
-                            height: H * 0.7,
-                            paddingVertical: H * 0.02,
-                            width: W * 0.9,
-                            backgroundColor: "white",
-                            borderRadius: 8,
-                        }}>
-
-                            <Text style={{
-                                alignSelf: 'center',
-                                marginBottom: 10,
-                                fontFamily: fontFamily.medium,
-                                fontSize: fontSizes.default,
-                                color: 'black'
-                            }}>Choose Patient</Text>
-
-
-                            <Divider
-                                style={{ width: W, borderColor: 'black', borderWidth: 0.02 }} />
-                            {data2?.patients?.length == 0 && <Text style={{
-                                alignSelf: "center",
-                                marginTop: H * 0.2
-                            }}>No Relatives Added</Text>}
-                            <FlatList
-                                data={data2?.patients}
-                                renderItem={renderItem}
-                                keyExtractor={(item, index) => `${index}`}
-                            />
-
-
-                            <TouchableOpacity onPress={() => {
-                                setPatientListModal(false)
-
-                            }}>
-                                <Text style={{
-                                    marginTop: H * 0.05,
-                                    marginRight: W * 0.05,
-                                    alignSelf: "flex-end"
-                                }}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </Modal >
-                <Modal
-                    visible={slotBlockingScreenModal}
-                    transparent={true}>
-                    <View style={{
-                        height: H,
-                        width: W,
-                        backgroundColor: "rgba(0,0,0,0.7)",
-                        // backgroundColor: "red",
-                        justifyContent: "center"
-                    }}>
-                        <View
-                            style={{
-                                //paddingBottom: H * 0.2
-                                backgroundColor: "white",
-                                width: W * 0.97,
-                                paddingVertical: H * 0.03,
-                                borderRadius: 8,
-                                alignSelf: "center"
-                                //height: H * 0.3
-                            }}>
-
-                            <DoctorCardWithoutPrice
-                                profile_url={myDoctorImage}
-                                image={""}
-                                first_name={myDoctor}
-                                category={myDoctorCategory}
-                                designation={myDoctorDesignation}
-                                education={myDoctorEducation}
-                            />
-                            <Text style={{
-                                marginTop: H * 0.03,
-                                textDecorationLine: "underline",
-                                textAlign: "center"
-                            }}>Appointment Details:</Text>
-                            <View style={{
-                                borderColor: "black",
-                                borderWidth: 1,
-                                alignSelf: "center",
-                                width: W * 0.85,
-                                borderRadius: 8,
-                                marginVertical: H * 0.03,
-                                paddingVertical: H * 0.01
-                            }}>
-
-                                {gender == "Self" ?
-                                    <Text style={{
-                                        maxWidth: W * 0.46,
-                                        fontFamily: fontFamily.semibold,
-                                        marginLeft: W * 0.05
-                                    }}>{mySelf}</Text>
-                                    :
-                                    <Text style={{
-                                        width: W * 0.46,
-                                        fontFamily: fontFamily.semibold,
-                                        marginLeft: W * 0.05,
-                                    }}>{patientName}</Text>
-                                }
-                                <Text style={{
-                                    fontFamily: fontFamily.semibold,
-                                    marginLeft: W * 0.05
-                                }}>{timeStampToDateFormatd_m_y(apiDate)}, {convert24hTo12hFormat(mySlot)}</Text>
-                                <Text
-                                    style={{
-                                        fontFamily: fontFamily.semibold,
-                                        marginTop: H * 0.015,
-                                        marginStart: W * 0.05,
-                                        alignSelf: 'flex-start',
-                                        fontWeight: "600"
-                                    }}>Price: ₹{myPrice}
-                                    {(companyName !== "") && <Text style={{
-                                        fontFamily: fontFamily.semibold,
-                                        marginTop: H * 0.015,
-                                        marginStart: W * 0.05,
-                                        alignSelf: 'flex-start',
-                                        color: "black",
-                                        fontSize: fontSizes.SM,
-                                        fontWeight: "600"
-                                    }}>  ({companyName})</Text>
-                                    }
-
-                                </Text>
-                                <Text style={{
-                                    fontFamily: fontFamily.semibold,
-                                    right: W * 0.07,
-                                    top: H * 0.01,
-                                    position: "absolute",
-                                    color: myAppointmentType == "0" ? "blue" : "green"
-                                }}>({myAppointmentType == "0" ? "In Person" : "Online"})</Text>
-                            </View>
-                            <TouchableOpacity
-                                disabled={isDisabled}
-                                onPress={() => { bookAppointmentAndContinueToPaymentGateway() }}
-                                style={{
-                                    height: H * 0.06,
-                                    width: W * 0.85,
-                                    alignSelf: "center",
-                                    backgroundColor: isDisabled ? "gray" : "green",
-                                    borderRadius: 8,
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    marginVertical: H * 0.01
-                                }}>
-                                <Text style={{
-                                    color: "white"
-                                }}>Continue to payment</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                onPress={() => {
-                                    // cancelSlotAndNavigate()
-                                    setSlotBlockingScreenModal(false)
-                                }}
-                                style={{
-                                    height: H * 0.06,
-                                    width: W * 0.85,
-                                    alignSelf: "center",
-                                    backgroundColor: colors.maroon,
-                                    borderRadius: 8,
-                                    justifyContent: "center",
-                                    alignItems: "center"
-                                }}>
-                                <Text style={{
-                                    color: "white"
-                                }}>Cancel</Text>
-                            </TouchableOpacity>
-
-                        </View>
-                    </View>
-                </Modal>
-
-                <ScrollView contentContainerStyle={{
-                    backgroundColor: "white",
-                    paddingBottom: H * 0.1
                 }}>
 
-                    <Text
-                        style={{
-                            fontFamily: fontFamily.medium,
-                            alignSelf: 'flex-start',
-                            color: colors.black,
-                            fontSize: fontSizes.XL,
-                            paddingLeft: W * 0.04,
-                            paddingTop: W * 0.02,
-                            //paddingBottom: W * 0.02,
-                            width: W
-                        }}>Doctor Details:</Text>
-
-                    <DoctorCardWithoutPrice
-                        profile_url={myDoctorImage}
-                        image={""}
-                        first_name={myDoctor}
-                        category={myDoctorCategory}
-                        designation={myDoctorDesignation}
-                        education={myDoctorEducation}
-                    />
-
-                    <Text
-                        style={{
-                            fontFamily: fontFamily.medium,
-                            alignSelf: 'flex-start',
-                            color: colors.black,
-                            fontSize: fontSizes.XL,
-                            paddingLeft: W * 0.04,
-                            paddingTop: W * 0.02,
-                            paddingBottom: W * 0.02,
-                            width: W
-                        }}>Billing Details:</Text>
 
                     <View style={{
-                        borderColor: colors.toobarcolor,
-                        borderWidth: 1,
-                        width: "95%",
-                        alignSelf: "center",
-                        borderRadius: 8
+                        height: H * 0.7,
+                        paddingVertical: H * 0.02,
+                        width: W * 0.9,
+                        backgroundColor: "white",
+                        borderRadius: 8,
                     }}>
 
+                        <Text style={{
+                            alignSelf: 'center',
+                            marginBottom: 10,
+                            fontFamily: fontFamily.medium,
+                            fontSize: fontSizes.default,
+                            color: 'black'
+                        }}>Choose Patient</Text>
 
-                        <Text
-                            style={{
-                                fontFamily: fontFamily.semibold,
-                                marginTop: H * 0.015,
-                                marginStart: W * 0.05,
-                                alignSelf: 'flex-start',
-                                color: "gray",
-                                fontSize: fontSizes.SM,
-                                fontWeight: "600"
-                            }}>Price: ₹{oldPrice == "" ? myPrice : oldPrice}
 
-                        </Text>
+                        <Divider
+                            style={{ width: W, borderColor: 'black', borderWidth: 0.02 }} />
+                        {data2?.patients?.length == 0 && <Text style={{
+                            alignSelf: "center",
+                            marginTop: H * 0.2
+                        }}>No Relatives Added</Text>}
+                        <FlatList
+                            data={data2?.patients}
+                            renderItem={renderItem}
+                            keyExtractor={(item, index) => `${index}`}
+                        />
 
-                        <Text
-                            style={{
-                                fontFamily: fontFamily.medium,
-                                marginTop: H * 0.015,
-                                marginStart: W * 0.05,
-                                alignSelf: 'flex-start',
-                                color: "gray",
-                                fontSize: fontSizes.SM,
-                            }}>Date: {timeStampToDateFormatd_m_y(apiDate)}</Text>
 
-                        <View style={{
-                            flexDirection: "row"
+                        <TouchableOpacity onPress={() => {
+                            setPatientListModal(false)
+
                         }}>
+                            <Text style={{
+                                marginTop: H * 0.05,
+                                marginRight: W * 0.05,
+                                alignSelf: "flex-end"
+                            }}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal >
+            <Modal
+                visible={slotBlockingScreenModal}
+                transparent={true}>
+                <View style={{
+                    height: H,
+                    width: W,
+                    backgroundColor: "rgba(0,0,0,0.7)",
+                    // backgroundColor: "red",
+                    justifyContent: "center"
+                }}>
+                    <View
+                        style={{
+                            //paddingBottom: H * 0.2
+                            backgroundColor: "white",
+                            width: W * 0.97,
+                            paddingVertical: H * 0.03,
+                            borderRadius: 8,
+                            alignSelf: "center"
+                            //height: H * 0.3
+                        }}>
+
+                        <DoctorCardWithoutPrice
+                            profile_url={myDoctorImage}
+                            image={""}
+                            first_name={myDoctor}
+                            category={myDoctorCategory}
+                            designation={myDoctorDesignation}
+                            education={myDoctorEducation}
+                        />
+                        <Text style={{
+                            marginTop: H * 0.03,
+                            textDecorationLine: "underline",
+                            textAlign: "center"
+                        }}>Appointment Details:</Text>
+                        <View style={{
+                            borderColor: "black",
+                            borderWidth: 1,
+                            alignSelf: "center",
+                            width: W * 0.85,
+                            borderRadius: 8,
+                            marginVertical: H * 0.03,
+                            paddingVertical: H * 0.01
+                        }}>
+
+                            {gender == "Self" ?
+                                <Text style={{
+                                    maxWidth: W * 0.46,
+                                    fontFamily: fontFamily.semibold,
+                                    marginLeft: W * 0.05
+                                }}>{mySelf}</Text>
+                                :
+                                <Text style={{
+                                    width: W * 0.46,
+                                    fontFamily: fontFamily.semibold,
+                                    marginLeft: W * 0.05,
+                                }}>{patientName}</Text>
+                            }
+                            <Text style={{
+                                fontFamily: fontFamily.semibold,
+                                marginLeft: W * 0.05
+                            }}>{timeStampToDateFormatd_m_y(apiDate)}, {convert24hTo12hFormat(mySlot)}</Text>
                             <Text
                                 style={{
-                                    fontFamily: fontFamily.medium,
+                                    fontFamily: fontFamily.semibold,
                                     marginTop: H * 0.015,
                                     marginStart: W * 0.05,
                                     alignSelf: 'flex-start',
-                                    color: 'gray',
+                                    fontWeight: "600"
+                                }}>Price: ₹{myPrice}
+                                {(companyName !== "") && <Text style={{
+                                    fontFamily: fontFamily.semibold,
+                                    marginTop: H * 0.015,
+                                    marginStart: W * 0.05,
+                                    alignSelf: 'flex-start',
+                                    color: "black",
                                     fontSize: fontSizes.SM,
-                                    marginBottom: H * 0.015,
-                                }}>Slot: {convert24hTo12hFormat(mySlot)}</Text>
+                                    fontWeight: "600"
+                                }}>  ({companyName})</Text>
+                                }
+
+                            </Text>
                             <Text style={{
                                 fontFamily: fontFamily.semibold,
-                                marginTop: H * 0.015,
-                                marginStart: W * 0.05,
-                                alignSelf: 'flex-start',
-                                color: myAppointmentType == '0' ? "blue" : "green",
-                                fontSize: fontSizes.SM,
-                                marginBottom: H * 0.015,
-                            }}>
-                                ({myAppointmentType == '0' ? "In Person" : "Online"})
-                            </Text>
+                                right: W * 0.07,
+                                top: H * 0.01,
+                                position: "absolute",
+                                color: myAppointmentType == "0" ? "blue" : "green"
+                            }}>({myAppointmentType == "0" ? "In Person" : "Online"})</Text>
                         </View>
-
-                        <View style={{
-                            position: "absolute",
-                            left: W * 0.7,
-                            top: H * 0.024
-                        }}>
-                            <CountdownCircleTimer
-                                onComplete={() => {
-                                    setIsDisabled(true)
-                                    // Alert.alert("Time Out!", "Please Book your slot again.")
-                                    //navigation.navigate("DoctorProfile")
-                                }}
-                                strokeWidth={6}
-                                size={W * 0.17}
-                                isPlaying
-                                duration={data2?.duration}
-                                colors={colors.toobarcolor}
-                                trailColor="orange"
-                            //colors={['green', 'yellow', 'orange', 'red']}
-                            //colorsTime={[200, 150, , 50]}
-                            >
-                                {({ remainingTime }) => {
-                                    const minutes = String(Math.floor(remainingTime / 60)).padStart(2, '0');
-                                    const seconds = String(remainingTime % 60).padStart(2, '0');
-                                    return <Text style={{
-                                        //position: "absolute",
-                                        //left: W * 0.15,
-                                        color: "gray",
-                                        textAlign: "center",
-                                        fontSize: fontSizes.SM
-                                    }}>{`${minutes}:${seconds}`}</Text>
-                                }
-                                }
-                            </CountdownCircleTimer>
-                        </View>
-                    </View>
-
-                    <Text
-                        style={{
-                            fontFamily: fontFamily.medium,
-                            alignSelf: 'flex-start',
-                            color: colors.black,
-                            fontSize: fontSizes.XL,
-                            paddingLeft: W * 0.04,
-                            paddingTop: W * 0.02,
-                            paddingBottom: W * 0.02,
-                            width: W
-                        }}>Confirm Booking For:</Text>
-                    {/* {!(wasPreviouslyDoctor == "true") && */}
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            marginLeft: W * 0.018,
-                            marginRight: W * 0.018,
-                            justifyContent: 'space-evenly',
-                            height: H * 0.05
-                        }}>
-
-                        {
-                            // !(wasPreviouslyDoctor == "true") &&
-                            <TouchableOpacity
-                                onPress={() => {
-                                    setGender("Self")
-                                }}
-
-                                style={{
-                                    backgroundColor: gender == "Self" ? colors.toobarcolor : "white",
-                                    justifyContent: "center",
-                                    borderWidth: 1,
-                                    borderColor: "gray",
-                                    alignItems: "center",
-                                    width: W * 0.29,
-                                    borderRadius: 5,
-                                }}>
-                                <Text style={{
-                                    fontFamily: fontFamily.medium,
-                                    color: gender == "Self" ? "white" : "black"
-                                }}>Self</Text>
-                            </TouchableOpacity>
-                        }
-                        {
-                            // !(wasPreviouslyDoctor == "true") &&
-                            <TouchableOpacity
-
-                                onPress={() => {
-                                    setPatientListModal(true)
-                                    setGender("Relative")
-                                }}
-
-                                style={{
-                                    backgroundColor: gender == "Relative" ? colors.toobarcolor : "white",
-                                    justifyContent: "center",
-                                    borderWidth: 1,
-                                    borderColor: "gray",
-                                    alignItems: "center",
-                                    width: W * 0.29,
-                                    borderRadius: 5,
-                                    marginLeft: 5,
-                                    marginRight: 5
-                                }}>
-                                <Text style={{
-                                    fontFamily: fontFamily.medium,
-                                    color: gender == "Relative" ? "white" : "black"
-                                }}
-
-                                >Relative</Text>
-                            </TouchableOpacity>
-                        }
-                        {
-                            // !(wasPreviouslyDoctor == "true") &&
-                            <TouchableOpacity
-
-                                onPress={() => {
-
-                                    navigation.navigate("AddPatientDuringAppointments")
-                                }}
-
-                                style={{
-                                    backgroundColor: "white",
-                                    justifyContent: "center",
-                                    borderWidth: 1,
-                                    borderColor: "gray",
-                                    alignItems: "center",
-                                    width: W * 0.29,
-                                    // padding: 10,
-                                    borderRadius: 5,
-                                }}>
-                                <View>
-                                    <Text
-                                        style={{
-                                            fontFamily: fontFamily.medium,
-                                            color: "black"
-                                        }}
-                                    >Add <AntDesign name="pluscircle" size={16} color={colors.toobarcolor} /></Text>
-                                </View>
-                            </TouchableOpacity>
-                        }
-                    </View>
-                    {/* } */}
-
-
-                    {gender == "Relative" ?
-                        <TouchableOpacity
-                            onPress={() => {
-
-                                setPatientListModal(true)
-
-                            }}
-
-                        >
-                            {
-                                patientName == ""
-                                    ?
-                                    <View style={{
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                        marginHorizontal: H * 0.01,
-                                        borderRadius: 8,
-                                        borderWidth: 1,
-                                        borderColor: 'gray',
-                                        borderRadius: 5,
-                                        padding: 8,
-                                        marginTop: H * 0.02,
-                                        backgroundColor: colors.bgeditext,
-                                    }}
-                                    >
-                                        <Text
-                                            style={{
-                                                // textAlign: "center",
-                                                color: "black",
-                                                fontSize: fontSizes.SM,
-                                                fontFamily: fontFamily.regular,
-                                                marginLeft: W * 0.05,
-                                                marginRight: W * 0.09,
-
-                                            }}
-                                        >{patientName == "" ? "Click here to choose" : null}</Text>
-                                    </View>
-                                    :
-                                    <Text
-                                        style={{
-                                            fontFamily: fontFamily.medium,
-                                            marginTop: H * 0.015,
-                                            alignSelf: "center",
-                                            color: colors.black,
-                                            fontSize: fontSizes.XL,
-                                            paddingLeft: W * 0.04,
-                                            paddingTop: W * 0.02,
-                                            paddingBottom: W * 0.02,
-                                            borderColor: colors.toobarcolor,
-                                            borderWidth: 1,
-                                            width: W * 0.95,
-                                            borderRadius: 8,
-                                        }}>
-                                        {patientName}
-                                    </Text>
-                            }
-
-                        </TouchableOpacity>
-                        :
-                        <Text
-                            style={{
-                                fontFamily: fontFamily.medium,
-                                marginTop: H * 0.015,
-                                alignSelf: "center",
-                                color: colors.black,
-                                fontSize: fontSizes.XL,
-                                paddingLeft: W * 0.04,
-                                paddingTop: W * 0.02,
-                                paddingBottom: W * 0.02,
-                                borderColor: colors.toobarcolor,
-                                borderWidth: 1,
-                                borderRadius: 8,
-                                width: W * 0.95
-                            }}>
-                            {mySelf}
-                        </Text>
-
-                    }
-
-                    <View
-                        style={{
-                            width: W, justifyContent: 'center',
-                            marginTop: H * 0.02
-                        }}>
-
-
                         <TouchableOpacity
                             disabled={isDisabled}
-                            onPress={() => {
-                                if ((gender == "Relative") && (patientName == "")) {
-                                    Alert.alert("Warning", "Kindly choose a patient first before proceeding")
-                                }
-                                else {
-                                    corporatePriceApi()
-                                    // navigation.navigate("SlotBlockingScreen", { "gender": gender })
-
-                                }
-
-                            }}
+                            onPress={() => { bookAppointmentAndContinueToPaymentGateway() }}
                             style={{
-
+                                height: H * 0.06,
+                                width: W * 0.85,
+                                alignSelf: "center",
+                                backgroundColor: isDisabled ? "gray" : "green",
+                                borderRadius: 8,
                                 justifyContent: "center",
                                 alignItems: "center",
-                                alignSelf: "center",
-                                width: W * 0.9,
-                                fontSize: fontSizes.default,
-                                backgroundColor: isDisabled ? "gray" : "green",
-                                color: 'white',
-                                textAlign: 'center',
-                                borderRadius: 8,
-                                elevation: 2,
-                                padding: 10,
-                                marginBottom: H * 0.023,
-
-                            }}><Text
-                                style={{
-                                    color: isDisabled ? "white" : "white"
-                                }}
-                            >Pay</Text>
+                                marginVertical: H * 0.01
+                            }}>
+                            <Text style={{
+                                color: "white"
+                            }}>Continue to payment</Text>
                         </TouchableOpacity>
 
-
                         <TouchableOpacity
-                            style={{
-                                justifyContent: "center",
-                                alignItems: "center",
-                                width: W * 0.9,
-                                fontSize: fontSizes.default,
-                                backgroundColor: colors.maroon,
-                                color: 'white',
-                                textAlign: 'center',
-                                borderRadius: 8,
-                                elevation: 2,
-                                padding: 10,
-                                alignSelf: "center"
-                            }}
                             onPress={() => {
-                                cancelSlotAndNavigate()
-                                // console.log("cancelSlotAndNavigate()")
-
+                                // cancelSlotAndNavigate()
+                                setSlotBlockingScreenModal(false)
+                            }}
+                            style={{
+                                height: H * 0.06,
+                                width: W * 0.85,
+                                alignSelf: "center",
+                                backgroundColor: colors.maroon,
+                                borderRadius: 8,
+                                justifyContent: "center",
+                                alignItems: "center"
                             }}>
                             <Text style={{
                                 color: "white"
                             }}>Cancel</Text>
                         </TouchableOpacity>
-                        <View style={{
-                            borderWidth: 1,
-                            borderColor: colors.toobarcolor,
-                            borderRadius: 8,
-                            width: W * 0.92,
-                            alignSelf: "center",
-                            marginVertical: H * 0.03
-                        }}>
-                            <Text style={{
-                                padding: H * 0.03,
+
+                    </View>
+                </View>
+            </Modal>
+
+            <ScrollView contentContainerStyle={{
+                backgroundColor: "white",
+                paddingBottom: H * 0.1
+            }}>
+
+                <Text
+                    style={{
+                        fontFamily: fontFamily.medium,
+                        alignSelf: 'flex-start',
+                        color: colors.black,
+                        fontSize: fontSizes.XL,
+                        paddingLeft: W * 0.04,
+                        paddingTop: W * 0.02,
+                        //paddingBottom: W * 0.02,
+                        width: W
+                    }}>Doctor Details:</Text>
+
+                <DoctorCardWithoutPrice
+                    profile_url={myDoctorImage}
+                    image={""}
+                    first_name={myDoctor}
+                    category={myDoctorCategory}
+                    designation={myDoctorDesignation}
+                    education={myDoctorEducation}
+                />
+
+                <Text
+                    style={{
+                        fontFamily: fontFamily.medium,
+                        alignSelf: 'flex-start',
+                        color: colors.black,
+                        fontSize: fontSizes.XL,
+                        paddingLeft: W * 0.04,
+                        paddingTop: W * 0.02,
+                        paddingBottom: W * 0.02,
+                        width: W
+                    }}>Billing Details:</Text>
+
+                <View style={{
+                    borderColor: colors.toobarcolor,
+                    borderWidth: 1,
+                    width: "95%",
+                    alignSelf: "center",
+                    borderRadius: 8
+                }}>
+
+
+                    <Text
+                        style={{
+                            fontFamily: fontFamily.semibold,
+                            marginTop: H * 0.015,
+                            marginStart: W * 0.05,
+                            alignSelf: 'flex-start',
+                            color: "gray",
+                            fontSize: fontSizes.SM,
+                            fontWeight: "600"
+                        }}>Price: ₹{oldPrice == "" ? myPrice : oldPrice}
+
+                    </Text>
+
+                    <Text
+                        style={{
+                            fontFamily: fontFamily.medium,
+                            marginTop: H * 0.015,
+                            marginStart: W * 0.05,
+                            alignSelf: 'flex-start',
+                            color: "gray",
+                            fontSize: fontSizes.SM,
+                        }}>Date: {timeStampToDateFormatd_m_y(apiDate)}</Text>
+
+                    <View style={{
+                        flexDirection: "row"
+                    }}>
+                        <Text
+                            style={{
+                                fontFamily: fontFamily.medium,
+                                marginTop: H * 0.015,
+                                marginStart: W * 0.05,
+                                alignSelf: 'flex-start',
+                                color: 'gray',
                                 fontSize: fontSizes.SM,
-                            }}>{"*Please schedule appointment with the name of patient only.\n*If patient is already registered, do not register again, because New UHID will not contain the Old UHID History data for Doctor’s treatment.\n*Cancellation of Appointment can only be done before two hours of Appointment time, beyond that no refund would be entertained.\n*All Video consultation are Non Refundable."}</Text>
-                        </View>
+                                marginBottom: H * 0.015,
+                            }}>Slot: {convert24hTo12hFormat(mySlot)}</Text>
+                        <Text style={{
+                            fontFamily: fontFamily.semibold,
+                            marginTop: H * 0.015,
+                            marginStart: W * 0.05,
+                            alignSelf: 'flex-start',
+                            color: myAppointmentType == '0' ? "blue" : "green",
+                            fontSize: fontSizes.SM,
+                            marginBottom: H * 0.015,
+                        }}>
+                            ({myAppointmentType == '0' ? "In Person" : "Online"})
+                        </Text>
                     </View>
 
+                    <View style={{
+                        position: "absolute",
+                        left: W * 0.7,
+                        top: H * 0.024
+                    }}>
+                        <CountdownCircleTimer
+                            onComplete={() => {
+                                setIsDisabled(true)
+                                // Alert.alert("Time Out!", "Please Book your slot again.")
+                                //navigation.navigate("DoctorProfile")
+                            }}
+                            strokeWidth={6}
+                            size={W * 0.17}
+                            isPlaying
+                            duration={300}
+                            colors={colors.toobarcolor}
+                            trailColor="orange"
+                        //colors={['green', 'yellow', 'orange', 'red']}
+                        //colorsTime={[200, 150, , 50]}
+                        >
+                            {({ remainingTime }) => {
+                                const minutes = String(Math.floor(remainingTime / 60)).padStart(2, '0');
+                                const seconds = String(remainingTime % 60).padStart(2, '0');
+                                return <Text style={{
+                                    //position: "absolute",
+                                    //left: W * 0.15,
+                                    color: "gray",
+                                    textAlign: "center",
+                                    fontSize: fontSizes.SM
+                                }}>{`${minutes}:${seconds}`}</Text>
+                            }
+                            }
+                        </CountdownCircleTimer>
+                    </View>
+                </View>
+
+                <Text
+                    style={{
+                        fontFamily: fontFamily.medium,
+                        alignSelf: 'flex-start',
+                        color: colors.black,
+                        fontSize: fontSizes.XL,
+                        paddingLeft: W * 0.04,
+                        paddingTop: W * 0.02,
+                        paddingBottom: W * 0.02,
+                        width: W
+                    }}>Confirm Booking For:</Text>
+                {/* {!(wasPreviouslyDoctor == "true") && */}
+                <View
+                    style={{
+                        flexDirection: "row",
+                        marginLeft: W * 0.018,
+                        marginRight: W * 0.018,
+                        justifyContent: 'space-evenly',
+                        height: H * 0.05
+                    }}>
+
+                    {
+                        // !(wasPreviouslyDoctor == "true") &&
+                        <TouchableOpacity
+                            onPress={() => {
+                                setGender("Self")
+                            }}
+
+                            style={{
+                                backgroundColor: gender == "Self" ? colors.toobarcolor : "white",
+                                justifyContent: "center",
+                                borderWidth: 1,
+                                borderColor: "gray",
+                                alignItems: "center",
+                                width: W * 0.29,
+                                borderRadius: 5,
+                            }}>
+                            <Text style={{
+                                fontFamily: fontFamily.medium,
+                                color: gender == "Self" ? "white" : "black"
+                            }}>Self</Text>
+                        </TouchableOpacity>
+                    }
+                    {
+                        // !(wasPreviouslyDoctor == "true") &&
+                        <TouchableOpacity
+
+                            onPress={() => {
+                                setPatientListModal(true)
+                                setGender("Relative")
+                            }}
+
+                            style={{
+                                backgroundColor: gender == "Relative" ? colors.toobarcolor : "white",
+                                justifyContent: "center",
+                                borderWidth: 1,
+                                borderColor: "gray",
+                                alignItems: "center",
+                                width: W * 0.29,
+                                borderRadius: 5,
+                                marginLeft: 5,
+                                marginRight: 5
+                            }}>
+                            <Text style={{
+                                fontFamily: fontFamily.medium,
+                                color: gender == "Relative" ? "white" : "black"
+                            }}
+
+                            >Relative</Text>
+                        </TouchableOpacity>
+                    }
+                    {
+                        // !(wasPreviouslyDoctor == "true") &&
+                        <TouchableOpacity
+
+                            onPress={() => {
+
+                                navigation.navigate("AddPatientDuringAppointments")
+                            }}
+
+                            style={{
+                                backgroundColor: "white",
+                                justifyContent: "center",
+                                borderWidth: 1,
+                                borderColor: "gray",
+                                alignItems: "center",
+                                width: W * 0.29,
+                                // padding: 10,
+                                borderRadius: 5,
+                            }}>
+                            <View>
+                                <Text
+                                    style={{
+                                        fontFamily: fontFamily.medium,
+                                        color: "black"
+                                    }}
+                                >Add <AntDesign name="pluscircle" size={16} color={colors.toobarcolor} /></Text>
+                            </View>
+                        </TouchableOpacity>
+                    }
+                </View>
+                {/* } */}
 
 
-                </ScrollView>
+                {gender == "Relative" ?
+                    <TouchableOpacity
+                        onPress={() => {
 
-            </View >
+                            setPatientListModal(true)
+
+                        }}
+
+                    >
+                        {
+                            patientName == ""
+                                ?
+                                <View style={{
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    marginHorizontal: H * 0.01,
+                                    borderRadius: 8,
+                                    borderWidth: 1,
+                                    borderColor: 'gray',
+                                    borderRadius: 5,
+                                    padding: 8,
+                                    marginTop: H * 0.02,
+                                    backgroundColor: colors.bgeditext,
+                                }}
+                                >
+                                    <Text
+                                        style={{
+                                            // textAlign: "center",
+                                            color: "black",
+                                            fontSize: fontSizes.SM,
+                                            fontFamily: fontFamily.regular,
+                                            marginLeft: W * 0.05,
+                                            marginRight: W * 0.09,
+
+                                        }}
+                                    >{patientName == "" ? "Click here to choose" : null}</Text>
+                                </View>
+                                :
+                                <Text
+                                    style={{
+                                        fontFamily: fontFamily.medium,
+                                        marginTop: H * 0.015,
+                                        alignSelf: "center",
+                                        color: colors.black,
+                                        fontSize: fontSizes.XL,
+                                        paddingLeft: W * 0.04,
+                                        paddingTop: W * 0.02,
+                                        paddingBottom: W * 0.02,
+                                        borderColor: colors.toobarcolor,
+                                        borderWidth: 1,
+                                        width: W * 0.95,
+                                        borderRadius: 8,
+                                    }}>
+                                    {patientName}
+                                </Text>
+                        }
+
+                    </TouchableOpacity>
+                    :
+                    <Text
+                        style={{
+                            fontFamily: fontFamily.medium,
+                            marginTop: H * 0.015,
+                            alignSelf: "center",
+                            color: colors.black,
+                            fontSize: fontSizes.XL,
+                            paddingLeft: W * 0.04,
+                            paddingTop: W * 0.02,
+                            paddingBottom: W * 0.02,
+                            borderColor: colors.toobarcolor,
+                            borderWidth: 1,
+                            borderRadius: 8,
+                            width: W * 0.95
+                        }}>
+                        {mySelf}
+                    </Text>
+
+                }
+
+                <View
+                    style={{
+                        width: W, justifyContent: 'center',
+                        marginTop: H * 0.02
+                    }}>
+
+
+                    <TouchableOpacity
+                        disabled={isDisabled}
+                        onPress={() => {
+                            if ((gender == "Relative") && (patientName == "")) {
+                                Alert.alert("Warning", "Kindly choose a patient first before proceeding")
+                            }
+                            else {
+                                corporatePriceApi()
+                                // navigation.navigate("SlotBlockingScreen", { "gender": gender })
+
+                            }
+
+                        }}
+                        style={{
+
+                            justifyContent: "center",
+                            alignItems: "center",
+                            alignSelf: "center",
+                            width: W * 0.9,
+                            fontSize: fontSizes.default,
+                            backgroundColor: isDisabled ? "gray" : "green",
+                            color: 'white',
+                            textAlign: 'center',
+                            borderRadius: 8,
+                            elevation: 2,
+                            padding: 10,
+                            marginBottom: H * 0.023,
+
+                        }}><Text
+                            style={{
+                                color: isDisabled ? "white" : "white"
+                            }}
+                        >Pay</Text>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: W * 0.9,
+                            fontSize: fontSizes.default,
+                            backgroundColor: colors.maroon,
+                            color: 'white',
+                            textAlign: 'center',
+                            borderRadius: 8,
+                            elevation: 2,
+                            padding: 10,
+                            alignSelf: "center"
+                        }}
+                        onPress={() => {
+                            cancelSlotAndNavigate()
+                            // console.log("cancelSlotAndNavigate()")
+
+                        }}>
+                        <Text style={{
+                            color: "white"
+                        }}>Cancel</Text>
+                    </TouchableOpacity>
+                    <View style={{
+                        borderWidth: 1,
+                        borderColor: colors.toobarcolor,
+                        borderRadius: 8,
+                        width: W * 0.92,
+                        alignSelf: "center",
+                        marginVertical: H * 0.03
+                    }}>
+                        <Text style={{
+                            padding: H * 0.03,
+                            fontSize: fontSizes.SM,
+                        }}>{"*Please schedule appointment with the name of patient only.\n*If patient is already registered, do not register again, because New UHID will not contain the Old UHID History data for Doctor’s treatment.\n*Cancellation of Appointment can only be done before two hours of Appointment time, beyond that no refund would be entertained.\n*All Video consultation are Non Refundable."}</Text>
+                    </View>
+                </View>
+
+
+
+            </ScrollView>
+
+        </View >
     )
 }
 
