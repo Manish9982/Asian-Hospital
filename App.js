@@ -44,6 +44,7 @@ const App = () => {
       messaging()
         .getInitialNotification()
         .then(remoteMessage => {
+          console.log('remoteMessage?.data', remoteMessage?.data)
           if (remoteMessage?.data?.video_token) {
             savelocalStorageData("accessToken", remoteMessage?.data?.video_token)
             savelocalStorageData("ID", remoteMessage?.data?.appo_id)
@@ -51,18 +52,25 @@ const App = () => {
             setInitialRoute("CallingScreen"); // e.g. "Settings"
             //console.log("VideoTrigger")
           }
+          else {
+            setInitialRoute(remoteMessage?.data?.onClick); // e.g. "Settings"
+          }
           setLoading(false);
         });
     }
     else {
       PushNotificationIOS.getInitialNotification().then(remoteMessage => {
         //console.log("remoteMessage at PushNotificationIOS get initial", remoteMessage)
+        console.log('remoteMessage?._data', remoteMessage?._data)
         if (remoteMessage?._data?.video_token) {
           savelocalStorageData("accessToken", remoteMessage?._data?.video_token)
           savelocalStorageData("ID", remoteMessage?._data?.appo_id)
           savelocalStorageData("doctorNameDuringCall", remoteMessage?._data?.doctor_name)
           setInitialRoute("CallingScreen"); // e.g. "Settings"
           //console.log("VideoTrigger")
+        }
+        else {
+          setInitialRoute(remoteMessage?._data?.onClick); // e.g. "Settings"
         }
         setLoading(false);
       })
@@ -78,7 +86,7 @@ const App = () => {
     <DataState>
       <PaperProvider theme={theme}>
         <ToastManager
-          duration={1000}/>
+          duration={1000} />
         <Router initialRoute={initialRoute} />
       </PaperProvider>
     </DataState>

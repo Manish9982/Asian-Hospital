@@ -10,8 +10,6 @@ import HeaderTwo from '../../assets/Schemes/HeaderTwo';
 import { colors, convert24hTo12hFormat, fontFamily, fontSizes, getLocalStorageData, PostApiData } from '../../assets/Schemes/Schemes';
 import { spacing } from '../../components/Spacing';
 
-
-
 const MyAppointments = ({ navigation }) => {
     useEffect(() => {
         getAppointmentList()
@@ -169,7 +167,9 @@ const MyAppointments = ({ navigation }) => {
 
                 }}>
 
-                <HeaderTwo Title="Appointments" />
+                <HeaderTwo Title="Appointments" 
+                goBackScreen={"BottomTab"}
+                />
 
                 {/* <View style={{ 
                     flexDirection: 'row',

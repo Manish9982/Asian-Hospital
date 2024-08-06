@@ -8,7 +8,7 @@ const BookDietician = () => {
     const [date, setDate] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(Platform.OS == "ios");
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
-    const [frequency, setFrequency] = useState('');
+    const [frequency, setFrequency] = useState('Weekly');
     const [showFrequencyDropdown, setShowFrequencyDropdown] = useState(false);
     const dropdownHeight = useState(new Animated.Value(0))[0];
     const [appointments, setAppointments] = useState([]);
@@ -44,12 +44,12 @@ const BookDietician = () => {
         let appointmentList = [];
         let currentDate = new Date(date);
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             appointmentList.push({
                 date: new Date(currentDate),
                 time: selectedTimeSlot,
             });
-            currentDate.setDate(currentDate.getDate() + (frequency === 'Weekly' ? 7 : 30));
+            currentDate.setDate(currentDate.getDate() + 7);
         }
         setAppointments(appointmentList);
     };
@@ -67,9 +67,6 @@ const BookDietician = () => {
                     Choose your preferred <Text style={styles.highlight}>date</Text>, <Text style={styles.highlight}>time slot</Text>, and <Text style={styles.highlight}>frequency</Text> for your sessions.
                 </Text>
                 <Text style={styles.message}>
-                    🌟 You can set your visits to be <Text style={styles.highlight}>weekly</Text> or <Text style={styles.highlight}>monthly</Text>.
-                </Text>
-                <Text style={styles.message}>
                     Don't worry, you can always <Text style={styles.highlight}>change your schedule later</Text> if needed. Let's make this journey enjoyable and flexible for you! 😊
                 </Text>
                 <View style={styles.infoContainer}>
@@ -79,6 +76,7 @@ const BookDietician = () => {
                     </TouchableOpacity> */}
                     {showDatePicker && (
                         <DateTimePicker
+                
                             style={styles.dateTimePicker}
                             value={date}
                             mode="date"
@@ -101,7 +99,7 @@ const BookDietician = () => {
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
-                    <Text style={styles.label}>Frequency</Text>
+                    {/* <Text style={styles.label}>Frequency</Text>
                     <TouchableOpacity onPress={toggleFrequencyDropdown} style={styles.dropdown}>
                         <Text style={styles.dropdownText}>{frequency || 'Select Frequency'}</Text>
                     </TouchableOpacity>
@@ -112,7 +110,7 @@ const BookDietician = () => {
                         <TouchableOpacity onPress={() => selectFrequency('Monthly')} style={styles.dropdownOption}>
                             <Text style={styles.dropdownOptionText}>Monthly</Text>
                         </TouchableOpacity>
-                    </Animated.View>
+                    </Animated.View> */}
                 </View>
                 {
                     appointments.length > 0 &&

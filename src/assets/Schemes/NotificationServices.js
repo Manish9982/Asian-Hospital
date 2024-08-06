@@ -42,7 +42,7 @@ export async function checkNotificationPermission() {
 
 }
 
-export const displayNotification = async (title, body) => {
+export const displayNotification = async (title, body, data) => {
     const channelId = await notifee.createChannel({
         id: 'Alarm',
         name: 'Alarm',
@@ -53,6 +53,9 @@ export const displayNotification = async (title, body) => {
     await notifee.displayNotification({
         title: title,
         body: body,
+        data:{
+            onClick:data?.onClick
+        },
         android: {
             channelId,
             pressAction: {

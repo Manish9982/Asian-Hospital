@@ -1,186 +1,210 @@
-import { FlatList, StyleSheet, View, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import HeaderTwo from '../assets/Schemes/HeaderTwo'
-import { Text, Button } from 'react-native-paper'
-import { colors, fontFamily } from '../assets/Schemes/Schemes'
-import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons'
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, FlatList, TouchableOpacity, Animated, Modal } from 'react-native';
+import { Text } from 'react-native-paper';
+import { colors, GetApiData } from '../assets/Schemes/Schemes';
+import HeaderTwo from '../assets/Schemes/HeaderTwo';
+import { Toast } from 'toastify-react-native';
+import Loader from '../assets/Loader/Loader';
 
-const DATA = {
-    status: '200',
-    data: [
-        {
-            plan_name: "Starter Plan",
-            price: '500',
-            currency: 'Rs.',
-            period: '/ month',
-            isActive: true,
-            benefits: [
-                'Access to basic workouts',
-                'Weekly diet plan',
-                'Email support'
-            ]
-        },
-        {
-            plan_name: "Advanced Plan",
-            price: '1200',
-            currency: 'Rs.',
-            period: '/ month',
-            isActive: false,
-            benefits: [
-                'Everything from Starter Plan &',
-                'Personalized workout routines',
-                'Monthly diet consultations',
-                '24/7 chat support'
-            ]
-        },
-        {
-            plan_name: "Premium Plan",
-            price: '2500',
-            currency: 'Rs.',
-            period: '/ month',
-            isActive: false,
-            benefits: [
-                'Everything from Advanced Plan &',
-                'Daily diet consultations',
-                'Priority support',
-                'Free fitness tracker',
-            ]
-        },
-    ]
-}
+const AnimatedCard = ({ item, onPressPurchase, onPressView }) => {
+    const animatedValue = React.useRef(new Animated.Value(1)).current;
+
+    const handlePressIn = () => {
+        Animated.spring(animatedValue, {
+            toValue: 0.95,
+            useNativeDriver: true,
+        }).start();
+    };
+
+    const handlePressOut = () => {
+        Animated.spring(animatedValue, {
+            toValue: 1,
+            useNativeDriver: true,
+        }).start();
+    };
+
+    return (
+        <Animated.View style={[styles.card, { transform: [{ scale: animatedValue }] }]}>
+            <TouchableOpacity
+                activeOpacity={1}
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
+                style={styles.cardContent}
+            >
+                {item?.isActive && (
+                    <View style={styles.activeFlag}>
+                        <Text style={styles.activeText}>ACTIVE</Text>
+                    </View>
+                )}
+                <View style={styles.textContainer}>
+                    <View style={styles.leftAlign}>
+                        <Text style={styles.serviceName}>{item.ServiceName}</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={styles.serviceNameLocal}>{item.ServiceNameLocalLang}</Text>
+                            <View style={styles.rightAlign}>
+                                <Text style={styles.price}>{item.currency}{item.price}</Text>
+                            </View>
+                        </View>
+                        <Text style={styles.instructions}>{item.ServiceProcessInstructions}</Text>
+                    </View>
+
+                </View>
+                {
+                    item?.isActive
+                        ?
+                        <TouchableOpacity style={styles.purchaseButton} onPress={() => onPressView(item?.ServiceCode)}>
+                            <Text style={styles.purchaseText}>View</Text>
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity style={styles.purchaseButton} onPress={() => onPressPurchase(item?.ServiceCode)}>
+                            <Text style={styles.purchaseText}>Proceed</Text>
+                        </TouchableOpacity>
+                }
+
+            </TouchableOpacity>
+        </Animated.View>
+    );
+};
 
 const ObesityPackages = ({ navigation }) => {
-    const [packagesData, setPackagesData] = useState(null)
+    const [packageData, setPackageData] = useState(null)
+    const [loader, setLoader] = useState(true)
 
     useEffect(() => {
-        setPackagesData(DATA)
+        getPackageListing()
     }, [])
 
-    const renderPackages = ({ item, index }) => {
-        const onPressPurchaseButton = () => {
-            navigation.navigate("ChooseDietician")
+    const getPackageListing = async () => {
+        const result = await GetApiData('dietician_plan_list')
+        if (result?.status == '200') {
+            setPackageData(result)
         }
-        return (
-            <TouchableOpacity style={[styles.cardForPackage, item.isActive && styles.activePackage]}>
-                <View style={styles.namePriceContainer}>
-                    <Text style={typography.planName}>{item?.plan_name}</Text>
-                    <Text>
-                        <Text style={typography.price}>{item?.currency}</Text>
-                        <Text style={typography.price}>{item?.price} </Text>
-                        <Text style={typography.price2}>{item?.period}</Text>
-                    </Text>
-                </View>
+        else {
+            Toast.error(result?.message)
+        }
+        setLoader(false)
+    }
 
-                {item?.benefits?.map((benefit, idx) => {
-                    return (
-                        <View key={idx} style={styles.benefitsContainer}>
-                            <MaterialCommunityIcons name="check-circle-outline" size={20} color={colors.toobarcolor} />
-                            <Text style={typography.benefitText}>  {benefit}</Text>
-                        </View>
-                    )
-                })}
-                <Button
-                    mode="contained"
-                    onPress={onPressPurchaseButton}
-                    style={styles.purchaseButton}
-                    labelStyle={typography.buttonText}
-                >
-                    {item.isActive ? 'Current Plan' : 'Purchase'}
-                </Button>
-            </TouchableOpacity>
-        )
+    const BuyPackage = (prop) => {
+        console.log(prop)
+        navigation.navigate('ChooseDietician', { service_id: prop })
+    }
+
+    const ViewPackage = (prop) => {
+        console.log(prop)
+        navigation.navigate('ActivePackageDetails', { service_id: prop })
     }
 
     return (
-        <View style={styles.container}>
-            <HeaderTwo Title={"Packages"} />
-            <FlatList
-                contentContainerStyle={styles.listContainer}
-                renderItem={renderPackages}
-                data={packagesData?.data}
-                keyExtractor={(item, index) => `${index}`}
+        <>
+            <HeaderTwo
+                Title={'Obesity Packages'}
             />
-        </View>
-    )
-}
-
-export default ObesityPackages
+            <Modal visible={loader}>
+                <View>
+                    <Loader />
+                </View>
+            </Modal>
+            <FlatList
+                data={packageData?.data}
+                renderItem={({ item }) => <AnimatedCard item={item}
+                    onPressPurchase={BuyPackage}
+                    onPressView={ViewPackage}
+                />}
+                keyExtractor={item => item.ServiceCode}
+                contentContainerStyle={styles.container}
+            />
+        </>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: colors.lightGray,
+        paddingHorizontal: 10,
+        paddingBottom: 20,
     },
-    listContainer: {
-        paddingVertical: 20,
-    },
-    cardForPackage: {
-        minHeight: 250,
-        width: '90%',
-        alignSelf: 'center',
-        padding: 20,
-        backgroundColor: '#fff',
-        borderRadius: 8,
+    card: {
         marginVertical: 10,
-        shadowColor: "#000",
+        padding: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 5
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowRadius: 10,
         elevation: 5,
         borderWidth: 1,
-        borderColor: colors.lightGray,
+        borderColor: colors.toobarcolor2,
     },
-    activePackage: {
-        borderColor: colors.toobarcolor,
-        borderWidth: 2,
-    },
-    namePriceContainer: {
-        flexDirection: 'column',
+    cardContent: {
         alignItems: 'flex-start',
-        marginBottom: 20,
     },
-    benefitsContainer: {
+    activeFlag: {
+        backgroundColor: colors.greencolor,
+        borderRadius: 5,
+        paddingVertical: 2,
+        paddingHorizontal: 5,
+    },
+    activeText: {
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: '600',
+    },
+    textContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 5,
+        justifyContent: 'space-between',
+        width: '100%',
+        paddingVertical: 5,
     },
-    purchaseButton: {
-        marginTop: 20,
-        backgroundColor: colors.toobarcolor,
+    leftAlign: {
+        flex: 3,
     },
-})
-
-const typography = StyleSheet.create({
-    planName: {
-        fontFamily: fontFamily.bold,
-        fontWeight: '700',
-        fontSize: 24,
+    rightAlign: {
+        flex: 1,
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+    },
+    serviceName: {
+        fontSize: 16,
+        fontWeight: '600',
+        marginBottom: 2,
         color: colors.toobarcolor,
     },
-    price2: {
-        fontFamily: fontFamily.semibold,
-        fontWeight: '600',
-        fontSize: 18,
-        color: colors.darkgray,
+    serviceNameLocal: {
+        fontSize: 14,
+        color: '#888',
+        marginBottom: 5,
+    },
+    instructions: {
+        fontSize: 14,
+        color: '#666',
+        marginBottom: 5,
     },
     price: {
-        fontFamily: fontFamily.bold,
-        fontWeight: '700',
-        fontSize: 24,
-        color: colors.black,
-    },
-    benefitText: {
-        fontFamily: fontFamily.regular,
         fontSize: 16,
-        color: colors.darkgray,
-        marginLeft: 10,
+        fontWeight: '600',
+        color: colors.orangecolor,
+        marginBottom: 5,
     },
-    buttonText: {
-        fontFamily: fontFamily.semibold,
-        fontSize: 16,
+    purchaseButton: {
+        marginTop: 10,
+        backgroundColor: colors.toobarcolor,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 20,
+        alignSelf: 'center',
+        width: '40%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    purchaseText: {
         color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
     },
-})
+});
+
+export default ObesityPackages;

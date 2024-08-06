@@ -12,6 +12,7 @@ import { displayNotification } from '../../assets/Schemes/NotificationServices';
 import { Constants } from '../../assets/Schemes/Constants';
 import PackageAppointments from './PackageAppointments';
 import notifee, { EventType } from '@notifee/react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -20,7 +21,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabDoctor = () => {
 
     const [isDietician, setIsDietician] = useState(false)
-
+const navigation = useNavigation()
     useEffect(() => {
         getToken()
         checkVersion()
@@ -28,11 +29,9 @@ const BottomTabDoctor = () => {
     }, [])
     useEffect(() => {
         const unsubscribe = messaging().onMessage(async remoteMessage => {
-            // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
             if (remoteMessage?.data?.video_token) {
                 if (remoteMessage?.data?.video_token == "end_call") {
-                    //console.log("remoteMessage for hanging up call for doc", remoteMessage)
-                    //no navigation here because doctor needs to upload the prescription
+                   
                 }
                 else {
                     //console.log('A new FCM message arrived!', JSON.stringify(remoteMessage))
@@ -44,11 +43,9 @@ const BottomTabDoctor = () => {
                 }
             }
             else {
-                displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body)
+                displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body, remoteMessage?.data)
                 //console.log("remoteMessage for hanging up call doctor dis", remoteMessage)
             }
-
-
         });
         return unsubscribe;
     }, []);
@@ -60,21 +57,7 @@ const BottomTabDoctor = () => {
                     break;
                 case EventType.PRESS:
                     console.log('User pressed notification', detail);
-                    // if (detail?.notification?.data?.onClick) {
-
-                    //     navigation.navigate(detail?.notification?.data?.onClick,
-                    //         { "user_id": `34` })
-
-                    //     // if (detail?.notification?.data?.onClick !== 'default') {
-                    //     //     navigation.navigate(detail?.notification?.data?.onClick)
-                    //     // } else if (detail?.notification?.data?.onClick == "chat") {
-                    //     //     //navigation.navigate(detail?.notification?.data?.onClick, { "user_id": 14 });
-                    //     //     navigation.navigate('ChatScreen_Parent',
-                    //     //         { user_id: `14` })
-
-
-                    //     // }
-                    // }
+                    navigation.navigate(detail?.notification?.data?.onClick)
                     break;
             }
         });
@@ -87,21 +70,7 @@ const BottomTabDoctor = () => {
                     break;
                 case EventType.PRESS:
                     console.log('User pressed notification', detail);
-                    // if (detail?.notification?.data?.onClick) {
-
-                    //     navigation.navigate(detail?.notification?.data?.onClick,
-                    //         { "user_id": `34` })
-
-                    //     // if (detail?.notification?.data?.onClick !== 'default') {
-                    //     //     navigation.navigate(detail?.notification?.data?.onClick)
-                    //     // } else if (detail?.notification?.data?.onClick == "chat") {
-                    //     //     //navigation.navigate(detail?.notification?.data?.onClick, { "user_id": 14 });
-                    //     //     navigation.navigate('ChatScreen_Parent',
-                    //     //         { user_id: `14` })
-
-
-                    //     // }
-                    // }
+                    navigation.navigate(detail?.notification?.data?.onClick)
                     break;
             }
         });

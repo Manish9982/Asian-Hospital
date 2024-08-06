@@ -5,14 +5,20 @@ import { Appbar, Divider } from 'react-native-paper'
 import { colors, fontSizes, H, W } from './Schemes'
 import { useNavigation } from '@react-navigation/native'
 import { Constants } from './Constants'
+import { err } from 'react-native-svg/lib/typescript/xml'
 
 
-const HeaderTwo = ({ Title, goBackScreen = null, color = colors.toobarcolor  }) => {
+const HeaderTwo = ({ Title, goBackScreen = null, color = colors.toobarcolor }) => {
     const navigation = useNavigation()
     const backPress = () => {
         if (goBackScreen) {
-            navigation.navigate(goBackScreen)
+            try {
+                navigation.navigate(goBackScreen)
+            }
+            catch (error) {
+               
         }
+    }
         else {
             navigation.goBack()
         }

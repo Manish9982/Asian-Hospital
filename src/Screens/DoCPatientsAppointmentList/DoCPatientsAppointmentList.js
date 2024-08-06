@@ -369,7 +369,9 @@ const DoCPatientsAppointmentList = ({ navigation }) => {
                     backgroundColor: '#F5F5F5',
                 }}>
 
-                <HeaderTwo Title="Appointments" />
+                <HeaderTwo Title="Appointments"
+                goBackScreen={"BottomTabDoctor"}
+                />
 
                 <Modal
                     visible={modalVisible}

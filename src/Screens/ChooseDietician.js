@@ -1,8 +1,8 @@
-import { FlatList, StyleSheet, Touchable, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { Text } from 'react-native-paper'
-import DoctorCardWithoutPrice from '../assets/Schemes/DoctorCardWithoutPrice'
-import HeaderTwo from '../assets/Schemes/HeaderTwo'
+import { FlatList, StyleSheet, Touchable, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native-paper';
+import DoctorCardWithoutPrice from '../assets/Schemes/DoctorCardWithoutPrice';
+import HeaderTwo from '../assets/Schemes/HeaderTwo';
 
 const DATA = {
     status: '200',
@@ -15,17 +15,19 @@ const DATA = {
             education: 'MIT, Harvard'
         }
     ]
-}
+};
+
 export default function ChooseDietician({ navigation }) {
-    const [dieticians, setDieticians] = useState(null)
+    const [dieticians, setDieticians] = useState(null);
+    const visits = '4'
 
     useEffect(() => {
-        setDieticians(DATA)
-    }, [])
+        setDieticians(DATA);
+    }, []);
 
     const onSelectDietician = () => {
-        navigation.navigate('BookDietician')
-    }
+        navigation.navigate('BookDietician');
+    };
 
     const renderDieticians = ({ item }) => {
         return (
@@ -39,21 +41,21 @@ export default function ChooseDietician({ navigation }) {
                     education={item?.education}
                 />
             </TouchableOpacity>
-        )
-    }
+        );
+    };
+
     return (
         <View style={styles.container}>
             <HeaderTwo Title="Choose Dietician" />
             <View style={styles.container}>
-                <Text style={styles.header}>🎉 Congratulations! 🎉</Text>
                 <Text style={styles.message}>
-                    You now have <Text style={styles.highlight}>5 visits</Text> available to help you reach your goal weight!
+                    This package includes <Text style={styles.highlight}>{visits} visits</Text> to help you reach your goal weight!
                 </Text>
                 <Text style={styles.message}>
                     🔸 <Text style={styles.highlight}>Choose Your Dietician</Text>: Select the best expert for you.
                 </Text>
                 <Text style={styles.message}>
-                    🔸 <Text style={styles.highlight}>Schedule Your Visits</Text>: Set up your 5 sessions as <Text style={styles.highlight}>monthly</Text> or <Text style={styles.highlight}>weekly</Text>.
+                    🔸 <Text style={styles.highlight}>Schedule Your Visits</Text>: Set up your {visits} sessions.
                 </Text>
                 <Text style={styles.message}>
                     Don't worry, you can reschedule anytime if needed. Let’s get started on your journey to a healthier you! 🌟
@@ -66,12 +68,11 @@ export default function ChooseDietician({ navigation }) {
                 />
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    container:
-    {
+    container: {
         flex: 1
     },
     header: {
@@ -82,10 +83,8 @@ const styles = StyleSheet.create({
     },
     message: {
         fontSize: 16,
-        margin:8,
-        marginLeft:'4%',
-        //textAlign:'center',
-        //alignSelf:'center'
+        margin: 8,
+        marginLeft: '4%',
     },
     highlight: {
         fontWeight: 'bold',
@@ -98,5 +97,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#FF5722', // Orange color for tap to start
     },
-
-})
+});

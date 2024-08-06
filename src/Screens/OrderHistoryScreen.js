@@ -183,7 +183,7 @@ const OrderHistoryScreen = ({ navigation, route }) => {
             <View style={styles.container}>
                 <HeaderTwo
                     Title="My Orders"
-                    goBackScreen={route?.params?.goBackScreen}
+                    goBackScreen={route?.params?.goBackScreen || "BottomTab"}
                 />
 
 

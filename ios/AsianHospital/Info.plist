@@ -7,25 +7,16 @@
     <key>CFBundlePrimaryIcon</key>
     <dict>
       <key>CFBundleIconName</key>
-      <string></string>
+      <string>Free</string>
       <key>CFBundleIconFiles</key>
       <array>
-        <string>AppIcon</string>
+        <string>Free</string>
       </array>
       <key>UIPrerenderedIcon</key>
       <false/>
     </dict>
     <key>CFBundleAlternateIcons</key>
     <dict>
-      <key>Free</key>
-      <dict>
-        <key>UIPrerenderedIcon</key>
-        <false/>
-        <key>CFBundleIconFiles</key>
-        <array>
-          <string>Free</string>
-        </array>
-      </dict>
       <key>Paid</key>
       <dict>
         <key>UIPrerenderedIcon</key>
