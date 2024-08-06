@@ -44,7 +44,7 @@ const BookingsNav = ({ navigation }) => {
     setDataFromReportListApi(result)
 
     const removeDuplicates = (arr, key) => {
-      return arr.filter((item, index, self) => self.findIndex(i => i[key] === item[key]) === index);
+      return arr?.filter((item, index, self) => self.findIndex(i => i[key] === item[key]) === index);
     }
 
     var myFilteredArray = await removeDuplicates(result?.bills, 'BillNumber')

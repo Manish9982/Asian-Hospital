@@ -149,7 +149,8 @@ const Appointments = ({ navigation }) => {
 
                 }}>
 
-                <HeaderTwo Title="Appointments" />
+                <HeaderTwo Title="Appointments" 
+                />
 
                 <View
                     style={{

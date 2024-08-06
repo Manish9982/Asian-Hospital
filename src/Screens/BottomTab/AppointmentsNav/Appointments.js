@@ -36,7 +36,7 @@ const Appointments = ({ navigation }) => {
     const { NmyAppointmentType, NmyDoctorID } = useContext(DataContext)
     const [myDoctorID, setMyDoctorID] = NmyDoctorID
     useEffect(() => {
-            toastHospitalID()
+        toastHospitalID()
     }, [])
 
 
@@ -272,14 +272,14 @@ const Appointments = ({ navigation }) => {
                 flex: 5
             }}>
 
-                <HeaderTwo Title="Appointments" />
+                <HeaderTwo Title="Appointments"
+                    goBackScreen={"PatientDashboard"}
+                />
                 <KeyboardAvoidingView
                     style={{
 
                     }}
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-
-
                     <Modal
                         visible={modalvisible}
                         transparent={true}>
@@ -306,7 +306,6 @@ const Appointments = ({ navigation }) => {
                                     fontSize: fontSizes.default
                                 }}>Choose Hospital</Text>
 
-
                                 <Divider
                                     style={{
                                         width: W,
@@ -318,8 +317,6 @@ const Appointments = ({ navigation }) => {
                                     renderItem={renderItemHospitals}
                                     keyExtractor={(item, index) => `${index}`}
                                 />
-
-
 
                                 <TouchableOpacity onPress={() => {
                                     setModalVisible(false)
@@ -336,8 +333,6 @@ const Appointments = ({ navigation }) => {
                             </View>
                         </View>
                     </Modal>
-
-
                     <TextInput
                         mode={"outlined"}
                         keyboardType='default'
@@ -351,7 +346,6 @@ const Appointments = ({ navigation }) => {
                         onChangeText={(t) => {
                             filterSearch(t)
                         }}
-
                         style={{
                             height: H * 0,
                             width: W * 0.95,
@@ -361,9 +355,7 @@ const Appointments = ({ navigation }) => {
                             backgroundColor: colors.bgeditext,
                             justifyContent: "center",
                         }}
-
                         right={<TextInput.Icon icon="magnify" />}
-
                     />
                     <TouchableOpacity onPress={() => {
                         getHospitalData()
@@ -387,20 +379,16 @@ const Appointments = ({ navigation }) => {
                                 }}>
                                 {hospitalname}
                             </Text>
-
                         </View>
-
                     </TouchableOpacity>
 
                     <ScrollView
                         contentContainerStyle={{
                             justifyContent: "center",
                             width: W,
-
                         }}
                         style={{
                             width: W,
-
                         }}
                     >
                         {

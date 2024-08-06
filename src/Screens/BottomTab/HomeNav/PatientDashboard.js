@@ -287,9 +287,9 @@ const PatientDashboard = ({ navigation }) => {
             style={{
               flex: 3,
               backgroundColor: getColor(),
-              height: H * 0.185,
-              width: H * 0.185,
-              marginTop: H * 0.015,
+              height: W * 0.4,
+              width: W * 0.4,
+              marginTop: W * 0.05,
               borderRadius: 8,
               justifyContent: "space-evenly",
               alignItems: "center"
@@ -300,7 +300,7 @@ const PatientDashboard = ({ navigation }) => {
               <Image
                 source={require('../../../assets/Images/asianlogo.png')}
                 style={{
-                  height: H * 0.05,
+                  height: W * 0.12,
                   tintColor: 'white',
                   resizeMode: "contain",
                 }} />
@@ -313,8 +313,8 @@ const PatientDashboard = ({ navigation }) => {
                 style={{
                   resizeMode: "contain",
                   tintColor: "white",
-                  height: H * 0.05,
-                  width: H * 0.05
+                  height: W * 0.12,
+                  width: W * 0.12
                 }}
               />
             </View>

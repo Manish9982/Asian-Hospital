@@ -14,6 +14,7 @@ const ScannerScreen = ({ navigation }) => {
   // }, [])
 
   function extractRoomAndBed(url) {
+    // sample URL: https://appl.aimsindia.com/easebuzz-foodorder?productinfo=8860946901&roomno=001&bedno=A
     console.log('url===>', url);
 
     // Use regular expressions to extract the parameters

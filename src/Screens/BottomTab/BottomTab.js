@@ -38,7 +38,7 @@ const BottomTab = () => {
                 }
             }
             else {
-                displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body)
+                displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body, remoteMessage?.data)
                 //console.log("remoteMessage for hanging up call display", remoteMessage)
             }
         });
@@ -67,11 +67,9 @@ const BottomTab = () => {
                 }
             }
             else {
-                displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body)
+                displayNotification(remoteMessage?.data?.title, remoteMessage?.data?.body, remoteMessage?.data)
                 //console.log("remoteMessage for hanging up call doctor dis", remoteMessage)
             }
-
-
         });
         return unsubscribe;
     }, []);
@@ -83,6 +81,7 @@ const BottomTab = () => {
                     break;
                 case EventType.PRESS:
                     console.log('User pressed notification', detail);
+                    navigation.navigate(detail?.notification?.data?.onClick)
                     // if (detail?.notification?.data?.onClick) {
 
                     //     navigation.navigate(detail?.notification?.data?.onClick,
